@@ -1,0 +1,17 @@
+
+{
+  "recommendations": [
+    // Linter e Formatter
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+
+
+    // Qualidade de vida
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+    "aaron-bond.better-comments", // Para os seus TODOs, FIXMEs etc.
+    "ms-vscode.live-server",
+    "formulahendry.code-runner",
+    "eamodio.gitlens"
+  ]
+}
