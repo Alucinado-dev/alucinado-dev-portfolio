@@ -30,8 +30,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
+# Mas commita o exemplo para o time saber quais variáveis existem:
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +41,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Editor
+.vscode/*
+# Mas compartilha as configs do time:
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Gerado por ferramentas
+*.log
+.turbo

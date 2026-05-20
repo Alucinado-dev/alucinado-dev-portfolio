@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme {
+  --font-outfit: var(--font-outfit);
+  --font-space-grotesk: var(--font-space-grotesk);
+  --font-syne-mono: var(--font-syne-mono);
+  --font-exo-2: var(--font-exo-2);
+  --font-rajdhani: var(--font-rajdhani);
+  --font-asimovian: var(--font-asimovian);
+  --font-audiowide: var(--font-audiowide);
+  --font-zen-dots: var(--font-zen-dots);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
