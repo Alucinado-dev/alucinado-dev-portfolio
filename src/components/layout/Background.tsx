@@ -31,24 +31,26 @@ const Background = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [mouseX, mouseY])
 
-  const xNebula = useTransform(mouseX, [0, width ?? 1], [-80, 80])
-  const yNebula = useTransform(mouseY, [0, height ?? 1], [-80, 80])
+  const xNebula = useTransform(mouseX, [0, width ?? 1], [80, -80])
+  const yNebula = useTransform(mouseY, [0, height ?? 1], [80, -80])
 
-  const xStarsFar = useTransform(mouseX, [0, width ?? 1], [-10, 10])
-  const yStarsFar = useTransform(mouseY, [0, height ?? 1], [-10, 10])
-  const xStarsMedium = useTransform(mouseX, [0, width ?? 1], [-40, 40])
-  const yStarsMedium = useTransform(mouseY, [0, height ?? 1], [-40, 40])
-  const xStarsNear = useTransform(mouseX, [0, width ?? 1], [-70, 70])
-  const yStarsNear = useTransform(mouseY, [0, height ?? 1], [-70, 70])
+  const xStarsFar = useTransform(mouseX, [0, width ?? 1], [15, -15])
+  const yStarsFar = useTransform(mouseY, [0, height ?? 1], [15, -15])
 
-  const xMeteorFar = useTransform(mouseX, [0, width ?? 1], [-15, 15])
-  const yMeteorFar = useTransform(mouseY, [0, height ?? 1], [-15, 15])
+  const xStarsMedium = useTransform(mouseX, [0, width ?? 1], [45, -45])
+  const yStarsMedium = useTransform(mouseY, [0, height ?? 1], [45, -45])
 
-  const xMeteorMid = useTransform(mouseX, [0, width ?? 1], [-30, 30])
-  const yMeteorMid = useTransform(mouseY, [0, height ?? 1], [-30, 30])
+  const xStarsNear = useTransform(mouseX, [0, width ?? 1], [70, -70])
+  const yStarsNear = useTransform(mouseY, [0, height ?? 1], [70, -70])
 
-  const xMeteorNear = useTransform(mouseX, [0, width ?? 1], [-45, 45])
-  const yMeteorNear = useTransform(mouseY, [0, height ?? 1], [-45, 45])
+  const xMeteorFar = useTransform(mouseX, [0, width ?? 1], [15, -15])
+  const yMeteorFar = useTransform(mouseY, [0, height ?? 1], [15, -15])
+
+  const xMeteorMid = useTransform(mouseX, [0, width ?? 1], [30, -30])
+  const yMeteorMid = useTransform(mouseY, [0, height ?? 1], [30, -30])
+
+  const xMeteorNear = useTransform(mouseX, [0, width ?? 1], [75, -75])
+  const yMeteorNear = useTransform(mouseY, [0, height ?? 1], [75, -75])
 
   // Definição dos Trilhos Mobile (Simétricos, limpos e sem poluição visual)
   const mobileTracks: HudTrack[] = [
@@ -185,7 +187,7 @@ const Background = () => {
         <StarField
           fixed
           zIndex={2}
-          count={250}
+          count={400}
           minRadius={0.1}
           maxRadius={0.4}
           minOpacity={0.1}
