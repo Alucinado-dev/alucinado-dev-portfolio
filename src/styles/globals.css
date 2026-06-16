@@ -14,6 +14,7 @@
   --font-asimovian: var(--font-asimovian);
   --font-audiowide: var(--font-audiowide);
   --font-zen-dots: var(--font-zen-dots);
+  --font-vt323: var(--font-vt323);
 }
 
 @media (prefers-color-scheme: dark) {

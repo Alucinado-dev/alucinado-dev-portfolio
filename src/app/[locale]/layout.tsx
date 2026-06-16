@@ -1,10 +1,21 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import { Asimovian, Audiowide, Exo_2, Outfit, Rajdhani, Space_Grotesk, Syne_Mono, Zen_Dots } from 'next/font/google'
+import {
+  Asimovian,
+  Audiowide,
+  Exo_2,
+  Outfit,
+  Rajdhani,
+  Space_Grotesk,
+  Syne_Mono,
+  VT323,
+  Zen_Dots,
+} from 'next/font/google'
 
+import Container from '@/components/container/Container'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
-import { BackgroundWrapper } from '@/components/providers/BackgroundProvider'
+import { AppProviders } from '@/components/providers/AppProviders'
 
 import '../../styles/globals.css'
 
@@ -64,7 +75,14 @@ const zenDots = Zen_Dots({
   display: 'swap',
 })
 
-const fonts = [outfit, SpaceGrotesk, SyneMono, Exo2, rajdhani, asimovian, audiowide, zenDots]
+const vt323 = VT323({
+  weight: ['400'],
+  subsets: ['latin'],
+  variable: '--font-vt323',
+  display: 'swap',
+})
+
+const fonts = [outfit, SpaceGrotesk, SyneMono, Exo2, rajdhani, asimovian, audiowide, zenDots, vt323]
   .map(font => font.variable)
   .join(' ')
 
@@ -89,11 +107,12 @@ export default async function LocaleLayout({
 }) {
   return (
     <html lang={(await params).locale} className={`h-full antialiased`} suppressHydrationWarning>
-      <body className={`${fonts} flex min-h-full flex-col`}>
-        <BackgroundWrapper />
-        <Header />
-        <main className='p-4'>{children}</main>
-        <Footer />
+      <body className={`${fonts} relative flex min-h-full flex-col`}>
+        <AppProviders>
+          <Header />
+          <Container>{children}</Container>
+          <Footer />
+        </AppProviders>
       </body>
     </html>
   )
