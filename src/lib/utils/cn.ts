@@ -17,13 +17,13 @@ export function cn(...inputs: ClassValue[]): string {
 // Exemplo de uso:
 
 // Combinação simples
-const buttonClass = cn(
+/* const buttonClass = cn(
   'rounded-md px-4 py-2',
   'bg-blue-500 hover:bg-blue-600',
   { 'text-white': true, 'opacity-50': false },
   'px-6', // Esta classe sobrescreve px-4
-)
-console.log(buttonClass)
+) */
+
 // Saída esperada: "px-6 py-2 rounded-md bg-blue-500 hover:bg-blue-600 text-white"
 
 // Uso em JSX/React

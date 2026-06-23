@@ -1,9 +1,11 @@
 'use client'
 
+import Link from 'next/link'
+
 import { Icon } from '@iconify/react'
 import { motion } from 'motion/react'
 
-import { ShimmerButton } from '@/components/external/ShimmerButton'
+import { ProjectButton } from '@/components/external/GlowingButton'
 import { AnimatedSpan, Terminal, TypingAnimation } from '@/components/external/Terminal'
 
 export default function HeroSection() {
@@ -13,7 +15,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className='relative flex min-h-[95vh] w-full items-center justify-center overflow-hidden px-6 py-12 md:py-20'>
+    <section className='relative flex w-full items-center justify-center overflow-hidden px-6 py-12 md:py-10'>
       <div className='relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12'>
         {/* COLUNA ESQUERDA */}
         {/* COLUNA ESQUERDA: Informações e CTAs Táticos */}
@@ -43,7 +45,15 @@ export default function HeroSection() {
 
             {/* Destaque CLT|PJ: Caixa Rígida Monospace */}
             <div className='group font-syne-mono relative rounded-none border border-[#10b981]/30 bg-black/40 px-3 py-1.5 text-[10px] tracking-[0.2em] text-emerald-300 uppercase select-none'>
-              CLT | PJ
+              CLT
+            </div>
+
+            <div className='group font-syne-mono relative rounded-none border border-[#10b981]/30 bg-black/40 px-3 py-1.5 text-[10px] tracking-[0.2em] text-emerald-300 uppercase select-none'>
+              PJ
+            </div>
+
+            <div className='group font-syne-mono relative rounded-none border border-[#10b981]/30 bg-black/40 px-3 py-1.5 text-[10px] tracking-[0.2em] text-emerald-300 uppercase select-none'>
+              PROJETOS
             </div>
           </motion.div>
 
@@ -51,7 +61,7 @@ export default function HeroSection() {
           <div className='relative w-full space-y-1 border-l border-white/5 pl-6'>
             <motion.h1
               variants={fadeUpVariant}
-              className='font-space-grotesk text-4xl font-extrabold tracking-tight text-slate-50 md:text-6xl'
+              className='font-exo-2 text-4xl font-extrabold tracking-tight text-slate-50 uppercase md:text-6xl'
             >
               <span className='font-syne-mono mr-2 text-sm text-white/20 select-none'>01 //</span>
               Lucino Campos
@@ -74,39 +84,54 @@ export default function HeroSection() {
             real com aplicações em produção e foco absoluto em entregar valor comercial através de código limpo.
           </motion.p>
 
-          {/* REFACTOR: CTAs com `<ShimmerButton>` Tático e Rígido */}
-          <motion.div variants={fadeUpVariant} className='flex w-full flex-wrap gap-4 pt-4 pl-6 sm:w-auto'>
-            {/* BOTAO PRIMÁRIO: Ciano de Alta Tecnologia */}
-            <ShimmerButton
-              borderRadius='0px'
-              shimmerColor='#00fbea'
-              shimmerDuration='2.5s'
-              shimmerSize='0.07em'
-              background='rgba(2, 8, 22, 0.75)'
-              className='group relative border border-[#00fbea]/20 px-7 py-4 backdrop-blur-md'
-            >
-              <span
-                className='font-asimovian relative z-10 text-xs tracking-[0.2em] text-[#00fbea] uppercase transition-all group-hover:brightness-125'
-                style={{ textShadow: '0 0 10px rgba(0, 251, 234, 0.3)' }}
-              >
-                Ver Projetos
-              </span>
-              <div className='absolute right-0 bottom-0 left-0 h-px bg-linear-to-r from-transparent via-[#00fbea]/40 to-transparent transition-all group-hover:via-[#00fbea]/80' />
-            </ShimmerButton>
+          <motion.div variants={fadeUpVariant} className='flex flex-wrap gap-4 pt-4 pl-6'>
+            <ProjectButton>Ver Projetos</ProjectButton>
 
-            {/* BOTAO SECUNDÁRIO: Neutro/Slate Calmo */}
-            <ShimmerButton
-              borderRadius='0px'
-              shimmerColor='rgba(255, 255, 255, 0.15)'
-              shimmerDuration='4.5s'
-              shimmerSize='0.04em'
-              background='rgba(15, 23, 42, 0.25)'
-              className='group border border-white/5 px-7 py-4 backdrop-blur-md hover:border-white/10'
-            >
-              <span className='font-zen-dots text-xs tracking-widest text-slate-400 uppercase transition-colors group-hover:text-slate-200'>
-                Baixar CV (PDF)
-              </span>
-            </ShimmerButton>
+            <Link href='/lucino_campos_cv.pdf' download='Lucino_Campos_CV.pdf' className='inline-block'>
+              <motion.div
+                className='group font-zen-dots relative flex cursor-pointer items-center justify-center gap-3 rounded-none border border-white/10 bg-slate-950/20 px-7 py-4 text-xs tracking-widest text-slate-400 uppercase transition-all'
+                initial='initial'
+                whileHover='hover'
+                whileTap={{ y: 1 }}
+                variants={{
+                  initial: {
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    color: '#94a3b8',
+                    backgroundColor: 'rgba(15, 23, 42, 0.2)',
+                  },
+                  hover: {
+                    borderColor: 'rgba(0, 251, 234, 0.4)', // Acende sutilmente no ciano do seu HUD
+                    color: '#f8fafc',
+                    backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                  },
+                }}
+              >
+                <span>Baixar CV</span>
+
+                {/* ÍCONE SVG ANIMADO VIA MOTION COM COMPORTAMENTO DE SETA PULSANDO */}
+                <div className='relative flex h-4 w-4 items-center justify-center'>
+                  <motion.span
+                    variants={{
+                      initial: { y: 0 },
+                      // Faz um loop infinito de "pulo" simulando download enquanto durar o hover
+                      hover: {
+                        y: [0, 4, 0],
+                        transition: {
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        },
+                      },
+                    }}
+                  >
+                    <Icon
+                      icon='pixelarticons:download'
+                      className='h-7 w-7 text-slate-400 transition-colors group-hover:text-slate-200'
+                    />
+                  </motion.span>
+                </div>
+              </motion.div>
+            </Link>
           </motion.div>
 
           {/* Detalhe estático de cantoneira industrial no BOTTOM DIREITO */}
@@ -114,6 +139,7 @@ export default function HeroSection() {
         </motion.div>
         {/* COLUNA DIREITA: O Terminal Otimizado Sem Mínimo Risco de Scroll */}
         <div className='flex w-full justify-center lg:col-span-6 lg:justify-end'>
+          <h3 className='sr-only'>Logs do Sistema e Inicialização Técnica</h3>
           <Terminal>
             {/* Comando Inicial */}
             <TypingAnimation icon='lucide:chevron-right' iconClass='text-slate-500' className='font-bold text-cyan-400'>
@@ -170,7 +196,7 @@ export default function HeroSection() {
 
             {/* Core Tech */}
             <TypingAnimation icon='lucide:box' iconClass='text-cyan-500' postDelay={1000} className='text-slate-300'>
-              Core tech: Next.js v15 · React v19 · Tailwind v4
+              Core tech: Next.js v16 · React v19 · Tailwind v4
             </TypingAnimation>
 
             {/* Descoberta de pegada ativa (Hangs um pouco para dar impacto ao link) */}

@@ -59,6 +59,7 @@ const asimovian = Asimovian({
   subsets: ['latin'],
   variable: '--font-asimovian',
   display: 'swap',
+  adjustFontFallback: false,
 })
 
 const audiowide = Audiowide({

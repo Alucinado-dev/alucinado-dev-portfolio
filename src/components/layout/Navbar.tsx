@@ -3,7 +3,6 @@
 import { NavItem } from '@/components/ui/NavItem'
 
 export const Navbar = () => {
-  // Passamos as rotas cruas ("limpas"), o NavItem cuida da localização
   const navigationLinks = [
     { href: '/', index: '0x00', label: 'Dashboard' },
     { href: '/about', index: '0x01', label: 'Sobre o Operador' },
