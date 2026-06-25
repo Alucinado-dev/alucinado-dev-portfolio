@@ -1,22 +1,5 @@
-export interface ProjectTagType {
-  name: string
-  icon: string
-}
-
-export interface ProjectDataType {
-  slug: string
-  id: string
-  title: string
-  description: string
-  imageUrl: string
-  badgeText: string
-  role: string
-  deployUrl?: string
-  githubUrl?: string
-  tags: ProjectTagType[]
-  highlights: string[]
-  fullStackContext?: string // Detalhe extra para projetos em equipe
-}
+import { techList } from '@/lib/data/TechData'
+import type { ProjectDataType } from '@/types/ProjectTypes'
 
 export const projects: ProjectDataType[] = [
   {
@@ -24,23 +7,36 @@ export const projects: ProjectDataType[] = [
     id: 'PROJ_01',
     title: 'Flor do Pomar',
     badgeText: 'Freelancer',
-    role: 'Lead Frontend Developer',
-    deployUrl: 'https://flordopomar.pt',
-    imageUrl: '/img/projects/flor-do-pomar.jpeg', // Você adicionará os mockups aqui posteriormente
+    role: 'Desenvolvedor Frontend',
+    imageUrl: '/images/projects/flor-do-pomar.jpg',
     description:
-      'Aplicação web comercial de alta performance para cliente real em Portugal. Apresenta arquitetura focada em SEO e experiência do usuário fluida.',
-    highlights: [
-      'Painel administrativo protegido com operações de CRUD completas para upload, edição e remoção de mídias sem intervenção técnica.',
-      'Internacionalização dinâmica completa (PT/EN) integrada via react-i18next.',
-      'Otimização extrema com Static Site Generation (SSG), Progressive Web App (PWA) instalável e SEO estruturado para o mercado europeu.',
+      'Plataforma institucional premium e multilíngue voltada para o mercado de casamentos em Portugal, com SEO otimizado, Cookies e métricas personalizadas e infraestrutura em Docker.',
+    extendedDescription:
+      'A Flor do Pomar é uma aplicação web de alto padrão desenvolvida para uma agência de Wedding Planning e decoração de casamentos de luxo em Portugal. O ecossistema foi projetado para entregar uma experiência digital altamente sofisticada e fluida, unindo internacionalização nativa com espelhamento de rotas idiomáticas, conformidade rigorosa à LGPD/GDPR por meio de gestão de consentimento de cookies, Gerenciamento independente do portfólio, métricas personalizadas e infraestrutura conteinerizada de alta disponibilidade.',
+    links: {
+      live: 'https://www.flordopomar.pt/',
+      isPrivateGithub: true,
+    },
+    techs: [
+      techList.react,
+      techList.typescript,
+      techList.vite,
+      techList.tailwind,
+      techList.motion,
+      techList.zustand,
+      techList.zod,
+      techList.i18next,
+      techList.posthog,
+      techList.docker,
+      techList.nginx,
     ],
-    tags: [
-      { name: 'React 19', icon: 'logos:react' },
-      { name: 'TypeScript', icon: 'logos:typescript-icon' },
-      { name: 'Tailwind v4', icon: 'logos:tailwindcss-icon' },
-      { name: 'Motion', icon: 'logos:framer' },
-      { name: 'Zustand', icon: 'logos:zustand' },
-      { name: 'PostHog', icon: 'logos:posthog-icon' },
+    features: [
+      'Roteamento internacional robusto com prefixos de idioma (/pt e /en) espelhados nativamente através do React Router DOM.',
+      'Formulário avançado de briefing com validação estrita de dados, máscaras adaptativas e motor de upload seguro de anexos.',
+      'Barra de privacidade em conformidade com a GDPR européia, bloqueando scripts de rastreamento até a autorização explícita do usuário.',
+      'Geração automatizada de sitemaps dinâmicos e arquivos robots.txt estruturados para indexação em motores de busca (Google).',
+      'Suporte a Progressive Web App (PWA) injetando Service Workers via Vite para cache de assets e experiência offline resiliente.',
+      'Integração de clientes HTTP otimizados via Axios, preparados com tratamento de erros global e barramento de proxy para ambiente local.',
     ],
   },
   {
@@ -48,48 +44,75 @@ export const projects: ProjectDataType[] = [
     id: 'PROJ_02',
     title: 'Digital Web Watch',
     badgeText: 'Autoral',
-    role: 'Frontend Architect',
-    deployUrl: 'https://digital-web-watch.vercel.app',
-    imageUrl: '/img/projects/digital-web-watch.jpeg',
+    role: 'Desenvolvedor Frontend',
+    imageUrl: '/images/projects/digital-web-watch.jpg',
     description:
-      'Ecossistema completo de produtividade contendo Pomodoro, Timer e Cronômetro. Reescrita de engenharia de um projeto legível estruturado em Vanilla JS.',
-    highlights: [
-      'Engine visual com 6 temas customizáveis orientados dinamicamente via CSS Variables e DaisyUI.',
-      'Fundo de tela interativo de alta fidelidade renderizado diretamente em baixo nível via Canvas API.',
-      'PWA estritamente instalável e integração de áudio resiliente rodando via Howler.js.',
+      'App de produtividade com Pomodoro, Timer e Cronômetro. Reescrita completa de versão anterior em Vanilla JS.',
+    extendedDescription:
+      'O Digital Web Watch é um ecossistema focado em gerenciamento de tempo e produtividade que agrupa três modos distintos de cronometragem. O projeto foi estruturado como uma reescrita completa de engenharia de uma aplicação legada desenvolvida em Vanilla JS, servindo para consolidar a manipulação avançada de estados atômicos, renderização gráfica de alta performance na GPU e as novas diretrizes do React 19.',
+    links: {
+      live: 'https://digital-web-watch.vercel.app',
+      github: 'https://github.com/Alucinado-dev/Digital-Web-Watch',
+      isPrivateGithub: false,
+      legacy: 'https://github.com/Alucinado-dev/Digital-Web-Watch',
+    },
+    techs: [
+      techList.react,
+      techList.typescript,
+      techList.vite,
+      techList.zustand,
+      techList.tailwind,
+      techList.motion,
+      techList.canvas,
+      techList.zod,
+      techList.i18next,
     ],
-    tags: [
-      { name: 'React 19', icon: 'logos:react' },
-      { name: 'TypeScript', icon: 'logos:typescript-icon' },
-      { name: 'Tailwind v4', icon: 'logos:tailwindcss-icon' },
-      { name: 'Zustand', icon: 'logos:zustand' },
-      { name: 'Canvas API', icon: 'current-color' }, // HTML5 Canvas nativo
-      { name: 'Router', icon: 'logos:react-router' },
+    features: [
+      'Três modos de cronometragem centralizados: Pomodoro com ciclos customizáveis, Timer regressivo e Cronômetro com histórico de voltas.',
+      'Seletor dinâmico com 6 temas visuais completos que alteram toda a paleta cromática do app instantaneamente via atributo de dados.',
+      'Mecanismo de animação fluida rodando a 60 FPS via Canvas API para efeitos imersivos no background.',
+      'Sistema de internacionalização completo (PT-BR e EN-US) integrado de ponta a ponta via react-i18next.',
+      'Persistência total das configurações de preferências, volume e tempos customizados do usuário no localStorage.',
+      'Suporte a Progressive Web App (PWA), permitindo instalação nativa e execução isolada no ambiente desktop ou mobile.',
     ],
   },
   {
     slug: 'task-manager',
     id: 'PROJ_03',
-    title: 'Task Manager Kanban',
-    badgeText: 'Colaborativo',
-    role: 'Frontend Engineer',
-    deployUrl: 'https://your-taskmanager.vercel.app',
-    imageUrl: '/img/projects/task-manager.jpeg',
+    title: 'Task Manager',
+    badgeText: 'Full-Stack',
+    role: 'Co-autor e Dev Full-Stack',
+    imageUrl: '/images/projects/task-manager.jpg',
     description:
-      'Plataforma corporativa de gerenciamento de tarefas no estilo Kanban, desenvolvida em colaboração direta com engenheiro backend.',
-    highlights: [
-      'Responsável isolado por 100% do planejamento, arquitetura e entrega do ecossistema Frontend.',
-      'Implementação de arrastar e soltar (Drag and Drop) de alta performance utilizando Pragmatic Drag and Drop da Atlassian.',
-      'Validações complexas em tempo de execução combinando React Hook Form com esquemas Zod.',
+      'Plataforma Kanban full-stack estruturada em microserviços isolados, utilizando NestJS, com RabbitMQ e banco de dados NoSQL.',
+    extendedDescription:
+      'O Task Manager é um ecossistema full-stack de gerenciamento de tarefas escalável baseado na arquitetura de microserviços. O projeto foi desenhado para resolver problemas de concorrência e desacoplamento comuns em cenários corporativos, separando o contexto de autenticação (Account Service) e gestão de demandas (Task Service). A comunicação entre os serviços é assíncrona e orientada a eventos, enquanto o frontend entrega uma experiência Kanban fluida com controle estrito de renderização.',
+    links: {
+      live: 'https://task-manager-demo.vercel.app', // Substitua pela URL de produção real se houver
+      github: 'https://github.com/Nibirutta/task-manager',
+      isPrivateGithub: false,
+      // legacy não foi incluído por não se aplicar a este projeto
+    },
+    techs: [
+      techList.react,
+      techList.vite,
+      techList.typescript,
+      techList.tailwind,
+      techList.atlassian,
+      techList.motion,
+      techList.zod,
+      techList.i18next,
+      techList.mongodb,
+      techList.rabbitmq,
+      techList.nestjs,
     ],
-    fullStackContext: 'Backend parceiro estruturado de forma distribuída: NestJS, MongoDB, RabbitMQ e Microsserviços.',
-    tags: [
-      { name: 'React', icon: 'logos:react' },
-      { name: 'TypeScript', icon: 'logos:typescript-icon' },
-      { name: 'Tailwind CSS', icon: 'logos:tailwindcss-icon' },
-      { name: 'Zod', icon: 'logos:zod' },
-      { name: 'Radix UI', icon: 'logos:radix-ui' },
-      { name: 'NestJS', icon: 'logos:nestjs' },
+    features: [
+      'Painel Kanban iterativo permitindo fluxo operacional completo de criação, edição e movimentação de tarefas entre colunas de status.',
+      'Arquitetura distribuída em microserviços independentes comunicando-se de forma assíncrona orientada a eventos através de filas estruturadas.',
+      'Sistema de segurança robusto com autenticação baseada em tokens JWT triplos (Access, Session e Reset Token para recuperação de conta).',
+      'Classificação e priorização dinâmica de demandas, permitindo filtragem inteligente no painel principal por nível de criticidade técnica.',
+      'Internacionalização adaptativa nativa (i18n) configurada para suporte multilingue entre os idiomas Português e Inglês.',
+      'Interface totalmente responsiva e acessível construída sobre as primitivas de baixo nível fornecidas pelo Radix UI e Framer Motion.',
     ],
   },
 ]

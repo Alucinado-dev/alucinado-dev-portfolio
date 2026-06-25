@@ -85,10 +85,6 @@ export function ProjectCard({
                 className='relative flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-[#0d1527] shadow-md transition-transform duration-200 group-hover:-translate-y-0.5'
                 style={{ zIndex: 10 - idx }}
               >
-                {/*
-                  O TRUQUE SÊNIOR: grayscale-100 brightness-75 por padrão (preto e branco fosco).
-                  No hover do grupo (card), vira grayscale-0 brightness-100 (ganha a cor original da stack).
-                */}
                 <Icon
                   icon={tag.icon}
                   className='h-4 w-4 opacity-60 grayscale filter transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0'
@@ -98,8 +94,8 @@ export function ProjectCard({
 
             {/* Indicador de mais tecnologias se passar de 5 */}
             {tags.length > 5 && (
-              <div className='relative z-0 flex h-7 w-7 items-center justify-center rounded-full border border-white/5 bg-slate-900 font-mono text-[9px] font-bold text-slate-500'>
-                +{tags.length - 5}
+              <div className='relative z-0 flex h-7 w-7 items-center justify-center rounded-full border border-white/5 bg-slate-900 font-mono text-[9px] font-bold text-slate-500 transition-transform duration-200 group-hover:-translate-y-0.5'>
+                <Icon icon='pixel:plus-solid' /> {tags.length - 5}
               </div>
             )}
           </div>

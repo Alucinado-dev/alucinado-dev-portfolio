@@ -8,11 +8,7 @@ import { projects } from '@/lib/data/ProjectData'
 
 export default function ProjectsSection() {
   return (
-    // A tag pai agora é 100% transparente, servindo apenas como o espaçador vertical na Home
     <section className='relative z-10 w-full bg-transparent py-16 md:py-24'>
-      {/* CONTAINER CENTRALIZADO: O fundo, a borda e os detalhes táticos
-        foram movidos para cá, transformando-o num Painel Técnico.
-      */}
       <Container
         isFluid={false}
         className='relative space-y-12 rounded-none border border-white/10 bg-linear-to-b bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] from-[#061024]/90 to-[#020612]/95 bg-size-[32px_32px] p-8 shadow-[0_0_50px_-12px_rgba(0,251,234,0.06)] backdrop-blur-md md:p-12'
@@ -51,7 +47,7 @@ export default function ProjectsSection() {
               description={project.description}
               imageUrl={project.imageUrl}
               badgeText={project.badgeText}
-              tags={project.tags}
+              tags={project.techs}
             />
           ))}
         </div>
