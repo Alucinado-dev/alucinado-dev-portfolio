@@ -29,6 +29,24 @@ body {
   color: var(--foreground);
 }
 
+/* Custom Scrollbar para elementos com a classe .custom-scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Deixa a barra bem fininha */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #060913; /* Cor de fundo idêntica à do container */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1e293b; /* Cor do "pino" de rolagem (slate-800) */
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4; /* O pino acende em ciano no hover */
+}
+
 @theme inline {
   --animate-gradient: gradient 8s linear infinite;
 

@@ -21,11 +21,15 @@ export type FolderStructureType = {
   purpose: string
 }
 
+export type ProjectNatureType = 'autoral' | 'colaborativo' | 'freelancer'
+export type ProjectScopeType = 'frontend' | 'backend' | 'fullstack'
+
 export type ProjectDataType = {
   slug: string
   id: string
   title: string
-  badgeText: string
+  nature: ProjectNatureType // Substitui o antigo badgeText confuso
+  scope: ProjectScopeType // Define a camada arquitetural
   role: string
   imageUrl: string
   description: string // Descrição curta (para os cards da Home)

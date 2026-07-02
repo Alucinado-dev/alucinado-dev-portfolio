@@ -6,9 +6,10 @@ export const projects: ProjectDataType[] = [
     slug: 'flor-do-pomar',
     id: 'PROJ_01',
     title: 'Flor do Pomar',
-    badgeText: 'Freelancer',
+    nature: 'freelancer',
+    scope: 'fullstack',
     role: 'Desenvolvedor Frontend',
-    imageUrl: '/images/projects/flor-do-pomar.jpg',
+    imageUrl: '/img/projects/flor-do-pomar.jpeg',
     description:
       'Plataforma institucional premium e multilíngue voltada para o mercado de casamentos em Portugal, com SEO otimizado, Cookies e métricas personalizadas e infraestrutura em Docker.',
     extendedDescription:
@@ -43,9 +44,10 @@ export const projects: ProjectDataType[] = [
     slug: 'digital-web-watch',
     id: 'PROJ_02',
     title: 'Digital Web Watch',
-    badgeText: 'Autoral',
+    nature: 'autoral',
+    scope: 'frontend',
     role: 'Desenvolvedor Frontend',
-    imageUrl: '/images/projects/digital-web-watch.jpg',
+    imageUrl: '/img/projects/digital-web-watch.jpeg',
     description:
       'App de produtividade com Pomodoro, Timer e Cronômetro. Reescrita completa de versão anterior em Vanilla JS.',
     extendedDescription:
@@ -80,9 +82,10 @@ export const projects: ProjectDataType[] = [
     slug: 'task-manager',
     id: 'PROJ_03',
     title: 'Task Manager',
-    badgeText: 'Full-Stack',
-    role: 'Co-autor e Dev Full-Stack',
-    imageUrl: '/images/projects/task-manager.jpg',
+    nature: 'colaborativo',
+    scope: 'fullstack',
+    role: 'Dev Full-Stack',
+    imageUrl: '/img/projects/task-manager.jpeg',
     description:
       'Plataforma Kanban full-stack estruturada em microserviços isolados, utilizando NestJS, com RabbitMQ e banco de dados NoSQL.',
     extendedDescription:
@@ -113,6 +116,34 @@ export const projects: ProjectDataType[] = [
       'Classificação e priorização dinâmica de demandas, permitindo filtragem inteligente no painel principal por nível de criticidade técnica.',
       'Internacionalização adaptativa nativa (i18n) configurada para suporte multilingue entre os idiomas Português e Inglês.',
       'Interface totalmente responsiva e acessível construída sobre as primitivas de baixo nível fornecidas pelo Radix UI e Framer Motion.',
+    ],
+  },
+  {
+    slug: 'calculator',
+    id: 'PROJ_04',
+    title: 'Futuristic Calculator',
+    nature: 'autoral',
+    scope: 'frontend',
+    role: 'Desenvolvedor Frontend',
+    imageUrl: '/img/projects/calculator.png',
+    description:
+      'Calculadora iterativa de alta precisão desenvolvida puramente em Vanilla JS, apresentando histórico persistido e motor dinâmico de multi-temas visuais.',
+    extendedDescription:
+      'A Futuristic Calculator é uma aplicação web autoral projetada para demonstrar o domínio absoluto e a engenharia fina por trás dos fundamentos do ecossistema web: manipulação limpa do DOM e arquitetura CSS escalável sem o uso de frameworks de abstração. O projeto implementa um interpretador matemático capaz de processar operações matemáticas sequenciais, exponenciações e tratamentos aritméticos rigorosos em tempo real. O grande destaque arquitetural está no seu motor interno de design, que utiliza propriedades customizadas nativas para alternar instantaneamente entre 7 vertentes visuais completas com persistência persistida localmente.',
+    links: {
+      live: 'https://calculatoralucinado.vercel.app',
+      github: 'https://github.com/Alucinado-dev/Futuristic-Calculator',
+      isPrivateGithub: false,
+    },
+    techs: [techList.javascript, techList.css, techList.html],
+    features: [
+      'Motor matemático robusto com suporte a encadeamento complexo de operações aritméticas (soma, subtração, multiplicação, divisão, exponenciação, raiz quadrada e porcentagem) respeitando o padrão decimal brasileiro.',
+      'Arquitetura avançada de design com suporte a 7 temas visuais imersivos (Cyberpunk, Lofi, Rain, Sakura, etc.) injetados dinamicamente via seletores globais e alimentados puramente por CSS Variables.',
+      'Persistência imediata e não volátil das configurações de interface e preferências estéticas do usuário armazenadas nativamente via API de LocalStorage do navegador.',
+      'Gerenciamento assíncrono de interações na árvore do DOM para controle de sidebars bilaterais independentes (uma para o histórico de cálculos e outra para o seletor de temas).',
+      'Tratamento estrito de erros operacionais e exceções matemáticas clássicas (como divisão por zero, raiz quadrada de números negativos ou entradas malformadas), exibindo feedback visual amigável sem interromper a execução do script.',
+      'Mapeamento inteligente de fluxo de limpeza em três níveis atômicos através de eventos dedicados: eliminação global de memória (Clear All), descarte de entrada atual (Clear Entry) e deleção unitária via backspace.',
+      'Layout responsivo projetado estritamente sobre as regras nativas de CSS Grid e Flexbox, garantindo adaptação cirúrgica e alinhamento perfeito de botões e displays em qualquer resolução de tela.',
     ],
   },
 ]

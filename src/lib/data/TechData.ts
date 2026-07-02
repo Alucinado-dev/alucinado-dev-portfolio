@@ -103,4 +103,22 @@ export const techList: Record<string, TechDetailType> = {
     justification:
       'Framework completo e maduro para internacionalização (i18n) de aplicações JavaScript. Ele fornece um barramento robusto para gerenciamento de dicionários multi-idiomas, suportando lazy-loading de locales (carregamento sob demanda para não inflar o bundle inicial), interpolação dinâmica de variáveis, pluralização contextualizada e comutação instantânea de linguagem no cliente sem necessidade de recarregar a aplicação.',
   },
+  javascript: {
+    name: 'JavaScript (Vanilla JS)',
+    icon: 'logos:javascript',
+    justification:
+      'Linguagem core da web executada de forma nativa pelo motor do navegador. Utilizada sem frameworks para implementar manipulação cirúrgica da árvore do DOM, gerenciamento assíncrono de listeners de eventos, algoritmos de cálculo matemático com controle estrito de ponto flutuante e orquestração de estados em memória síncrona.',
+  },
+  css: {
+    name: 'CSS3 (Nativo)',
+    icon: 'logos:css-3',
+    justification:
+      'Camada nativa de estilização e design de interfaces. Aplicada de forma avançada através de Propriedades Customizadas (CSS Variables) para a criação de um motor de temas em tempo de execução, associada a sistemas estruturais modernos baseados puramente nas especificações de CSS Grid e Flexbox.',
+  },
+  html: {
+    name: 'HTML5 Semântico',
+    icon: 'logos:html-5',
+    justification:
+      'Estruturação esqueleto e blueprint arquitetural das aplicações web. Focada no mapeamento atômico de nós DOM acessíveis e otimizados, garantindo marcação nativa robusta para componentes interativos, sidebars dinâmicas, tratamento nativo de formulários e conformidade de layout.',
+  },
 }

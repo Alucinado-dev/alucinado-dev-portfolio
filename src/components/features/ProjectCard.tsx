@@ -5,6 +5,8 @@ import Link from 'next/link'
 
 import { Icon } from '@iconify/react'
 
+import type { ProjectNatureType, ProjectScopeType } from '@/types/ProjectTypes'
+
 interface ProjectCardProps {
   slug: string
   id: string
@@ -12,18 +14,11 @@ interface ProjectCardProps {
   description: string
   imageUrl: string
   tags: { name: string; icon: string; colorClass?: string }[]
-  badgeText?: string
+  nature: ProjectNatureType
+  scope: ProjectScopeType
 }
 
-export function ProjectCard({
-  slug,
-  id,
-  title,
-  description,
-  imageUrl,
-  tags,
-  badgeText = 'Destaque',
-}: ProjectCardProps) {
+export function ProjectCard({ slug, id, title, description, imageUrl, tags, nature, scope }: ProjectCardProps) {
   return (
     // O card inteiro agora é o link para a página dinâmica slug
     <Link
@@ -62,9 +57,11 @@ export function ProjectCard({
 
             <div className='z-20 flex gap-2'>
               <span className='rounded-none border border-white/10 bg-black/80 px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest text-slate-600 uppercase select-none group-hover:text-slate-200'>
-                {badgeText}
+                {scope}
               </span>
-
+              <span className='rounded-none border border-white/10 bg-black/80 px-2 py-0.5 font-mono text-[9px] font-bold tracking-widest text-slate-600 uppercase select-none group-hover:text-slate-200'>
+                {nature}
+              </span>
               <Icon
                 icon='lucide:arrow-right'
                 className='h-4 w-4 -translate-x-2 text-slate-500 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[#00fbea] group-hover:opacity-100'
