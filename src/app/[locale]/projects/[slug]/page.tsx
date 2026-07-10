@@ -48,9 +48,9 @@ export default function ProjectDetailsPage() {
           <div className='space-y-2'>
             <div className='flex items-center gap-3 font-mono text-[10px] font-bold tracking-widest text-slate-500 uppercase'>
               <span>{project.id}</span>
-              <span className='h-3 w-[1px] bg-slate-800' />
+              <span className='h-3 w-px bg-slate-800' />
               <span className='text-slate-400'>{project.nature}</span>
-              <span className='h-3 w-[1px] bg-slate-800' />
+              <span className='h-3 w-px bg-slate-800' />
               <span className='text-cyan-400/90'>{project.scope}</span>
             </div>
             <h1 className='font-mono text-4xl font-bold tracking-tight text-slate-100 md:text-5xl'>{project.title}</h1>
@@ -150,7 +150,7 @@ export default function ProjectDetailsPage() {
               ARQUITETURA_DE_STACK
             </h2>
 
-            <div className='custom-scrollbar max-h-[500px] space-y-4 overflow-y-auto pr-1'>
+            <div className='custom-scrollbar max-h-125 space-y-4 overflow-y-auto pr-1'>
               {project.techs.map(tech => (
                 <div
                   key={tech.name}

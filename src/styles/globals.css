@@ -17,6 +17,46 @@
   --font-vt323: var(--font-vt323);
 }
 
+@theme {
+  /* ==========================================
+     CORE & NEONS (Diretriz Original)
+     ========================================== */
+  --color-space-dark: #010205;
+  --color-cyan-bright: #00fbea;
+  --color-pink-neon: #ff00bb;
+  --color-yellow-neon: #ffea00;
+
+  /* ==========================================
+     EXPANSÃO DE ACCENTS & MATURIDADE
+     ========================================== */
+  --color-cyan-muted: #0ea5e9; /* Azul celeste cirúrgico para caminhos */
+  --color-tech-teal: #14b8a6; /* Verde-menta técnico para subtextos */
+  --color-deep-indigo: #4f46e5; /* Índigo profundo para glows de peso */
+  --color-plasma-purple: #8b5cf6; /* Roxo de transição para nebulosas */
+  --color-cyber-orange: #f97316; /* Laranja de alerta ou tags específicas */
+
+  /* ==========================================
+     VARIÁVEIS PARA BOXES & PAINÉIS HUD
+     ========================================== */
+  --color-base: #02040a; /* Fundo ligeiramente mais claro que o vazio absoluto */
+  --color-panel: rgba(10, 16, 29, 0.4); /* Vidro escuro padrão dos painéis */
+  --color-panel-hover: rgba(16, 26, 48, 0.55); /* Vidro em foco/hover */
+  --color-box: rgba(255, 255, 255, 0.02); /* Caixas internas extremamente sutis */
+  --color-box-hover: rgba(255, 255, 255, 0.05); /* Destaque de linha/grid interno */
+
+  /* Linhas, Contornos e Divisores */
+  --color-stroke-subtle: rgba(255, 255, 255, 0.05); /* Divisores padrão imperceptíveis */
+  --color-stroke-focus: rgba(0, 251, 234, 0.2); /* Borda quando o card ganha foco */
+
+  /* ==========================================
+     VARIÁVEIS DE TIPOGRAFIA (Classes Limpas)
+     ========================================== */
+  --color-primary: #f8fafc; /* text-primary (Branco puro, títulos) */
+  --color-secondary: #e2e8f0; /* text-secondary (Slate 200, subtítulos e ênfase) */
+  --color-body: #94a3b8; /* text-body (Slate 400, parágrafos longos) */
+  --color-muted: #64748b; /* text-muted (Slate 500, metadados e tags) */
+  --color-dim: #475569; /* text-dim (Slate 600, IDs de HUD e linhas de código) */
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

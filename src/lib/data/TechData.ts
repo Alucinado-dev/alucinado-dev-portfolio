@@ -5,120 +5,120 @@ export const techList: Record<string, TechDetailType> = {
     name: 'React',
     icon: 'logos:react',
     justification:
-      'Biblioteca core para construção de interfaces reativas e modulares através de componentes funcionais de alta performance.',
+      'Biblioteca para a construção de interfaces de usuário baseadas em componentes reaproveitáveis. Permite a criação de aplicações dinâmicas de página única (SPA), facilitando a sincronização eficiente do estado com os elementos visuais.',
   },
   typescript: {
     name: 'TypeScript',
     icon: 'devicon:typescript',
     justification:
-      'Injeção de tipagem estrita para mitigação de bugs em tempo de execução e garantia de contratos consistentes de dados para a linguagem JavaScript.',
+      'Superset do JavaScript que adiciona tipagem estática opcional ao código. Auxilia no desenvolvimento ao detectar erros em tempo de compilação, documentar contratos de dados e garantir maior segurança em refatorações de sistemas complexos.',
   },
   zustand: {
     name: 'Zustand',
     icon: 'devicon:zustand',
     justification:
-      'Gerenciamento de estado global atômico, simplificado e baseado em stores, isolando os contextos de negócio de forma eficiente.',
+      'Gerenciador de estado global para aplicações React focado em simplicidade e performance. Evita re-renderizações desnecessárias na árvore de componentes e centraliza dados compartilhados de forma leve, direta e sem boilerplate.',
   },
   tailwind: {
     name: 'Tailwind CSS',
-    icon: 'devicon:zustand',
+    icon: 'devicon:tailwindcss', // ✅ CORRIGIDO: Ícone correto do Tailwind
     justification:
-      'Estilização ágil utilitária diretamente no escopo do componente a partir de classes, integrada a variáveis nativas do CSS.',
+      'Framework CSS baseado em classes utilitárias para estilização ágil diretamente no escopo dos componentes. Otimiza o carregamento da página ao gerar um arquivo final enxuto contendo apenas os estilos efetivamente utilizados no projeto.',
   },
   motion: {
     name: 'Motion',
     icon: 'devicon:motion',
     justification:
-      'Orquestração de animações fluidas, transições de rotas e micro-interações de interface de alta fidelidade visual.',
+      'Biblioteca de animações para React utilizada para criar transições fluidas e micro-interações de interface. Melhora a experiência do usuário ao fornecer feedback visual intuitivo sobre mudanças de estado e navegação de páginas.',
   },
   canvas: {
     name: 'Canvas API',
     icon: 'arcticons:mi-canvas',
     justification:
-      'Renderização gráfica e manipulação de pixels em baixo nível diretamente na GPU, mantendo a thread principal livre.',
+      'API nativa do navegador para renderização de gráficos bidimensionais e manipulação de pixels em alto desempenho. Permite desenhar elementos visuais complexos e animações interativas diretamente na GPU, sem sobrecarregar a thread principal.',
   },
   nestjs: {
     name: 'NestJS',
     icon: 'devicon:nestjs',
     justification:
-      'Framework arquitetural focado em escalabilidade corporativa sob a plataforma Node.js. Utiliza TypeScript de forma nativa e implementa padrões sólidos de design de software como Inversão de Controle (IoC) e Injeção de Dependência (DI). Sua estrutura altamente modular permite desacoplar lógicas de negócios complexas em serviços, controllers e módulos isolados, facilitando a criação de sistemas distribuídos e microserviços resilientes.',
+      'Framework backend para construção de aplicações server-side eficientes e escaláveis sob a plataforma Node.js. Implementa uma arquitetura modular estrita baseada em TypeScript, organizando o código em controladores, serviços e módulos independentes.',
   },
   rabbitmq: {
     name: 'RabbitMQ',
     icon: 'devicon:rabbitmq',
     justification:
-      'Message broker para mensageria assíncrona orientada a eventos, garantindo o total desacoplamento entre microserviços.',
+      'Mensageria e corretor de mensagens (message broker) voltado para comunicação assíncrona. Permite que diferentes partes de um sistema distribuído troquem dados de forma segura, garantindo resiliência e desacoplamento de serviços sob alta carga.',
   },
   mongodb: {
     name: 'MongoDB',
     icon: 'skill-icons:mongodb',
     justification:
-      'Banco de dados NoSQL distribuído e orientado a documentos BSON. Foi adotado devido à sua capacidade de persistir estruturas de dados dinâmicas e flexíveis com alta taxa de transferência de leitura e escrita.',
+      'Banco de dados NoSQL orientado a documentos flexíveis no formato BSON. Oferece alta escalabilidade e performance para armazenar e consultar grandes volumes de dados estruturados de forma dinâmica ou em constante evolução.',
   },
   docker: {
     name: 'Docker',
     icon: 'devicon:docker',
     justification:
-      'Conteinerização e isolamento da infraestrutura para deploys previsíveis utilizada para empacotar a aplicação e suas dependências exatas em um ambiente isolado, imutável e leve. Isso garante a paridade absoluta de infraestrutura entre as máquinas de desenvolvimento, ambientes de homologação e servidores de produção',
+      'Plataforma de conteinerização que isola aplicações e suas dependências em ambientes leves e independentes. Garante consistência total no comportamento do software, desde a máquina local de desenvolvimento até o servidor final de produção.',
   },
   nginx: {
     name: 'Nginx',
     icon: 'material-icon-theme:nginx',
     justification:
-      'Servidor HTTP de altíssima performance e proxy reverso assíncrono. É configurado no ecossistema para atuar na camada mais externa da infraestrutura, servindo arquivos estáticos compressores (Gzip/Brotli) com consumo de memória extremamente baixo e tratando regras de roteamento SPA de forma nativa. Sua arquitetura orientada a eventos permite lidar com milhares de conexões simultâneas de forma segura e resiliente.',
+      'Servidor web e proxy reverso de alta performance orientado a eventos. Atua na distribuição de tráfego, compressão de arquivos estáticos e gerenciamento de conexões simultâneas, otimizando o tempo de resposta e a segurança da infraestrutura.',
   },
   posthog: {
     name: 'PostHog',
     icon: 'logos:posthog-icon',
     justification:
-      'Captura de métricas e product analytics para análise profunda de comportamento do usuário e funis de conversão.',
+      'Plataforma de análise de produto e comportamento do usuário em tempo real. Permite monitorar eventos na interface, analisar funis de conversão e capturar gravações de sessão para identificar pontos de melhoria na usabilidade.',
   },
   zod: {
-    name: 'React Hook Form + Zod',
+    name: 'Zod', // ✅ POLIDO: Nome focado na biblioteca de schemas
     icon: 'logos:zod',
     justification:
-      'Validação rigorosa de esquemas de dados no client-side e gerenciamento de estados internos de formulários complexos.',
+      'Biblioteca de declaração e validação de esquemas de dados em TypeScript. Garante a integridade de dados vindos de formulários ou requisições HTTP, validando as estruturas e os tipos antes que as informações entrem na lógica de negócio.',
   },
   vite: {
     name: 'Vite',
     icon: 'devicon:vitejs',
     justification:
-      'Ferramenta de build de ambiente de desenvolvimento. Isso elimina gargalos tradicionais de empacotamento, entregando um Hot Module Replacement (HMR) instantâneo independente do tamanho do projeto. ',
+      'Ferramenta de build moderna que acelera o ambiente de desenvolvimento. Utiliza módulos nativos do navegador para entregar um carregamento inicial instantâneo e atualizações de código eficientes (HMR) em tempo real.',
   },
   nextjs: {
     name: 'Next.js',
     icon: 'devicon:nextjs',
     justification:
-      'Framework full-stack construído sobre o ecossistema React. Ele viabiliza a implementação de arquiteturas híbridas de renderização, mesclando Server Components (RSC), Server-Side Rendering (SSR) e Incremental Static Regeneration (ISR). Essa flexibilidade otimiza drasticamente os índices de Core Web Vitals, garante indexação impecável em motores de busca (SEO) através da injeção nativa de metadados e abstrai sistemas de roteamento complexos baseados em arquivos.',
+      'Framework React voltado para produção que possibilita renderização tanto no servidor quanto no cliente. Otimiza a velocidade de carregamento e o SEO de aplicações web por meio de estratégias de cache dinâmico e roteamento integrado.',
   },
   atlassian: {
-    name: 'Pragmatic Drag and Drop (Atlassian)',
+    name: 'Pragmatic Drag and Drop',
     icon: 'logos:atlassian',
     justification:
-      'Cadeia de ferramentas de manipulação física de elementos em tela desenvolvida pela Atlassian. Diferente de bibliotecas tradicionais que inserem pesadas camadas de abstração e causam dezenas de re-renderizações na árvore do DOM, essa solução atua diretamente nas APIs nativas de arrastar e soltar do navegador. O resultado é uma performance cirúrgica na movimentação de dados em tempo real, sem travamentos ou quebras de layout em listas extensas.',
+      'Conjunto de ferramentas para implementação de interfaces de arrastar e soltar (drag and drop). Atua diretamente nas APIs nativas do navegador, eliminando sobrecargas na árvore do DOM e mantendo excelente desempenho em listas extensas.',
   },
   i18next: {
     name: 'i18next',
     icon: 'material-icon-theme:i18n',
     justification:
-      'Framework completo e maduro para internacionalização (i18n) de aplicações JavaScript. Ele fornece um barramento robusto para gerenciamento de dicionários multi-idiomas, suportando lazy-loading de locales (carregamento sob demanda para não inflar o bundle inicial), interpolação dinâmica de variáveis, pluralização contextualizada e comutação instantânea de linguagem no cliente sem necessidade de recarregar a aplicação.',
+      'Framework de internacionalização para aplicações JavaScript. Fornece uma infraestrutura completa para tradução de idiomas, suportando o carregamento sob demanda de dicionários regionais e formatação dinâmica de moedas e datas locais.',
   },
   javascript: {
-    name: 'JavaScript (Vanilla JS)',
+    name: 'JavaScript',
     icon: 'logos:javascript',
     justification:
-      'Linguagem core da web executada de forma nativa pelo motor do navegador. Utilizada sem frameworks para implementar manipulação cirúrgica da árvore do DOM, gerenciamento assíncrono de listeners de eventos, algoritmos de cálculo matemático com controle estrito de ponto flutuante e orquestração de estados em memória síncrona.',
+      'Linguagem de programação core da web executada de forma nativa pelos navegadores. Utilizada para conferir dinamismo às interfaces, processar requisições assíncronas de dados e gerenciar listeners de eventos em tempo real.',
   },
   css: {
-    name: 'CSS3 (Nativo)',
+    name: 'CSS3',
     icon: 'logos:css-3',
     justification:
-      'Camada nativa de estilização e design de interfaces. Aplicada de forma avançada através de Propriedades Customizadas (CSS Variables) para a criação de um motor de temas em tempo de execução, associada a sistemas estruturais modernos baseados puramente nas especificações de CSS Grid e Flexbox.',
+      'Linguagem de estilização nativa utilizada para definir a identidade visual de páginas web. Permite o controle de cores, tipografia e a criação de layouts responsivos complexos por meio de especificações como Flexbox e CSS Grid.',
   },
   html: {
-    name: 'HTML5 Semântico',
+    name: 'HTML5',
     icon: 'logos:html-5',
     justification:
-      'Estruturação esqueleto e blueprint arquitetural das aplicações web. Focada no mapeamento atômico de nós DOM acessíveis e otimizados, garantindo marcação nativa robusta para componentes interativos, sidebars dinâmicas, tratamento nativo de formulários e conformidade de layout.',
+      'Linguagem de marcação que define a estrutura fundamental e o conteúdo de páginas web. Fornece os elementos semânticos essenciais que auxiliam na acessibilidade do sistema para leitores de tela e na indexação correta por motores de busca.',
   },
 }

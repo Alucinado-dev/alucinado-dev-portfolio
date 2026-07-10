@@ -8,7 +8,7 @@ import { projects } from '@/lib/data/ProjectData'
 
 export default function ProjectsSection() {
   return (
-    <section className='relative z-10 w-full bg-transparent py-16 md:py-24'>
+    <section id='projetos' className='relative z-10 w-full bg-transparent py-16 md:py-24'>
       <Container
         isFluid={false}
         className='relative space-y-12 rounded-none border border-white/10 bg-linear-to-b bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] from-[#061024]/90 to-[#020612]/95 bg-size-[32px_32px] p-8 shadow-[0_0_50px_-12px_rgba(0,251,234,0.06)] backdrop-blur-md md:p-12'
@@ -23,7 +23,7 @@ export default function ProjectsSection() {
         <div className='flex flex-col justify-between gap-6 border-b border-white/5 pb-8 md:flex-row md:items-end'>
           <div className='space-y-3'>
             {/* Texto limpo e estritamente em português */}
-            <div className='font-mono text-[10px] font-bold tracking-[0.2em] text-[#00fbea] uppercase'>
+            <div className='text-cyan-bright font-mono text-[10px] font-bold tracking-[0.2em] uppercase'>
               02 . COMPILAÇÃO_DE_PROJETOS
             </div>
             <h2 className='font-sans text-2xl font-bold tracking-tight text-slate-100 uppercase md:text-3xl'>
@@ -57,13 +57,13 @@ export default function ProjectsSection() {
         <div className='flex justify-center pt-4'>
           <Link
             href='/projects'
-            className='group flex rounded-none border border-white/10 bg-white/5 px-6 py-3 font-mono text-xs font-bold tracking-widest text-slate-300 transition-all duration-300 hover:border-[#00fbea]/40 hover:bg-[#00fbea]/5 hover:text-[#00fbea]'
+            className='group hover:border-cyan-bright/40 hover:bg-cyan-bright/5 hover:text-cyan-bright flex rounded-none border border-white/10 bg-white/5 px-6 py-3 font-mono text-xs font-bold tracking-widest text-slate-300 transition-all duration-300'
           >
             <span className='flex items-center gap-2'>
               VER_ACERVO_COMPLETO
               <Icon
                 icon='lucide:arrow-right'
-                className='h-4 w-4 text-slate-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[#00fbea]'
+                className='group-hover:text-cyan-bright h-4 w-4 text-slate-500 transition-transform duration-300 group-hover:translate-x-1'
               />
             </span>
           </Link>
