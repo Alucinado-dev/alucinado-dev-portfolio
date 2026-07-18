@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 
 import { motion } from 'motion/react'
@@ -7,6 +8,8 @@ import { motion } from 'motion/react'
 export const LanguageSwitcher = () => {
   const pathname = usePathname()
   const router = useRouter()
+  const accessibility = useTranslations('common.accessibility')
+  const language = useTranslations('common.language')
 
   // Detecta o locale atual mapeando os primeiros caracteres da rota (/pt/... ou /en/...)
   const currentLocale = pathname?.startsWith('/en') ? 'en' : 'pt'
@@ -30,11 +33,16 @@ export const LanguageSwitcher = () => {
   }
 
   return (
-    <div className='font-syne-mono flex h-14 items-center border-l border-white/5 px-4 text-[10px] tracking-widest text-white/40'>
+    <div
+      role='group'
+      aria-label={accessibility('languageSwitcher')}
+      className='font-syne-mono flex h-14 items-center border-l border-white/5 px-4 text-[10px] tracking-widest text-white/40'
+    >
       <div className='relative flex items-center gap-1 rounded-xs border border-white/5 bg-black/40 p-1 select-none'>
         {/* Botão PT */}
         <button
           onClick={() => toggleLanguage('pt')}
+          aria-label={language('portuguese')}
           className='relative z-10 cursor-pointer px-2 py-0.5 font-bold uppercase transition-colors'
           style={{ color: currentLocale === 'pt' ? '#00fbea' : 'rgba(255,255,255,0.3)' }}
         >
@@ -53,7 +61,10 @@ export const LanguageSwitcher = () => {
         {/* Botão EN */}
         <button
           onClick={() => toggleLanguage('en')}
-          className='relative z-10 cursor-pointer px-2 py-0.5 font-bold uppercase transition-colors'
+          aria-label={language('english')}
+          title={language('comingSoon')}
+          disabled
+          className='relative z-10 cursor-not-allowed px-2 py-0.5 font-bold uppercase opacity-45'
           style={{ color: currentLocale === 'en' ? '#00fbea' : 'rgba(255,255,255,0.3)' }}
         >
           EN

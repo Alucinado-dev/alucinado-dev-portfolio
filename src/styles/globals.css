@@ -38,7 +38,7 @@
   /* ==========================================
      VARIÁVEIS PARA BOXES & PAINÉIS HUD
      ========================================== */
-  --color-base: #02040a; /* Fundo ligeiramente mais claro que o vazio absoluto */
+  --color-surface-base: #02040a; /* Evita conflito com a utility tipográfica text-base do Tailwind */
   --color-panel: rgba(10, 16, 29, 0.4); /* Vidro escuro padrão dos painéis */
   --color-panel-hover: rgba(16, 26, 48, 0.55); /* Vidro em foco/hover */
   --color-box: rgba(255, 255, 255, 0.02); /* Caixas internas extremamente sutis */
@@ -67,6 +67,20 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:where(#inicio, #projetos, #sobre, #stack, #experience, #contato) {
+  scroll-margin-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Custom Scrollbar para elementos com a classe .custom-scrollbar */

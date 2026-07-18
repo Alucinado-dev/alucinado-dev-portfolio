@@ -1,56 +1,126 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
+
+import { useLocale, useTranslations } from 'next-intl'
+
+import { Icon } from '@iconify/react'
 
 import Container from '@/components/container/Container'
 import { LanguageSwitcher } from '@/components/features/LanguageSwitcher'
 import Logo from '@/components/ui/Logo'
+import { Link, usePathname } from '@/i18n/navigation'
+import { siteNavigation } from '@/lib/data/SiteData'
 
 import { Navbar } from './Navbar'
 
 export default function Header() {
   const pathname = usePathname()
-  const systemLocaleTag = pathname?.startsWith('/en') ? 'EN-US' : 'PT-BR'
+  const locale = useLocale()
+  const t = useTranslations('common.header')
+  const navigation = useTranslations('common.navigation')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuRootRef = useRef<HTMLDivElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!isMenuOpen) return
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!menuRootRef.current?.contains(event.target as Node)) setIsMenuOpen(false)
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+      setIsMenuOpen(false)
+      menuButtonRef.current?.focus()
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isMenuOpen])
+
+  const isRouteActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
 
   return (
-    <header className='relative z-50 flex h-14 w-full items-center border-b border-white/10 bg-[#0a0a1a] backdrop-blur-md'>
-      <div className='font-syne-mono hidden h-full flex-1 items-center gap-3 border-r border-white/10 px-6 text-[9px] text-white/30 select-none xl:flex'>
-        <span className='animate-pulse text-[#00fbea]/60'>●</span>
-        <span className='tracking-widest'>SYS_STATUS: ONLINE</span>
+    <header className='sticky top-0 z-50 flex h-14 w-full items-center border-b border-white/10 bg-[#0a0a1a]/96 backdrop-blur-md'>
+      <div className='font-syne-mono hidden h-full flex-1 items-center gap-3 border-r border-white/10 px-6 text-[9px] text-white/35 select-none min-[1800px]:flex'>
+        <span className='bg-tech-teal h-1.5 w-1.5 animate-pulse rounded-full shadow-[0_0_8px_rgba(20,184,166,0.7)]' />
+        <span className='tracking-widest'>{t('systemStatus')}</span>
         <span className='text-white/10'>|</span>
-        <span className='tracking-widest'>NET_NODE: 2026.06</span>
+        <span className='tracking-widest'>{t('version')}</span>
       </div>
 
-      {/* 2. CAIXA CENTRAL: O seu Container de Conteúdo Útil */}
-      {/* Removemos o mx-auto padrão aqui temporariamente via classes para ele travar perfeitamente entre as asas em telas ultra-wide */}
-      <Container className='mx-0 flex h-full items-center justify-between border-white/10 bg-[#020612] px-50 xl:mx-auto'>
-        {/* Bloco do Logo */}
-        <div className='flex h-full items-center border-r border-white/5 px-6'>
+      <Container className='flex h-full items-center border-white/10 bg-[#020612] px-0'>
+        <div className='flex h-full shrink-0 items-center border-r border-white/5 px-4 sm:px-6'>
           <Logo />
         </div>
 
-        {/* Bloco da Navegação */}
-        <div className='flex h-full flex-1 justify-center md:justify-start'>
+        <div className='hidden h-full flex-1 md:flex md:justify-start'>
           <Navbar />
         </div>
 
-        {/* Bloco do Idioma (Fechando a borda direita do container util) */}
-        <div className='flex h-full items-center border-l border-white/5'>
+        <div className='ml-auto flex h-full items-center border-l border-white/5'>
+          <div ref={menuRootRef} className='flex h-full items-center md:hidden'>
+            <button
+              ref={menuButtonRef}
+              type='button'
+              aria-label={isMenuOpen ? t('closeMenu') : t('openMenu')}
+              aria-expanded={isMenuOpen}
+              aria-controls='mobile-route-menu'
+              onClick={() => setIsMenuOpen(current => !current)}
+              className='text-body hover:text-cyan-bright focus-visible:border-cyan-bright flex h-14 w-12 cursor-pointer items-center justify-center border-r border-white/5 transition-colors outline-none focus-visible:border'
+            >
+              <Icon icon={isMenuOpen ? 'lucide:x' : 'lucide:menu'} className='h-5 w-5' aria-hidden='true' />
+            </button>
+
+            {isMenuOpen && (
+              <nav
+                id='mobile-route-menu'
+                aria-label={t('mobileNavigation')}
+                className='fixed top-14 right-3 left-3 z-50 ml-auto border border-white/12 bg-[#050817]/98 p-2 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-xl sm:left-auto sm:w-72'
+              >
+                {siteNavigation.map(link => {
+                  const isActive = isRouteActive(link.href)
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      aria-current={isActive ? 'page' : undefined}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`font-rajdhani flex min-h-11 items-center border px-4 text-sm font-semibold tracking-[0.1em] uppercase transition-colors outline-none focus-visible:border-cyan-300 ${
+                        isActive
+                          ? 'border-cyan-bright/25 bg-cyan-bright/8 text-cyan-bright'
+                          : 'border-transparent text-slate-400 hover:border-white/8 hover:bg-white/4 hover:text-slate-100'
+                      }`}
+                    >
+                      {navigation(link.labelKey)}
+                    </Link>
+                  )
+                })}
+              </nav>
+            )}
+          </div>
+
           <LanguageSwitcher />
         </div>
       </Container>
 
-      {/* 3. ASA DIREITA: Bloco Estático Isolado */}
-      <div className='font-syne-mono hidden h-full flex-1 items-center justify-end gap-4 border-l border-white/10 px-6 text-[9px] text-white/20 select-none xl:flex'>
-        <span className='tracking-widest'>LOC_AUTH: [{systemLocaleTag}]</span>
-        <div className='flex h-2 items-end gap-0.5'>
+      <div className='font-syne-mono hidden h-full flex-1 items-center justify-end gap-4 border-l border-white/10 px-6 text-[9px] text-white/20 select-none min-[1800px]:flex'>
+        <span className='tracking-widest'>{t('locale', { locale: locale === 'en' ? 'EN-US' : 'PT-BR' })}</span>
+        <div className='flex h-2 items-end gap-0.5' aria-hidden='true'>
           <span className='h-2 w-0.5 animate-bounce bg-[#ff00bb]/40' style={{ animationDelay: '0.1s' }} />
           <span className='h-3.5 w-0.5 animate-bounce bg-[#00fbea]/60' style={{ animationDelay: '0.3s' }} />
           <span className='h-2.5 w-0.5 animate-bounce bg-[#00fbea]/40' style={{ animationDelay: '0.2s' }} />
         </div>
       </div>
 
-      {/* Linha de Pulso de Luz Ciano Contínua na Base do Header */}
       <div className='pointer-events-none absolute right-0 bottom-0 left-0 h-px bg-linear-to-r from-transparent via-[#00fbea]/25 to-transparent' />
     </header>
   )

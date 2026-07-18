@@ -1,23 +1,23 @@
+import Sidebar from '@/components/layout/Sidebar'
 import AboutSection from '@/components/sections/AboutSection'
+import ContactSection from '@/components/sections/ContactSection'
 import ExperienceSection from '@/components/sections/ExperienceSection'
 import HeroSection from '@/components/sections/HeroSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import StackSection from '@/components/sections/StackSection'
 
-interface HomePageProps {
-  params: Promise<{ locale: string }>
-}
-
-export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params
-
+export default function HomePage() {
   return (
-    <div className='z-30 flex w-full flex-col gap-y-20 py-8 md:gap-y-32 md:py-16'>
-      <HeroSection />
-      <ProjectsSection />
-      <AboutSection />
-      <StackSection />
-      <ExperienceSection />
-    </div>
+    <>
+      <main className='z-30 flex w-full flex-col gap-y-4 pt-4 pb-10 md:gap-y-8 md:pt-6 md:pb-14'>
+        <HeroSection />
+        <ProjectsSection />
+        <AboutSection />
+        <StackSection />
+        <ExperienceSection />
+        <ContactSection />
+      </main>
+      <Sidebar />
+    </>
   )
 }

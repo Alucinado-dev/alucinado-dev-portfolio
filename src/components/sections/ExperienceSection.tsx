@@ -2,194 +2,164 @@
 
 import { useRef } from 'react'
 
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
+import { Icon } from '@iconify/react'
+import { motion, useScroll, useSpring } from 'motion/react'
+
+import MeshBackground from '@/components/backgrounds/MeshBackground'
 import Container from '@/components/container/Container'
 
-interface TimelineItem {
-  period: string
-  title: string
-  organization: string
-  location: string
-  isCurrent?: boolean
-  isOpenToWork?: boolean // Nova flag para o selo de oportunidade
-  type: 'WORK' | 'MILESTONE' | 'ACADEMIC'
-  description?: string
-  highlights?: string[]
+type TimelineItem = {
+  key: 'floathouse' | 'zaffiro' | 'transition' | 'education'
+  icon: string
+  accent: string
+  node: string
+  hasHighlights: boolean
 }
 
-const TIMELINE_DATA: TimelineItem[] = [
+const timelineItems: TimelineItem[] = [
   {
-    type: 'WORK',
-    period: '2024 — PRESENTE',
-    title: 'Desenvolvedor Frontend Freelancer',
-    organization: 'Coletivo FloatHouse',
-    location: 'Remoto',
-    isCurrent: true,
-    isOpenToWork: true, // Ativa o selo de "Disponível"
-    highlights: [
-      'Atuação em equipe multidisciplinar no desenvolvimento de aplicações web, dividindo tarefas, definindo arquiteturas de interface e realizando revisões de código conjuntas.',
-      'Alinhamento direto com clientes para levantamento de requisitos, refinamento de escopo, prazos de entrega e validação de protótipos.',
-      'Configuração de fluxos de deploy e ambientes de homologação, garantindo a estabilidade e entrega contínua de sistemas reais em produção.',
-    ],
+    key: 'floathouse',
+    icon: 'lucide:briefcase-business',
+    accent: 'border-l-tech-teal/75',
+    node: 'border-tech-teal/50 bg-tech-teal/10 text-tech-teal',
+    hasHighlights: true,
   },
   {
-    type: 'WORK',
-    period: '2023 — 2024',
-    title: 'Scrum Master / Liderança Ágil',
-    organization: 'Empresa Júnior Zaffiro (UFPA)',
-    location: 'Belém / PA',
-    highlights: [
-      'Facilitação de cerimônias ágeis (Sprints, Dailies e Retrospectivas), garantindo a cadência de entrega e organização do time de engenharia.',
-      'Mapeamento de débitos técnicos e remoção ativa de impedimentos operacionais em conjunto com os stakeholders do projeto.',
-      'Planejamento de releases e gestão de backlog, garantindo previsibilidade e qualidade na entrega de produtos e MVPs.',
-    ],
+    key: 'zaffiro',
+    icon: 'lucide:users-round',
+    accent: 'border-l-plasma-purple/75',
+    node: 'border-plasma-purple/50 bg-plasma-purple/10 text-purple-300',
+    hasHighlights: true,
   },
   {
-    type: 'MILESTONE',
-    period: '2023',
-    title: 'Transição de Carreira para Tecnologia',
-    organization: 'Estudos Autodidatas',
-    location: 'Brasil',
-    description:
-      'Pivô estratégico focado em engenharia de software e desenvolvimento web. Dedicação integral ao estudo de arquitetura de componentes, lógica de programação avançada, gerenciamento de estado e ecossistema TypeScript.',
+    key: 'transition',
+    icon: 'lucide:code-2',
+    accent: 'border-l-pink-neon/60',
+    node: 'border-pink-neon/40 bg-pink-neon/8 text-pink-300',
+    hasHighlights: false,
   },
   {
-    type: 'ACADEMIC',
-    period: '2020 — 2023', // Corrigido o ano de início para evitar distorção cronológica
-    title: 'Graduação em Engenharia Biomédica (Interrompida)',
-    organization: 'Universidade Federal do Pará (UFPA)',
-    location: 'Belém / PA',
-    description:
-      'Desenvolvimento de sólida base analítica e raciocínio lógico rigoroso. Experiência prática com física experimental, modelagem matemática de sistemas e introdução à lógica de programação.',
+    key: 'education',
+    icon: 'lucide:graduation-cap',
+    accent: 'border-l-cyber-orange/65',
+    node: 'border-cyber-orange/45 bg-cyber-orange/8 text-orange-300',
+    hasHighlights: false,
   },
 ]
 
+const experienceMesh = [
+  { color: '#4c1d95', x: 100, y: 0, spread: 40, opacity: 0.1 },
+  { color: '#0f766e', x: 0, y: 34, spread: 38, opacity: 0.09 },
+  { color: '#9a3412', x: 88, y: 100, spread: 36, opacity: 0.055 },
+]
+
 export default function ExperienceSection() {
+  const t = useTranslations('pages.home.experience')
   const containerRef = useRef<HTMLDivElement>(null)
-
-  // Captura o progresso de rolagem específico desta seção
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start center', 'end center'],
-  })
-
-  // Suaviza a animação da linha para não dar trancos ao scrollar rápido
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  })
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start center', 'end center'] })
+  const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
 
   return (
-    <section id='experience' className='border-stroke-subtle bg-base w-full border-t py-20'>
-      <Container className='border-stroke-subtle bg-panel/5 relative z-10 overflow-hidden rounded-xs border p-4 backdrop-blur-md sm:p-6 md:p-12'>
-        {/* Cabeçalho de Ponta a Ponta */}
-        <div className='relative mb-20 flex items-center gap-4 select-none'>
-          <h2 className='font-space-grotesk text-primary text-xl font-bold tracking-tight uppercase md:text-2xl'>
-            [08] Histórico Profissional e Acadêmico
-          </h2>
-          <div className='from-stroke-subtle h-px flex-1 bg-linear-to-r to-transparent' />
-        </div>
+    <section
+      id='experience'
+      aria-label={t('accessibility.sectionLabel')}
+      className='relative w-full scroll-mt-20 py-12 md:py-16'
+    >
+      <Container className='relative z-10 overflow-hidden border border-white/11 bg-[#050a16]/91 p-5 shadow-[0_38px_96px_-50px_rgba(0,0,0,0.97)] backdrop-blur-xl sm:p-8 md:p-12'>
+        <MeshBackground points={experienceMesh} background='transparent' className='opacity-80' />
 
-        {/* MÓDULO DA TIMELINE GRID */}
-        <div ref={containerRef} className='relative mx-auto w-full max-w-5xl'>
-          {/* Linha Guia Controlada pelo Scroll do Mouse (Apenas Desktop) */}
-          <div className='bg-stroke-subtle/30 absolute top-3 bottom-3 left-[155px] hidden w-px md:block'>
-            <motion.div
-              style={{ scaleY }}
-              className='from-cyan-bright via-stroke-focus to-stroke-subtle h-full w-full origin-top bg-linear-to-b shadow-[0_0_8px_rgba(6,182,212,0.5)]'
-            />
+        <header className='relative z-10 mb-14 max-w-3xl space-y-3 md:mb-16'>
+          <div className='font-syne-mono text-plasma-purple flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase'>
+            <Icon icon='lucide:route' className='h-4 w-4' aria-hidden='true' />
+            {t('eyebrow')}
+          </div>
+          <h2 className='font-space-grotesk text-2xl font-bold tracking-tight text-slate-50 md:text-3xl'>
+            {t('title')}
+          </h2>
+          <p className='font-outfit text-sm leading-6 font-light text-slate-300/70 md:text-base md:leading-7'>
+            {t('description')}
+          </p>
+        </header>
+
+        <div ref={containerRef} className='relative z-10 mx-auto w-full max-w-5xl'>
+          <div className='absolute top-6 bottom-6 left-2 w-px bg-white/12' aria-hidden='true'>
+            <motion.div style={{ scaleY }} className='bg-cyan-bright/85 h-full w-full origin-top' />
           </div>
 
-          <div className='space-y-10'>
-            {TIMELINE_DATA.map((item, index) => {
+          <div className='space-y-7 md:space-y-9'>
+            {timelineItems.map((item, index) => {
+              const highlights = item.hasHighlights ? (t.raw(`items.${item.key}.highlights`) as string[]) : []
+              const periodEnd = t(`items.${item.key}.periodEnd`)
+
               return (
-                <motion.div
-                  key={index}
-                  className='relative grid grid-cols-1 gap-4 md:grid-cols-[140px_1fr] md:gap-12'
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                <motion.article
+                  key={item.key}
+                  className='relative pl-[76px]'
+                  initial={{ x: 22, y: 10 }}
+                  whileInView={{ x: 0, y: 0 }}
+                  viewport={{ once: true, amount: 0.22 }}
+                  transition={{ duration: 0.5, delay: index * 0.035, ease: 'easeOut' }}
                 >
-                  {/* Coluna 1: Datas Maiores, Legíveis e Fixas */}
-                  <div className='pt-1.5 select-none md:text-right'>
-                    <span className='font-space-grotesk text-secondary block text-sm font-bold tracking-wider md:text-base'>
-                      {item.period.split(' — ')[0]}
-                    </span>
-                    <span className='text-dim mt-0.5 block font-mono text-[10px] tracking-widest uppercase md:mt-0'>
-                      {item.period.split(' — ')[1] ? `— ${item.period.split(' — ')[1]}` : ''}
-                    </span>
-                  </div>
-
-                  {/* Nó Indicador na Linha (Apenas Desktop) */}
-                  <div className='absolute top-3.5 left-[155px] z-20 hidden h-2 w-2 -translate-x-1/2 items-center justify-center md:flex'>
-                    <div
-                      className={`h-2 w-2 rounded-full border transition-all duration-500 ${
-                        item.isCurrent
-                          ? 'border-cyan-bright bg-space-dark scale-110 shadow-[0_0_10px_rgba(6,182,212,0.8)]'
-                          : 'border-stroke-subtle bg-base'
-                      }`}
-                    />
-                  </div>
-
-                  {/* Coluna 2: Card Robusto com Profundidade (Sombra Forte) */}
+                  <span className='absolute top-[29px] left-2 h-px w-4 bg-white/15' aria-hidden='true' />
                   <div
-                    className={`border-stroke-subtle bg-panel/30 hover:border-stroke-focus relative rounded-xs border p-6 shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.6)] ${
-                      item.isCurrent ? 'border-stroke-focus/70 bg-panel/40 ring-stroke-focus/20 ring-1' : ''
-                    }`}
+                    className={`absolute top-3 left-6 z-20 flex h-9 w-9 items-center justify-center rounded-full border shadow-[0_0_0_6px_#050a16] ${item.node}`}
+                    aria-hidden='true'
                   >
-                    {/* Cabeçalho do Card */}
-                    <div className='mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between'>
-                      <div className='space-y-1'>
-                        <span className='text-dim mb-1 block font-mono text-[10px] tracking-wider uppercase md:hidden'>
-                          {item.location}
-                        </span>
-                        <h3 className='text-primary font-space-grotesk text-base font-bold tracking-tight uppercase md:text-lg'>
-                          {item.title}
-                        </h3>
-                        <p className='text-secondary font-mono text-xs font-medium tracking-wide'>
-                          @{item.organization}
-                        </p>
-                      </div>
+                    <Icon icon={item.icon} className='h-4 w-4' />
+                  </div>
 
-                      {/* Espaço para Selos/Badges Dinâmicos */}
-                      <div className='flex flex-wrap gap-1.5 self-start pt-1'>
-                        {item.isOpenToWork && (
-                          <span className='flex items-center gap-1.5 rounded-xs border border-emerald-500/20 bg-emerald-500/5 px-2 py-0.5 font-mono text-[9px] font-semibold tracking-wider text-emerald-400 uppercase shadow-[0_0_10px_rgba(16,185,129,0.1)]'>
-                            <span className='h-1 w-1 animate-pulse rounded-full bg-emerald-400' />
-                            Disponível para Propostas
+                  <div
+                    className={`border border-l-2 border-white/9 bg-[#091221]/92 p-5 shadow-[0_24px_65px_-42px_rgba(0,0,0,0.95)] transition-colors hover:border-white/14 hover:bg-[#0b1728] md:p-6 ${item.accent}`}
+                  >
+                    <div className='font-syne-mono mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[9px] tracking-[0.14em] uppercase'>
+                      <span className='flex items-center gap-1.5 font-semibold text-slate-300'>
+                        <Icon icon='lucide:calendar-days' className='h-3 w-3 text-slate-500' aria-hidden='true' />
+                        {t(`items.${item.key}.periodStart`)}
+                      </span>
+                      {periodEnd && (
+                        <>
+                          <span className='text-slate-700' aria-hidden='true'>
+                            /
                           </span>
-                        )}
-                        {!item.isCurrent && (
-                          <span className='text-dim border-stroke-subtle bg-box rounded-xs border px-1.5 py-0.5 font-mono text-[9px] font-medium tracking-wider uppercase'>
-                            {item.location}
-                          </span>
-                        )}
+                          <span className='text-slate-500'>{periodEnd}</span>
+                        </>
+                      )}
+                    </div>
+                    <div className='mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between'>
+                      <div>
+                        <h3 className='font-space-grotesk text-base font-bold text-slate-100 md:text-lg'>
+                          {t(`items.${item.key}.title`)}
+                        </h3>
+                        <p className='font-outfit mt-1 text-sm text-slate-400'>{t(`items.${item.key}.organization`)}</p>
                       </div>
+                      <span className='font-syne-mono flex items-center gap-1.5 text-[9px] tracking-[0.12em] text-slate-500 uppercase'>
+                        <Icon icon='lucide:map-pin' className='h-3 w-3' aria-hidden='true' />
+                        {t(`items.${item.key}.location`)}
+                      </span>
                     </div>
 
-                    {/* Conteúdo: Texto Corrido */}
-                    {item.description && (
-                      <p className='text-body font-sans text-sm leading-relaxed antialiased'>{item.description}</p>
-                    )}
-
-                    {/* Conteúdo: Tópicos de Processo */}
-                    {item.highlights && (
-                      <ul className='text-body border-stroke-subtle/40 space-y-3 border-l pl-4 font-sans text-sm leading-relaxed antialiased'>
-                        {item.highlights.map((bullet, idx) => (
-                          <li
-                            key={idx}
-                            className='before:bg-muted/30 relative before:absolute before:top-[9px] before:left-[-21px] before:h-1 before:w-1 before:rounded-full'
-                          >
-                            {bullet}
+                    {highlights.length > 0 ? (
+                      <ul className='font-outfit space-y-3 text-sm leading-6 font-light text-slate-300/75'>
+                        {highlights.map(highlight => (
+                          <li key={highlight} className='flex gap-3'>
+                            <Icon
+                              icon='lucide:check'
+                              className='text-tech-teal/75 mt-1.5 h-3.5 w-3.5 shrink-0'
+                              aria-hidden='true'
+                            />
+                            <span>{highlight}</span>
                           </li>
                         ))}
                       </ul>
+                    ) : (
+                      <p className='font-outfit text-sm leading-6 font-light text-slate-300/75'>
+                        {t(`items.${item.key}.description`)}
+                      </p>
                     )}
                   </div>
-                </motion.div>
+                </motion.article>
               )
             })}
           </div>

@@ -2,6 +2,8 @@
 
 import { type ComponentPropsWithoutRef } from 'react'
 
+import Link from 'next/link'
+
 import { cn } from '@/lib/utils/cn'
 
 export interface AnimatedGradientTextProps extends ComponentPropsWithoutRef<'span'> {
@@ -39,7 +41,7 @@ export function AnimatedGradientText({
   )
 }
 
-interface ProjectButtonProps extends React.ComponentPropsWithoutRef<'button'> {
+interface ProjectButtonProps extends ComponentPropsWithoutRef<typeof Link> {
   colorFrom?: string
   colorTo?: string
 }
@@ -52,7 +54,7 @@ export function ProjectButton({
   ...props
 }: ProjectButtonProps) {
   return (
-    <button
+    <Link
       className={cn(
         // Estrutura do botão adaptada para o visual rígido e responsivo
         'group relative flex cursor-pointer items-center justify-center rounded-none bg-slate-950/40 px-7 py-4 transition-transform duration-200 select-none hover:scale-105 active:translate-y-px',
@@ -73,7 +75,7 @@ export function ProjectButton({
       />
 
       {/* O Conteúdo do Botão utilizando o texto gradiente sem risco de quebra */}
-      <AnimatedGradientText className='font-asimovian text-xs font-bold tracking-[0.2em] uppercase'>
+      <AnimatedGradientText className='font-space-grotesk text-xs font-bold tracking-[0.12em] uppercase'>
         {children || 'Ver Projetos'}
       </AnimatedGradientText>
 
@@ -81,9 +83,9 @@ export function ProjectButton({
       <div
         className='pointer-events-none absolute inset-0 -z-10 opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-10'
         style={{
-          background: `radial-gradient(circle, ${colorFrom} 0%, transparent 70%)`,
+          background: `linear-gradient(90deg, ${colorFrom}, ${colorTo})`,
         }}
       />
-    </button>
+    </Link>
   )
 }

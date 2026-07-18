@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 
+import { useTranslations } from 'next-intl'
+
 import { useMediaQuery, useWindowSize } from '@uidotdev/usehooks'
 import { motion, useMotionValue, useTransform } from 'motion/react'
 
@@ -14,6 +16,7 @@ import { MeteorShower } from '@/components/backgrounds/MeteorShower'
 import { StarField } from '@/components/backgrounds/Starfield'
 
 const Background = () => {
+  const t = useTranslations('common.backgroundHud')
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
@@ -56,23 +59,23 @@ const Background = () => {
   const mobileTracks: HudTrack[] = [
     {
       x: 15,
-      label: '// M_01',
-      subLabel: '0x15',
+      label: t('sectorOne'),
+      subLabel: t('sideAxis'),
       lineColor: 'rgba(0, 251, 234, 0.1)',
       dashed: true,
       beams: [{ color: '#00fbea', speed: 1.8, height: 80, decoration: 'dot' }],
     },
     {
       x: 30,
-      label: '// STRE_04',
-      subLabel: 'BUFF_OK',
+      label: t('flow'),
+      subLabel: t('bufferReady'),
       lineColor: 'rgba(255, 255, 255, 0.04)',
       beams: [{ color: '#ffffff', speed: 7.5, height: 90, width: 1, delay: 100 }],
     },
     {
       x: 50,
-      label: '// M_CTR',
-      subLabel: 'SYS_MID',
+      label: t('center'),
+      subLabel: t('centralSystem'),
       lineColor: 'rgba(255, 0, 187, 0.12)',
       labelColor: '#ff00bb',
       lineWidth: 1.5,
@@ -80,16 +83,16 @@ const Background = () => {
     },
     {
       x: 70,
-      label: '// M_02',
-      subLabel: '0x85',
+      label: t('sectorTwo'),
+      subLabel: t('sideAxis'),
       lineColor: 'rgba(0, 251, 234, 0.1)',
       dashed: true,
       beams: [{ color: '#00fbea', speed: 2.2, height: 80, decoration: 'chevron' }],
     },
     {
       x: 85,
-      label: '// TRAC_90',
-      subLabel: 'ALT_982m',
+      label: t('trace'),
+      subLabel: t('altitude'),
       lineColor: 'rgba(255, 234, 0, 0.08)',
       labelColor: 'rgba(255, 234, 0, 0.7)',
       beams: [{ color: '#ffea00', speed: 13, height: 400, width: 1 }],
@@ -104,23 +107,23 @@ const Background = () => {
     },
     {
       x: 10,
-      label: '// SEC_01',
-      subLabel: 'LAT_0x94B',
+      label: t('sectorOne'),
+      subLabel: t('sideAxis'),
       lineColor: 'rgba(0, 251, 234, 0.15)',
       dashed: true,
       beams: [{ color: '#00fbea', speed: 2.2, height: 120, decoration: 'circuit' }],
     },
     {
       x: 22,
-      label: '// STRE_04',
-      subLabel: 'BUFF_OK',
+      label: t('flow'),
+      subLabel: t('bufferReady'),
       lineColor: 'rgba(255, 255, 255, 0.04)',
       beams: [{ color: '#ffffff', speed: 7.5, height: 90, width: 1, delay: 100 }],
     },
     {
       x: 50,
-      label: '// CORE_OVERRIDE',
-      subLabel: 'WARN_LEVEL_02',
+      label: t('core'),
+      subLabel: t('warning'),
       lineColor: 'rgba(255, 0, 187, 0.2)',
       labelColor: '#ff00bb',
       lineWidth: 2,
@@ -131,16 +134,16 @@ const Background = () => {
     },
     {
       x: 78,
-      label: '// INDEX_DATA',
-      subLabel: 'SYS_STABLE',
+      label: t('indexData'),
+      subLabel: t('stableSystem'),
       lineColor: 'rgba(0, 251, 234, 0.12)',
       dashed: true,
       beams: [{ color: '#00fbea', speed: 3.2, height: 180, decoration: 'chevron' }],
     },
     {
       x: 92,
-      label: '// TRAC_90',
-      subLabel: 'ALT_982m',
+      label: t('trace'),
+      subLabel: t('altitude'),
       lineColor: 'rgba(255, 234, 0, 0.08)',
       labelColor: 'rgba(255, 234, 0, 0.7)',
       beams: [{ color: '#ffea00', speed: 13, height: 400, width: 1 }],

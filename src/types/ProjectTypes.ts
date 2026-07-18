@@ -1,7 +1,7 @@
 export type TechDetailType = {
+  key: string
   name: string
   icon: string
-  justification: string
 }
 
 export type ProjectFeatureType = {
@@ -23,6 +23,7 @@ export type FolderStructureType = {
 
 export type ProjectNatureType = 'autoral' | 'colaborativo' | 'freelancer'
 export type ProjectScopeType = 'frontend' | 'backend' | 'fullstack'
+export type ProjectRoleType = 'frontendDeveloper'
 
 export type ProjectDataType = {
   slug: string
@@ -30,11 +31,8 @@ export type ProjectDataType = {
   title: string
   nature: ProjectNatureType // Substitui o antigo badgeText confuso
   scope: ProjectScopeType // Define a camada arquitetural
-  role: string
+  role: ProjectRoleType
   imageUrl: string
-  description: string // Descrição curta (para os cards da Home)
-  extendedDescription: string // O "O que é" profundo para a página interna
   links: ProjectLinksType
   techs: TechDetailType[]
-  features: string[] // Funcionalidades em lista
 }

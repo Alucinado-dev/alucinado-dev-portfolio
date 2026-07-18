@@ -107,7 +107,12 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   return (
-    <html lang={(await params).locale} className={`h-full antialiased`} suppressHydrationWarning>
+    <html
+      lang={(await params).locale}
+      className='h-full scroll-smooth antialiased motion-reduce:scroll-auto'
+      data-scroll-behavior='smooth'
+      suppressHydrationWarning
+    >
       <body className={`${fonts} relative flex min-h-full flex-col`}>
         <AppProviders>
           <Header />

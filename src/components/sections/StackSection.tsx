@@ -2,132 +2,168 @@
 
 import { useState } from 'react'
 
-import { Icon } from '@iconify/react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
+import { Icon } from '@iconify/react'
+import { motion } from 'motion/react'
+
+import MeshBackground from '@/components/backgrounds/MeshBackground'
 import Container from '@/components/container/Container'
-import { DotPattern } from '@/components/external/DotPattern'
 import { techList } from '@/lib/data/TechData'
 
-const STACK_TECHS = [
-  'react',
-  'nextjs',
-  'typescript',
-  'tailwind',
-  'zustand',
-  'motion',
-  'nestjs',
-  'mongodb',
-  'docker',
-  'rabbitmq',
-  'zod',
-  'posthog',
+type TechAccent = 'cyan' | 'purple' | 'pink'
+
+const stackTechs: { key: string; accent: TechAccent }[] = [
+  { key: 'react', accent: 'cyan' },
+  { key: 'nextjs', accent: 'cyan' },
+  { key: 'typescript', accent: 'cyan' },
+  { key: 'tailwind', accent: 'cyan' },
+  { key: 'zustand', accent: 'cyan' },
+  { key: 'motion', accent: 'pink' },
+  { key: 'html', accent: 'purple' },
+  { key: 'css', accent: 'purple' },
+  { key: 'javascript', accent: 'purple' },
+  { key: 'vite', accent: 'purple' },
+  { key: 'zod', accent: 'pink' },
+  { key: 'posthog', accent: 'pink' },
+]
+
+const accents: Record<TechAccent, { selected: string; corner: string; icon: string }> = {
+  cyan: {
+    selected: 'border-cyan-bright/45 bg-cyan-bright/8 shadow-[0_18px_36px_-28px_rgba(0,0,0,0.98)]',
+    corner: 'border-cyan-bright/70',
+    icon: 'text-cyan-200',
+  },
+  purple: {
+    selected: 'border-plasma-purple/50 bg-plasma-purple/9 shadow-[0_18px_36px_-28px_rgba(0,0,0,0.98)]',
+    corner: 'border-plasma-purple/75',
+    icon: 'text-purple-200',
+  },
+  pink: {
+    selected: 'border-pink-neon/40 bg-pink-neon/7 shadow-[0_18px_36px_-28px_rgba(0,0,0,0.98)]',
+    corner: 'border-pink-neon/65',
+    icon: 'text-pink-200',
+  },
+}
+
+const stackMesh = [
+  { color: '#0e7490', x: 2, y: 94, spread: 42, opacity: 0.11 },
+  { color: '#312e81', x: 94, y: 4, spread: 44, opacity: 0.14 },
+]
+
+const detailMesh = [
+  { color: '#4338ca', x: 90, y: 5, spread: 62, opacity: 0.16 },
+  { color: '#0f766e', x: 8, y: 92, spread: 54, opacity: 0.08 },
 ]
 
 export default function StackSection() {
-  // Mudamos o nome para refletir que agora é uma SELEÇÃO firme
-  const [selectedTechKey, setSelectedTechKey] = useState<string | null>(null)
+  const t = useTranslations('pages.home.stack')
+  const technologies = useTranslations('content.technologies')
+  const [selectedTechKey, setSelectedTechKey] = useState('react')
+  const selectedTech = techList[selectedTechKey]
 
   return (
-    <section id='stack' className='border-stroke-subtle bg-base relative z-10 w-full border-t py-20'>
-      <Container className='border-stroke-subtle bg-panel/10 relative overflow-hidden rounded-xs border p-6 backdrop-blur-md md:p-10'>
-        <DotPattern
-          width={18}
-          height={18}
-          glow={false}
-          className='text-muted/10 pointer-events-none absolute inset-0 opacity-40 mix-blend-overlay'
-        />
+    <section
+      id='stack'
+      aria-label={t('accessibility.sectionLabel')}
+      className='relative z-10 w-full scroll-mt-20 py-12 md:py-16'
+    >
+      <Container className='relative overflow-hidden border border-white/10 bg-[#050b18]/88 p-6 shadow-[0_36px_90px_-48px_rgba(0,0,0,0.96)] backdrop-blur-xl md:p-10'>
+        <MeshBackground points={stackMesh} background='transparent' className='opacity-80' />
 
-        {/* Cabeçalho */}
-        <div className='relative z-10 mb-10 flex items-center gap-4 select-none'>
-          <h2 className='font-space-grotesk text-primary text-xl font-bold tracking-tight uppercase md:text-2xl'>
-            [07] Matriz de Conectividade
-          </h2>
-          <div className='from-stroke-subtle h-px flex-1 bg-linear-to-r to-transparent' />
-        </div>
+        <div className='relative z-10'>
+          <header className='mb-10 max-w-3xl space-y-3'>
+            <div className='font-syne-mono text-cyan-bright/75 flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase'>
+              <Icon icon='lucide:blocks' className='h-4 w-4' aria-hidden='true' />
+              {t('eyebrow')}
+            </div>
+            <h2 className='font-space-grotesk text-2xl font-bold tracking-tight text-slate-50 md:text-3xl'>
+              {t('title')}
+            </h2>
+            <p className='font-outfit text-sm leading-6 font-light text-slate-300/70 md:text-base md:leading-7'>
+              {t('description')}
+            </p>
+          </header>
 
-        {/* GRELHA TÁTICA DE STACKS */}
-        <div className='relative z-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
-          {STACK_TECHS.map(key => {
-            const tech = techList[key]
-            if (!tech) return null
+          <div className='grid gap-6 lg:grid-cols-[1fr_0.72fr] lg:items-stretch'>
+            <div className='grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4'>
+              {stackTechs.map(({ key, accent }) => {
+                const tech = techList[key]
+                const isSelected = selectedTechKey === key
+                const color = accents[accent]
 
-            const isSelected = selectedTechKey === key
+                return (
+                  <button
+                    key={key}
+                    type='button'
+                    aria-pressed={isSelected}
+                    aria-controls='stack-tech-details'
+                    aria-label={t('accessibility.selectTechnology', { technology: tech.name })}
+                    onClick={() => setSelectedTechKey(key)}
+                    className={`group focus-visible:ring-cyan-bright/60 relative flex min-h-28 flex-col items-center justify-center border p-4 transition-all duration-250 outline-none focus-visible:ring-2 ${
+                      isSelected
+                        ? color.selected
+                        : 'border-white/8 bg-[#081120]/72 hover:-translate-y-0.5 hover:border-white/16 hover:bg-[#0b1729]'
+                    }`}
+                  >
+                    <span
+                      className={`absolute top-0 left-0 h-3 w-3 border-t border-l transition-opacity ${color.corner} ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
+                      aria-hidden='true'
+                    />
+                    <span
+                      className={`absolute right-0 bottom-0 h-3 w-3 border-r border-b transition-opacity ${color.corner} ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
+                      aria-hidden='true'
+                    />
 
-            return (
-              <button
-                key={key}
-                type='button'
-                // ✅ ÚNICO EVENTO LOGÍCO: O clique seleciona o nó de vez.
-                // Se clicar no que já está selecionado, ele desmarca (comportamento de toggle opcional).
-                onClick={() => setSelectedTechKey(isSelected ? null : key)}
-                className={`border-stroke-subtle bg-base/40 group hover:bg-panel-hover/60 focus-visible:bg-panel-hover/60 focus-visible:border-cyan-bright/40 relative flex aspect-square cursor-crosshair flex-col items-center justify-center border p-5 transition-all duration-300 outline-none select-none ${isSelected ? 'border-cyan-bright/40 bg-panel-hover/40 shadow-[0_0_20px_rgba(6,182,212,0.08)]' : ''}`}
-              >
-                {/* 🎯 CANTOS DE MIRA HUD: Ativam se estiver SELECIONADO (JS) OU se houver HOVER/FOCUS (CSS) */}
-                <div
-                  className={`border-cyan-bright absolute top-0 left-0 h-2 w-2 border-t border-l transition-all duration-300 ${isSelected ? 'h-3 w-3 translate-x-1 translate-y-1 opacity-100' : 'opacity-0 group-hover:h-3 group-hover:w-3 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:opacity-100 group-focus-visible:opacity-100'}`}
-                />
-                <div
-                  className={`border-cyan-bright absolute top-0 right-0 h-2 w-2 border-t border-r transition-all duration-300 ${isSelected ? 'h-3 w-3 -translate-x-1 translate-y-1 opacity-100' : 'opacity-0 group-hover:h-3 group-hover:w-3 group-hover:-translate-x-1 group-hover:translate-y-1 group-hover:opacity-100 group-focus-visible:opacity-100'}`}
-                />
-                <div
-                  className={`border-cyan-bright absolute bottom-0 left-0 h-2 w-2 border-b border-l transition-all duration-300 ${isSelected ? 'h-3 w-3 translate-x-1 -translate-y-1 opacity-100' : 'opacity-0 group-hover:h-3 group-hover:w-3 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100 group-focus-visible:opacity-100'}`}
-                />
-                <div
-                  className={`border-cyan-bright absolute right-0 bottom-0 h-2 w-2 border-r border-b transition-all duration-300 ${isSelected ? 'h-3 w-3 -translate-x-1 -translate-y-1 opacity-100' : 'opacity-0 group-hover:h-3 group-hover:w-3 group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100 group-focus-visible:opacity-100'}`}
-                />
+                    <Icon
+                      icon={tech.icon}
+                      className={`h-8 w-8 transition-all duration-250 ${key === 'motion' ? 'invert' : ''} ${isSelected ? `${color.icon} scale-105 opacity-100` : 'text-slate-500 opacity-70 grayscale-[55%] group-hover:text-slate-200 group-hover:opacity-100 group-hover:grayscale-0'}`}
+                      aria-hidden='true'
+                    />
+                    <span
+                      className={`font-space-grotesk mt-3 text-center text-xs font-medium ${isSelected ? 'text-slate-100' : 'text-slate-400'}`}
+                    >
+                      {tech.name}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
 
-                {/* ÍCONE */}
-                <Icon
-                  icon={tech.icon}
-                  className={`text-muted group-hover:text-primary group-focus-visible:text-primary h-8 w-8 filter transition-all duration-300 ${isSelected ? 'text-primary scale-105 drop-shadow-[0_0_10px_rgba(6,182,212,0.4)]' : ''}`}
-                />
+            <div
+              id='stack-tech-details'
+              role='region'
+              aria-label={t('accessibility.detailsRegion')}
+              aria-live='polite'
+              className='border-plasma-purple/25 relative min-h-64 overflow-hidden border bg-[#080d20]/92 p-6 shadow-[0_28px_65px_-42px_rgba(0,0,0,0.96)]'
+            >
+              <MeshBackground points={detailMesh} background='transparent' className='opacity-85' />
+              <div className='from-cyan-bright/40 via-plasma-purple/30 pointer-events-none absolute bottom-0 left-0 h-px w-full bg-linear-to-r to-transparent' />
 
-                {/* TEXTO DO CARD */}
-                <span
-                  className={`mt-3 font-mono text-[10px] tracking-widest uppercase transition-colors duration-300 ${isSelected ? 'text-cyan-bright font-bold' : 'text-muted group-hover:text-primary group-focus-visible:text-primary'}`}
-                >
-                  {tech.name}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-
-        {/* 📟 INTERFACE DE DIAGNÓSTICO */}
-        <div className='border-stroke-subtle bg-base/60 relative mt-8 h-[180px] overflow-hidden rounded-xs border p-5 font-mono text-xs backdrop-blur-md'>
-          <div className='bg-stroke-subtle text-muted absolute top-0 right-0 px-2 py-0.5 text-[9px] tracking-wider uppercase select-none'>
-            [Status_Monitor]
-          </div>
-
-          <AnimatePresence mode='wait'>
-            {selectedTechKey ? (
               <motion.div
                 key={selectedTechKey}
-                initial={{ opacity: 0, y: 2 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -2 }}
-                transition={{ duration: 0.1 }}
-                className='space-y-2.5'
+                initial={{ opacity: 0.35, x: 8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className='relative z-10 flex h-full flex-col'
               >
-                <div className='flex items-center gap-2 select-none'>
-                  <span className='text-cyan-bright font-bold'>&gt; NODE_LOG:</span>
-                  <span className='text-primary text-sm font-bold uppercase'>{techList[selectedTechKey]?.name}</span>
-                  <span className='text-cyan-bright/80 border-cyan-bright/30 bg-cyan-bright/5 py-0.2 animate-pulse rounded-xs border px-1 text-[9px] tracking-widest uppercase'>
-                    ONLINE
-                  </span>
+                <div className='font-syne-mono mb-8 text-[9px] tracking-[0.16em] text-slate-500 uppercase'>
+                  {t('selectedLabel')}
                 </div>
-                <p className='text-body font-sans text-sm leading-relaxed antialiased'>
-                  {techList[selectedTechKey]?.justification}
+
+                <div className='mb-5 flex items-center gap-4'>
+                  <div className='flex h-14 w-14 items-center justify-center border border-white/10 bg-white/5'>
+                    <Icon icon={selectedTech.icon} className='h-8 w-8 text-slate-100' aria-hidden='true' />
+                  </div>
+                  <h3 className='font-space-grotesk text-2xl font-bold text-slate-50'>{selectedTech.name}</h3>
+                </div>
+
+                <p className='font-outfit text-sm leading-7 font-light text-slate-300/78 md:text-base'>
+                  {technologies(selectedTech.key)}
                 </p>
               </motion.div>
-            ) : (
-              <div className='text-dim flex h-full items-center font-sans text-sm italic select-none'>
-                Nenhum nó ativo. Clique em uma tecnologia acima para injetar as diretrizes de arquitetura no monitor de
-                diagnóstico.
-              </div>
-            )}
-          </AnimatePresence>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

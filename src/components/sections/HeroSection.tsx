@@ -1,262 +1,186 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import { Icon } from '@iconify/react'
 import { motion } from 'motion/react'
 
+import MeshBackground from '@/components/backgrounds/MeshBackground'
 import { ProjectButton } from '@/components/external/GlowingButton'
 import { AnimatedSpan, Terminal, TypingAnimation } from '@/components/external/Terminal'
+import { siteLinks } from '@/lib/data/SiteData'
+
+type ProofPoint = {
+  icon: string
+  label: string
+}
+
+const heroPanelMesh = [
+  { color: '#0e7490', x: 4, y: 12, spread: 38, opacity: 0.13 },
+  { color: '#312e81', x: 92, y: 88, spread: 44, opacity: 0.12 },
+]
 
 export default function HeroSection() {
+  const t = useTranslations('pages.home.hero')
+  const actions = useTranslations('common.actions')
+  const accessibility = useTranslations('common.accessibility')
+  const proofPoints = t.raw('proofPoints') as ProofPoint[]
+  const opportunityTypes = t.raw('opportunityTypes') as string[]
+
   const fadeUpVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } as const },
+    hidden: { opacity: 0, y: 18 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } as const },
   }
 
   return (
-    <section className='relative flex w-full items-center justify-center overflow-hidden px-6 py-12 md:py-10'>
-      <div className='relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12'>
-        {/* COLUNA ESQUERDA */}
-        {/* COLUNA ESQUERDA: Informações e CTAs Táticos */}
+    <section
+      id='inicio'
+      aria-label={t('accessibility.sectionLabel')}
+      className='relative flex w-full scroll-mt-20 items-center justify-center overflow-hidden px-4 py-6 sm:px-6 sm:py-8 md:py-10'
+    >
+      <div className='relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-7 lg:grid-cols-[minmax(0,1.16fr)_minmax(22rem,0.84fr)] lg:gap-8 xl:gap-10'>
         <motion.div
-          className='relative flex flex-col items-start space-y-7 rounded-none border border-white/5 bg-[#020612]/30 p-6 text-left shadow-2xl lg:col-span-6'
+          className='relative flex min-w-0 flex-col justify-center overflow-hidden border border-white/11 bg-[#030817]/10 p-6 text-left shadow-[0_28px_70px_-38px_rgba(0,0,0,0.96)] backdrop-blur-xs sm:p-8'
           initial='hidden'
           animate='visible'
-          variants={{
-            visible: { transition: { staggerChildren: 0.12 } },
-          }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
         >
-          {/* Detalhe estático de cantoneira industrial no TOPO ESQUERDO */}
-          <div className='absolute -top-1 -left-1 h-2 w-2 border-t border-l border-[#00fbea]/30' />
+          <MeshBackground points={heroPanelMesh} background='transparent' className='opacity-80' />
+          <div className='bg-cyan-bright/50 absolute top-0 left-0 h-14 w-px' />
+          <div className='bg-cyan-bright/50 absolute top-0 left-0 h-px w-14' />
+          <div className='bg-plasma-purple/40 absolute right-0 bottom-0 h-14 w-px' />
+          <div className='bg-plasma-purple/40 absolute right-0 bottom-0 h-px w-14' />
 
-          {/* REFACTOR: Badge de Disponibilidade Modular (Destaque CLT|PJ) */}
-          <motion.div
-            variants={fadeUpVariant}
-            className='flex w-full items-center gap-3 border-l border-[#10b981]/20 py-1 pl-4'
-          >
-            <div className='font-rajdhani flex items-center gap-2 rounded-none border border-emerald-500/10 bg-emerald-500/5 px-3 py-1.5 text-xs font-bold tracking-widest text-emerald-400 uppercase'>
-              <span className='relative flex h-2 w-2'>
-                <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75'></span>
-                <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-500'></span>
-              </span>
-              Disponível
-            </div>
+          <div className='relative z-10 space-y-6'>
+            <motion.div variants={fadeUpVariant} className='flex flex-wrap items-center gap-2 sm:flex-nowrap'>
+              <div className='font-rajdhani flex items-center gap-2 border border-emerald-400/25 bg-emerald-400/9 px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.11em] whitespace-nowrap text-emerald-300 uppercase sm:text-[11px]'>
+                <span className='relative flex h-2 w-2' aria-hidden='true'>
+                  <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60' />
+                  <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-400' />
+                </span>
+                {t('availability')}
+              </div>
 
-            {/* Destaque CLT|PJ: Caixa Rígida Monospace */}
-            <div className='group font-syne-mono relative rounded-none border border-[#10b981]/30 bg-black/40 px-3 py-1.5 text-[10px] tracking-[0.2em] text-emerald-300 uppercase select-none'>
-              CLT
-            </div>
+              {opportunityTypes.map(type => (
+                <span
+                  key={type}
+                  className='font-syne-mono border border-white/10 bg-black/30 px-2.5 py-1 text-[9px] tracking-[0.13em] whitespace-nowrap text-slate-300/80 sm:text-[10px]'
+                >
+                  {type}
+                </span>
+              ))}
+            </motion.div>
 
-            <div className='group font-syne-mono relative rounded-none border border-[#10b981]/30 bg-black/40 px-3 py-1.5 text-[10px] tracking-[0.2em] text-emerald-300 uppercase select-none'>
-              PJ
-            </div>
-
-            <div className='group font-syne-mono relative rounded-none border border-[#10b981]/30 bg-black/40 px-3 py-1.5 text-[10px] tracking-[0.2em] text-emerald-300 uppercase select-none'>
-              PROJETOS
-            </div>
-          </motion.div>
-
-          {/* Bloco de Nome e Cargo com Micro-IDs */}
-          <div className='relative w-full space-y-1 border-l border-white/5 pl-6'>
-            <motion.h1
-              variants={fadeUpVariant}
-              className='font-exo-2 text-4xl font-extrabold tracking-tight text-slate-50 uppercase md:text-6xl'
-            >
-              <span className='font-syne-mono mr-2 text-sm text-white/20 select-none'>01 //</span>
-              Lucino Campos
-            </motion.h1>
-            <motion.h2
-              variants={fadeUpVariant}
-              className='font-audiowide text-xl font-semibold text-slate-400 md:text-2xl'
-            >
-              <span className='font-syne-mono mr-2 text-sm text-white/20 select-none'>02 //</span>
-              Desenvolvedor Frontend
-            </motion.h2>
-          </div>
-
-          {/* Frase de Impacto com Margem Modular */}
-          <motion.p
-            variants={fadeUpVariant}
-            className='font-outfit max-w-xl border-l border-white/5 pl-6 text-base leading-relaxed font-light text-slate-400 md:text-lg'
-          >
-            Especialista em construir interfaces modernas, performáticas e arquiteturas frontend robustas. Experiência
-            real com aplicações em produção e foco absoluto em entregar valor comercial através de código limpo.
-          </motion.p>
-
-          <motion.div variants={fadeUpVariant} className='flex flex-wrap gap-4 pt-4 pl-6'>
-            <ProjectButton>Ver Projetos</ProjectButton>
-
-            <Link href='/lucino_campos_cv.pdf' download='Lucino_Campos_CV.pdf' className='inline-block'>
+            <div className='space-y-3'>
               <motion.div
-                className='group font-zen-dots relative flex cursor-pointer items-center justify-center gap-3 rounded-none border border-white/10 bg-slate-950/20 px-7 py-4 text-xs tracking-widest text-slate-400 uppercase transition-all'
-                initial='initial'
-                whileHover='hover'
-                whileTap={{ y: 1 }}
-                variants={{
-                  initial: {
-                    borderColor: 'rgba(255, 255, 255, 0.1)',
-                    color: '#94a3b8',
-                    backgroundColor: 'rgba(15, 23, 42, 0.2)',
-                  },
-                  hover: {
-                    borderColor: 'rgba(0, 251, 234, 0.4)', // Acende sutilmente no ciano do seu HUD
-                    color: '#f8fafc',
-                    backgroundColor: 'rgba(15, 23, 42, 0.5)',
-                  },
-                }}
+                variants={fadeUpVariant}
+                className='font-syne-mono text-cyan-bright/70 flex items-center gap-2 text-[10px] tracking-[0.22em] uppercase'
               >
-                <span>Baixar CV</span>
-
-                {/* ÍCONE SVG ANIMADO VIA MOTION COM COMPORTAMENTO DE SETA PULSANDO */}
-                <div className='relative flex h-4 w-4 items-center justify-center'>
-                  <motion.span
-                    variants={{
-                      initial: { y: 0 },
-                      // Faz um loop infinito de "pulo" simulando download enquanto durar o hover
-                      hover: {
-                        y: [0, 4, 0],
-                        transition: {
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                        },
-                      },
-                    }}
-                  >
-                    <Icon
-                      icon='pixelarticons:download'
-                      className='h-7 w-7 text-slate-400 transition-colors group-hover:text-slate-200'
-                    />
-                  </motion.span>
-                </div>
+                <Icon icon='lucide:user-round' className='h-3.5 w-3.5' aria-hidden='true' />
+                {t('professionalLabel')}
               </motion.div>
-            </Link>
-          </motion.div>
 
-          {/* Detalhe estático de cantoneira industrial no BOTTOM DIREITO */}
-          <div className='absolute -right-1 -bottom-1 h-2 w-2 border-r border-b border-[#00fbea]/30' />
-        </motion.div>
-        {/* COLUNA DIREITA: O Terminal Otimizado Sem Mínimo Risco de Scroll */}
-        <div className='flex w-full justify-center lg:col-span-6 lg:justify-end'>
-          <h3 className='sr-only'>Logs do Sistema e Inicialização Técnica</h3>
-          <Terminal>
-            {/* Comando Inicial */}
-            <TypingAnimation icon='lucide:chevron-right' iconClass='text-slate-500' className='font-bold text-cyan-400'>
-              pnpm dlx lucino@latest init
-            </TypingAnimation>
-
-            {/* Carregamento do Manifesto (Segura um pouco mais pelas reticências) */}
-            <TypingAnimation
-              icon='lucide:settings'
-              iconClass='text-slate-500 animate-spin'
-              postDelay={1500}
-              className='text-slate-400'
-            >
-              Loading manifest schema from repository...
-            </TypingAnimation>
-
-            {/* Novas Linhas Solicitadas de Telemetria e Inicialização */}
-            <TypingAnimation
-              icon='lucide:activity'
-              iconClass='text-cyan-400'
-              postDelay={1800}
-              className='text-slate-400'
-            >
-              PostHog asynchronous telemetry node synchronized.
-            </TypingAnimation>
-
-            <TypingAnimation
-              icon='lucide:sparkles'
-              iconClass='text-purple-400 animate-pulse'
-              postDelay={500}
-              className='text-slate-400'
-            >
-              Starfield background interactive particle array loaded.
-            </TypingAnimation>
-
-            {/* Handshakes */}
-            <TypingAnimation
-              icon='lucide:check-circle-2'
-              iconClass='text-emerald-500'
-              postDelay={500}
-              className='text-emerald-400'
-            >
-              System integrity handshake verified successfully.
-            </TypingAnimation>
-
-            <TypingAnimation
-              icon='lucide:check-circle-2'
-              iconClass='text-emerald-500'
-              postDelay={500}
-              className='text-emerald-400'
-            >
-              Environment variables injected: [production_node].
-            </TypingAnimation>
-
-            {/* Core Tech */}
-            <TypingAnimation icon='lucide:box' iconClass='text-cyan-500' postDelay={1000} className='text-slate-300'>
-              Core tech: Next.js v16 · React v19 · Tailwind v4
-            </TypingAnimation>
-
-            {/* Descoberta de pegada ativa (Hangs um pouco para dar impacto ao link) */}
-            <TypingAnimation
-              icon='lucide:zap'
-              iconClass='text-amber-500 animate-pulse'
-              postDelay={900}
-              className='text-amber-400'
-            >
-              Active Production Footprint discovered:
-            </TypingAnimation>
-
-            {/* Linha de Link com tag A nativa */}
-            <AnimatedSpan postDelay={2000} className='flex h-5.5 items-center gap-1.5 pl-6 text-slate-400'>
-              <Icon icon='lucide:link-2' className='h-3.5 w-3.5 shrink-0 text-cyan-500' />
-              <span>URL:</span>
-              <a
-                href='https://flordopomar.pt'
-                target='_blank'
-                rel='noreferrer'
-                className='font-bold text-cyan-400 underline transition-colors hover:text-cyan-300'
+              <motion.h1
+                variants={fadeUpVariant}
+                className='font-exo-2 text-4xl leading-[0.95] font-extrabold tracking-[-0.035em] text-slate-50 uppercase sm:text-5xl md:text-6xl'
               >
-                flordopomar.pt
-              </a>
-              <span className='ml-1 font-mono text-xs text-slate-600'>(Best Project Freelancer ever made by me!)</span>
-            </AnimatedSpan>
+                {t('name')}
+              </motion.h1>
 
-            {/* Finalização de Telemetria */}
-            <TypingAnimation
-              icon='eos-icons:loading'
-              iconClass='text-slate-500'
-              postDelay={600}
-              className='text-slate-400'
+              <motion.h2
+                variants={fadeUpVariant}
+                className='font-space-grotesk flex items-center gap-2.5 text-lg font-medium tracking-tight text-slate-300 sm:text-xl md:text-2xl'
+              >
+                <Icon icon='lucide:code-2' className='text-pink-neon/80 h-5 w-5' aria-hidden='true' />
+                {t('role')}
+              </motion.h2>
+            </div>
+
+            <motion.p
+              variants={fadeUpVariant}
+              className='font-outfit border-cyan-bright/25 max-w-2xl border-l-2 pl-4 text-base leading-7 font-light text-slate-300/85 md:text-lg md:leading-8'
             >
-              Synchronizing telemetry routers and state nodes...
+              {t('description')}
+            </motion.p>
+
+            <motion.ul
+              variants={fadeUpVariant}
+              className='grid gap-2 sm:grid-cols-3'
+              aria-label={t('accessibility.sectionLabel')}
+            >
+              {proofPoints.map(point => (
+                <li
+                  key={point.label}
+                  className='flex items-center gap-2 border border-white/7 bg-white/3 px-3 py-2.5 text-xs text-slate-300'
+                >
+                  <Icon icon={point.icon} className='text-tech-teal h-4 w-4 shrink-0' aria-hidden='true' />
+                  <span className='font-rajdhani font-medium'>{point.label}</span>
+                </li>
+              ))}
+            </motion.ul>
+
+            <motion.div variants={fadeUpVariant} className='flex flex-wrap gap-3 pt-1'>
+              <ProjectButton href={siteLinks.projects}>{actions('viewProjects')}</ProjectButton>
+
+              <Link
+                href={siteLinks.cv}
+                download='Lucino_Campos_CV.pdf'
+                aria-label={accessibility('downloadCv')}
+                className='group font-space-grotesk hover:border-pink-neon/30 hover:bg-pink-neon/6 flex items-center justify-center gap-2.5 border border-white/12 bg-white/4 px-6 py-3.5 text-xs font-semibold tracking-[0.08em] text-slate-300 uppercase transition-colors hover:text-slate-50'
+              >
+                {actions('downloadCv')}
+                <Icon
+                  icon='lucide:download'
+                  className='group-hover:text-pink-neon h-4 w-4 text-slate-500 transition-transform group-hover:translate-y-0.5'
+                  aria-hidden='true'
+                />
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        <div className='flex w-full items-center justify-center lg:-translate-y-2 lg:justify-end'>
+          <h3 className='sr-only'>{accessibility('terminalLog')}</h3>
+          <Terminal className='min-h-92 max-w-lg'>
+            <TypingAnimation icon='lucide:chevron-right' iconClass='text-cyan-500' className='font-bold text-cyan-300'>
+              {t('terminal.command')}
             </TypingAnimation>
-
-            {/* Divisória Rápida */}
-            <AnimatedSpan postDelay={30} className='h-3 leading-none tracking-tighter text-slate-900 select-none'>
-              ────────────────────────────────────────────────────────
+            <TypingAnimation icon='lucide:user-search' iconClass='text-slate-500' postDelay={700}>
+              {t('terminal.loadingProfile')}
+            </TypingAnimation>
+            <TypingAnimation icon='lucide:activity' iconClass='text-cyan-400' postDelay={750}>
+              {t('terminal.telemetry')}
+            </TypingAnimation>
+            <TypingAnimation icon='lucide:sparkles' iconClass='text-purple-400' postDelay={500}>
+              {t('terminal.background')}
+            </TypingAnimation>
+            <TypingAnimation icon='lucide:badge-check' iconClass='text-emerald-400' postDelay={550}>
+              {t('terminal.integrity')}
+            </TypingAnimation>
+            <TypingAnimation icon='lucide:server-cog' iconClass='text-emerald-400' postDelay={550}>
+              {t('terminal.environment')}
+            </TypingAnimation>
+            <TypingAnimation icon='lucide:boxes' iconClass='text-cyan-400' postDelay={750} className='text-slate-300'>
+              {t('terminal.coreStack')}
+            </TypingAnimation>
+            <TypingAnimation icon='lucide:route' iconClass='text-amber-400' postDelay={650} className='text-amber-200'>
+              {t('terminal.workflow')}
+            </TypingAnimation>
+            <AnimatedSpan postDelay={900} className='flex min-h-6 items-center gap-2 pl-6 text-slate-400'>
+              <Icon icon='lucide:crosshair' className='h-3.5 w-3.5 shrink-0 text-cyan-500' aria-hidden='true' />
+              <span>{t('terminal.priorities')}</span>
             </AnimatedSpan>
-
-            {/* Sucesso Industrial com Ícone Tecnológico Exclusivo */}
+            <TypingAnimation icon='eos-icons:loading' iconClass='text-slate-500' postDelay={500}>
+              {t('terminal.synchronizing')}
+            </TypingAnimation>
             <TypingAnimation
               icon='lucide:shield-check'
               iconClass='text-cyan-400'
-              postDelay={1900}
+              postDelay={900}
               className='font-bold text-slate-100'
             >
-              [SUCCESS] Environment compiled with 0 warnings.
-            </TypingAnimation>
-
-            {/* Dica de Ação */}
-            <TypingAnimation
-              icon='lucide:help-circle'
-              iconClass='text-slate-600'
-              postDelay={500}
-              className='text-sm text-slate-500'
-            >
-              Scroll down node to investigate full capabilities.
+              {t('terminal.success')}
             </TypingAnimation>
           </Terminal>
         </div>
