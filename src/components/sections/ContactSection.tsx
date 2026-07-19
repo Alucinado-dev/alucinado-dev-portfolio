@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ThreeDots } from 'react-loader-spinner'
 import { toast } from 'react-toastify'
@@ -9,39 +9,82 @@ import { useTranslations } from 'next-intl'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Icon } from '@iconify/react'
-import { z } from 'zod'
 
 import MeshBackground from '@/components/backgrounds/MeshBackground'
 import Container from '@/components/container/Container'
+import TurnstileWidget from '@/components/features/TurnstileWidget'
 import { siteContact, siteLinks, siteSocialLinks } from '@/lib/data/SiteData'
+import { type ContactFields, createContactFieldsSchema } from '@/lib/validation/ContactSchema'
+import type { ContactResponse } from '@/types/ContactTypes'
 
-type FormStatus = 'idle' | 'checking' | 'ready'
+type FormStatus = 'idle' | 'success' | 'error'
+type TurnstileStatus = 'verifying' | 'verified' | 'error' | 'unavailable'
 
 const contactMesh = [
   { color: '#0e7490', x: 0, y: 92, spread: 44, opacity: 0.12 },
   { color: '#581c87', x: 98, y: 8, spread: 42, opacity: 0.11 },
 ]
 
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
+
 export default function ContactSection() {
   const t = useTranslations('pages.home.contact')
   const [formStatus, setFormStatus] = useState<FormStatus>('idle')
+  const [turnstileStatus, setTurnstileStatus] = useState<TurnstileStatus>(
+    turnstileSiteKey ? 'verifying' : 'unavailable',
+  )
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0)
+  const [requestId, setRequestId] = useState('')
 
-  const contactSchema = z.object({
-    name: z.string().trim().min(2, t('validation.name')),
-    email: z.email(t('validation.email')),
-    message: z.string().trim().min(20, t('validation.message')),
-  })
-
-  type ContactFields = z.infer<typeof contactSchema>
+  const contactSchema = useMemo(
+    () =>
+      createContactFieldsSchema({
+        name: t('validation.name'),
+        nameMax: t('validation.nameMax'),
+        email: t('validation.email'),
+        message: t('validation.message'),
+        messageMax: t('validation.messageMax'),
+      }),
+    [t],
+  )
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty },
+    reset,
+    formState: { errors, isDirty, isSubmitting },
   } = useForm<ContactFields>({
     resolver: zodResolver(contactSchema),
     mode: 'onTouched',
+    defaultValues: { name: '', email: '', message: '', website: '' },
   })
+
+  const markEditing = useCallback(() => {
+    setFormStatus('idle')
+    setRequestId('')
+  }, [])
+
+  const resetTurnstile = useCallback(() => {
+    setTurnstileToken('')
+    setTurnstileStatus(turnstileSiteKey ? 'verifying' : 'unavailable')
+    setTurnstileResetKey(current => current + 1)
+  }, [])
+
+  const verifyTurnstile = useCallback((token: string) => {
+    setTurnstileToken(token)
+    setTurnstileStatus('verified')
+  }, [])
+
+  const expireTurnstile = useCallback(() => {
+    setTurnstileToken('')
+    setTurnstileStatus('verifying')
+  }, [])
+
+  const failTurnstile = useCallback(() => {
+    setTurnstileToken('')
+    setTurnstileStatus('error')
+  }, [])
 
   async function copyEmail() {
     if (!siteContact.email) return
@@ -54,19 +97,85 @@ export default function ContactSection() {
     }
   }
 
-  async function reviewMessage() {
-    setFormStatus('checking')
-    await new Promise(resolve => window.setTimeout(resolve, 550))
-    setFormStatus('ready')
-    toast.info(t('toast.reviewReady'), { toastId: 'contact-message-reviewed' })
+  async function sendMessage(fields: ContactFields) {
+    if (!turnstileToken) {
+      setFormStatus('error')
+      toast.error(t('toast.verificationError'), { toastId: 'contact-verification-error' })
+      return
+    }
+
+    const currentRequestId = requestId || crypto.randomUUID()
+    if (!requestId) setRequestId(currentRequestId)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...fields,
+          requestId: currentRequestId,
+          turnstileToken,
+        }),
+      })
+
+      const result = (await response.json()) as ContactResponse
+
+      if (!response.ok || !result.ok) {
+        setFormStatus('error')
+        resetTurnstile()
+
+        const isVerificationFailure = !result.ok && result.code === 'verification_failed'
+        const isUnavailable = !result.ok && result.code === 'service_unavailable'
+
+        toast.error(
+          isVerificationFailure
+            ? t('toast.verificationError')
+            : isUnavailable
+              ? t('toast.serviceUnavailable')
+              : t('toast.sendError'),
+          { toastId: 'contact-send-error' },
+        )
+        return
+      }
+
+      reset()
+      setRequestId('')
+      setFormStatus('success')
+      resetTurnstile()
+      toast.success(t('toast.sent'), { toastId: 'contact-message-sent' })
+    } catch {
+      setFormStatus('error')
+      resetTurnstile()
+      toast.error(t('toast.serviceUnavailable'), { toastId: 'contact-service-unavailable' })
+    }
   }
 
   function showValidationError() {
+    setFormStatus('error')
     toast.error(t('toast.validationError'), { toastId: 'contact-validation-error' })
   }
 
+  const statusLabel = isSubmitting
+    ? t('form.statusSending')
+    : formStatus === 'success'
+      ? t('form.statusSuccess')
+      : formStatus === 'error'
+        ? t('form.statusError')
+        : isDirty
+          ? t('form.statusEditing')
+          : t('form.statusInitial')
+
+  const securityMessage =
+    turnstileStatus === 'verified'
+      ? t('security.verified')
+      : turnstileStatus === 'error'
+        ? t('security.error')
+        : turnstileStatus === 'unavailable'
+          ? t('security.unavailable')
+          : t('security.verifying')
+
   const fieldClass =
-    'font-outfit focus:border-cyan-bright/45 focus:ring-cyan-bright/10 w-full border border-white/10 bg-[#030814]/85 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-600 focus:ring-2'
+    'font-outfit focus:border-cyan-bright/45 focus:ring-cyan-bright/10 w-full border border-white/10 bg-[#030814]/85 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-600 focus:ring-2 disabled:cursor-wait disabled:opacity-60'
 
   return (
     <section
@@ -151,9 +260,9 @@ export default function ContactSection() {
             </aside>
 
             <form
-              onSubmit={handleSubmit(reviewMessage, showValidationError)}
+              onSubmit={handleSubmit(sendMessage, showValidationError)}
               noValidate
-              className='border border-white/9 bg-[#060c19]/88 p-5 md:p-6'
+              className='relative border border-white/9 bg-[#060c19]/88 p-5 md:p-6'
             >
               <div className='mb-6 flex items-start justify-between gap-4 border-b border-white/8 pb-5'>
                 <div>
@@ -161,8 +270,16 @@ export default function ContactSection() {
                   <p className='font-outfit mt-1 text-xs leading-5 text-slate-500'>{t('form.integrationNotice')}</p>
                 </div>
                 <span className='font-syne-mono border border-white/8 bg-white/3 px-2 py-1 text-[8px] tracking-[0.14em] text-slate-500 uppercase'>
-                  {isDirty ? t('form.statusEditing') : t('form.statusInitial')}
+                  {statusLabel}
                 </span>
+              </div>
+
+              <div
+                aria-hidden='true'
+                className='pointer-events-none absolute top-0 -left-250 h-px w-px overflow-hidden'
+              >
+                <label htmlFor='contact-website'>Website</label>
+                <input id='contact-website' type='text' tabIndex={-1} autoComplete='off' {...register('website')} />
               </div>
 
               <div className='grid gap-5 sm:grid-cols-2'>
@@ -177,12 +294,13 @@ export default function ContactSection() {
                     id='contact-name'
                     type='text'
                     autoComplete='name'
+                    maxLength={80}
                     placeholder={t('form.namePlaceholder')}
                     aria-invalid={Boolean(errors.name)}
                     aria-describedby={errors.name ? 'contact-name-error' : undefined}
-                    disabled={formStatus === 'checking'}
+                    disabled={isSubmitting}
                     className={fieldClass}
-                    {...register('name', { onChange: () => setFormStatus('idle') })}
+                    {...register('name', { onChange: markEditing })}
                   />
                   <p id='contact-name-error' className='font-outfit mt-1.5 min-h-5 text-xs text-rose-300' role='alert'>
                     {errors.name?.message}
@@ -201,12 +319,13 @@ export default function ContactSection() {
                     type='email'
                     autoComplete='email'
                     inputMode='email'
+                    maxLength={254}
                     placeholder={t('form.emailPlaceholder')}
                     aria-invalid={Boolean(errors.email)}
                     aria-describedby={errors.email ? 'contact-email-error' : undefined}
-                    disabled={formStatus === 'checking'}
+                    disabled={isSubmitting}
                     className={fieldClass}
-                    {...register('email', { onChange: () => setFormStatus('idle') })}
+                    {...register('email', { onChange: markEditing })}
                   />
                   <p id='contact-email-error' className='font-outfit mt-1.5 min-h-5 text-xs text-rose-300' role='alert'>
                     {errors.email?.message}
@@ -224,39 +343,96 @@ export default function ContactSection() {
                 <textarea
                   id='contact-message'
                   rows={6}
+                  maxLength={3000}
                   placeholder={t('form.messagePlaceholder')}
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? 'contact-message-error' : undefined}
-                  disabled={formStatus === 'checking'}
+                  disabled={isSubmitting}
                   className={`${fieldClass} resize-y`}
-                  {...register('message', { onChange: () => setFormStatus('idle') })}
+                  {...register('message', { onChange: markEditing })}
                 />
                 <p id='contact-message-error' className='font-outfit mt-1.5 min-h-5 text-xs text-rose-300' role='alert'>
                   {errors.message?.message}
                 </p>
               </div>
 
+              <div className='mt-3 border border-white/8 bg-black/15 px-4 py-3'>
+                {turnstileSiteKey && (
+                  <TurnstileWidget
+                    siteKey={turnstileSiteKey}
+                    resetKey={turnstileResetKey}
+                    label={t('accessibility.securityVerification')}
+                    onVerify={verifyTurnstile}
+                    onExpire={expireTurnstile}
+                    onError={failTurnstile}
+                  />
+                )}
+                <div className='flex items-center justify-between gap-3'>
+                  <p
+                    className={`font-outfit flex items-center gap-2 text-xs ${
+                      turnstileStatus === 'verified'
+                        ? 'text-emerald-300'
+                        : turnstileStatus === 'error' || turnstileStatus === 'unavailable'
+                          ? 'text-amber-300'
+                          : 'text-slate-500'
+                    }`}
+                    role='status'
+                    aria-live='polite'
+                  >
+                    <Icon
+                      icon={
+                        turnstileStatus === 'verified'
+                          ? 'lucide:shield-check'
+                          : turnstileStatus === 'error' || turnstileStatus === 'unavailable'
+                            ? 'lucide:shield-alert'
+                            : 'lucide:shield-ellipsis'
+                      }
+                      className='h-4 w-4 shrink-0'
+                      aria-hidden='true'
+                    />
+                    {securityMessage}
+                  </p>
+                  {turnstileStatus === 'error' && (
+                    <button
+                      type='button'
+                      onClick={resetTurnstile}
+                      className='font-syne-mono hover:text-cyan-bright focus-visible:ring-cyan-bright/60 shrink-0 text-[9px] tracking-[0.1em] text-slate-400 uppercase outline-none focus-visible:ring-2'
+                    >
+                      {t('security.retry')}
+                    </button>
+                  )}
+                </div>
+              </div>
+
               <div className='mt-4 flex flex-col gap-4 border-t border-white/8 pt-5 sm:flex-row sm:items-center sm:justify-between'>
                 <p className='font-outfit max-w-md text-xs leading-5 text-slate-500' role='status' aria-live='polite'>
-                  {formStatus === 'ready' ? t('form.readyMessage') : t('form.privacyNote')}
+                  {formStatus === 'success'
+                    ? t('form.successMessage')
+                    : formStatus === 'error'
+                      ? t('form.errorMessage')
+                      : t('form.privacyNote')}
                 </p>
                 <button
                   type='submit'
-                  disabled={formStatus === 'checking'}
-                  className='font-space-grotesk border-cyan-bright/25 bg-cyan-bright/6 hover:border-cyan-bright/50 hover:bg-cyan-bright/10 focus-visible:ring-cyan-bright/60 inline-flex min-w-44 items-center justify-center gap-2 border px-5 py-3 text-xs font-semibold tracking-[0.08em] text-cyan-100 uppercase transition outline-none focus-visible:ring-2 disabled:cursor-wait disabled:opacity-60'
+                  disabled={isSubmitting || turnstileStatus !== 'verified'}
+                  className='font-space-grotesk border-cyan-bright/25 bg-cyan-bright/6 hover:border-cyan-bright/50 hover:bg-cyan-bright/10 focus-visible:ring-cyan-bright/60 inline-flex min-w-44 items-center justify-center gap-2 border px-5 py-3 text-xs font-semibold tracking-[0.08em] text-cyan-100 uppercase transition outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-60'
                 >
-                  {formStatus === 'checking' ? (
+                  {isSubmitting || turnstileStatus === 'verifying' ? (
                     <ThreeDots
                       height={14}
                       width={24}
                       radius={3}
                       color='#a5f3fc'
-                      ariaLabel={t('accessibility.checking')}
+                      ariaLabel={isSubmitting ? t('accessibility.sending') : t('accessibility.checking')}
                     />
                   ) : (
-                    <Icon icon='lucide:scan-check' className='h-4 w-4' aria-hidden='true' />
+                    <Icon icon='lucide:send' className='h-4 w-4' aria-hidden='true' />
                   )}
-                  {formStatus === 'checking' ? t('form.checking') : t('form.review')}
+                  {isSubmitting
+                    ? t('form.sending')
+                    : turnstileStatus === 'verifying'
+                      ? t('form.verifying')
+                      : t('form.send')}
                 </button>
               </div>
             </form>

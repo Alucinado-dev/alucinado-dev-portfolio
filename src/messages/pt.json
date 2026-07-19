@@ -244,35 +244,54 @@
         },
         "form": {
           "title": "Conte um pouco sobre o contato",
-          "integrationNotice": "Nesta etapa, o formulário revisa os dados. O envio online será ativado depois.",
+          "integrationNotice": "A mensagem será enviada diretamente para o meu e-mail profissional.",
           "statusInitial": "INICIAL",
           "statusEditing": "EM PREENCHIMENTO",
+          "statusSending": "ENVIANDO",
+          "statusSuccess": "ENVIADA",
+          "statusError": "REVISAR",
           "nameLabel": "Nome",
           "namePlaceholder": "Como posso chamar você?",
           "emailLabel": "E-mail",
           "emailPlaceholder": "voce@empresa.com",
           "messageLabel": "Mensagem",
           "messagePlaceholder": "Fale sobre a oportunidade, o projeto ou o contexto em que posso ajudar.",
-          "privacyNote": "Os dados permanecem apenas no navegador enquanto a integração de envio não estiver ativa.",
-          "readyMessage": "Mensagem revisada. Use o e-mail ao lado por enquanto; o envio online será integrado em uma etapa posterior.",
-          "review": "Revisar mensagem",
-          "checking": "Revisando..."
+          "privacyNote": "Seus dados serão usados somente para que eu possa responder a este contato.",
+          "successMessage": "Mensagem enviada. Vou responder pelo e-mail informado assim que possível.",
+          "errorMessage": "Não foi possível concluir o envio. Seus dados continuam preenchidos e você pode tentar novamente.",
+          "send": "Enviar mensagem",
+          "sending": "Enviando...",
+          "verifying": "Verificando..."
         },
         "validation": {
           "name": "Informe um nome com pelo menos 2 caracteres.",
+          "nameMax": "Use no máximo 80 caracteres no nome.",
           "email": "Informe um endereço de e-mail válido.",
-          "message": "Escreva uma mensagem com pelo menos 20 caracteres."
+          "message": "Escreva uma mensagem com pelo menos 20 caracteres.",
+          "messageMax": "Use no máximo 3.000 caracteres na mensagem."
+        },
+        "security": {
+          "verifying": "Verificando a segurança do envio...",
+          "verified": "Verificação de segurança concluída.",
+          "error": "A verificação falhou. Tente novamente.",
+          "unavailable": "O envio online está temporariamente indisponível. Use o e-mail ao lado.",
+          "retry": "Tentar novamente"
         },
         "toast": {
           "emailCopied": "E-mail copiado para a área de transferência.",
           "copyError": "Não foi possível copiar o e-mail automaticamente.",
-          "reviewReady": "Mensagem revisada. O envio online será ativado na integração com o Resend.",
+          "sent": "Mensagem enviada com sucesso.",
+          "sendError": "Não foi possível enviar a mensagem. Tente novamente.",
+          "verificationError": "A verificação de segurança expirou ou falhou. Tente novamente.",
+          "serviceUnavailable": "O envio está indisponível agora. Você pode usar o e-mail direto.",
           "validationError": "Revise os campos destacados antes de continuar."
         },
         "accessibility": {
           "sectionLabel": "Contato profissional",
           "copyEmail": "Copiar o e-mail profissional de Lucino Campos",
-          "checking": "Revisando os dados da mensagem",
+          "checking": "Verificando a segurança do envio",
+          "sending": "Enviando a mensagem",
+          "securityVerification": "Verificação de segurança do formulário de contato",
           "github": "Abrir o perfil de Lucino Campos no GitHub em uma nova aba",
           "linkedin": "Abrir o perfil de Lucino Campos no LinkedIn em uma nova aba",
           "instagram": "Abrir o perfil de Lucino Campos no Instagram em uma nova aba"
