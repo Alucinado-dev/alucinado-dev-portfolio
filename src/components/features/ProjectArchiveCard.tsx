@@ -17,6 +17,7 @@ interface ProjectArchiveCardProps {
   codeLabel: string
   privateLabel: string
   imageAlt: string
+  eagerImage?: boolean
 }
 
 export function ProjectArchiveCard({
@@ -30,6 +31,7 @@ export function ProjectArchiveCard({
   codeLabel,
   privateLabel,
   imageAlt,
+  eagerImage = false,
 }: ProjectArchiveCardProps) {
   return (
     <article className='group hover:border-cyan-bright/25 relative flex min-h-105 flex-col overflow-hidden border border-white/9 bg-[#050b18] shadow-[0_28px_75px_-45px_rgba(0,0,0,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071120]'>
@@ -38,7 +40,7 @@ export function ProjectArchiveCard({
           src={project.imageUrl}
           alt={imageAlt}
           fill
-          loading='lazy'
+          loading={eagerImage ? 'eager' : 'lazy'}
           sizes='(max-width: 768px) 100vw, 50vw'
           className='object-cover opacity-75 grayscale-[35%] saturate-[0.7] transition-all duration-500 group-hover:scale-[1.025] group-hover:opacity-100 group-hover:grayscale-0 group-hover:saturate-100'
         />

@@ -176,7 +176,7 @@ export default function ProjectsArchivePage() {
           </div>
         ) : (
           <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-            {filteredProjects.map(project => (
+            {filteredProjects.map((project, index) => (
               <ProjectArchiveCard
                 key={project.id}
                 project={project}
@@ -189,6 +189,7 @@ export default function ProjectsArchivePage() {
                 codeLabel={actions('viewCode')}
                 privateLabel={actions('privateRepository')}
                 imageAlt={accessibility('projectImageAlt', { title: project.title })}
+                eagerImage={index < 2}
               />
             ))}
           </div>

@@ -1,3 +1,4 @@
+import { projectMedia } from '@/lib/data/ProjectMediaData'
 import { techList } from '@/lib/data/TechData'
 import type { ProjectDataType } from '@/types/ProjectTypes'
 
@@ -9,7 +10,7 @@ export const projects: ProjectDataType[] = [
     nature: 'freelancer',
     scope: 'fullstack',
     role: 'frontendDeveloper',
-    imageUrl: '/img/projects/flor-do-pomar.jpeg',
+    imageUrl: projectMedia.florDoPomar.cover,
     links: {
       live: 'https://www.flordopomar.pt/',
       isPrivateGithub: true,
@@ -24,8 +25,6 @@ export const projects: ProjectDataType[] = [
       techList.zod,
       techList.i18next,
       techList.posthog,
-      techList.docker,
-      techList.nginx,
     ],
   },
   {
@@ -35,12 +34,13 @@ export const projects: ProjectDataType[] = [
     nature: 'autoral',
     scope: 'frontend',
     role: 'frontendDeveloper',
-    imageUrl: '/img/projects/digital-web-watch.jpeg',
+    imageUrl: projectMedia.digitalWebWatch.cover,
     links: {
       live: 'https://digital-web-watch.vercel.app',
       github: 'https://github.com/Alucinado-dev/Digital-Web-Watch',
       isPrivateGithub: false,
-      legacy: 'https://github.com/Alucinado-dev/Digital-Web-Watch',
+      legacy: 'https://github.com/Alucinado-dev/Digital-Web-Watch-deprecated',
+      legacyLive: 'https://digital-web-watch-deprecated.vercel.app/',
     },
     techs: [
       techList.react,
@@ -61,9 +61,9 @@ export const projects: ProjectDataType[] = [
     nature: 'colaborativo',
     scope: 'fullstack',
     role: 'frontendDeveloper',
-    imageUrl: '/img/projects/task-manager.jpeg',
+    imageUrl: projectMedia.taskManager.cover,
     links: {
-      live: 'https://task-manager-demo.vercel.app',
+      live: 'https://your-taskmanager.vercel.app/',
       github: 'https://github.com/Nibirutta/task-manager',
       isPrivateGithub: false,
     },
@@ -73,12 +73,11 @@ export const projects: ProjectDataType[] = [
       techList.typescript,
       techList.tailwind,
       techList.atlassian,
+      techList.reactRouter,
+      techList.reactHookForm,
       techList.motion,
       techList.zod,
       techList.i18next,
-      techList.mongodb,
-      techList.rabbitmq,
-      techList.nestjs,
     ],
   },
   {
@@ -88,7 +87,7 @@ export const projects: ProjectDataType[] = [
     nature: 'autoral',
     scope: 'frontend',
     role: 'frontendDeveloper',
-    imageUrl: '/img/projects/calculator.png',
+    imageUrl: projectMedia.calculator.cover,
     links: {
       live: 'https://calculatoralucinado.vercel.app',
       github: 'https://github.com/Alucinado-dev/Futuristic-Calculator',

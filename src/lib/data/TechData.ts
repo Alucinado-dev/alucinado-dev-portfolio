@@ -19,6 +19,8 @@ export const techList: Record<string, TechDetailType> = {
   vite: tech('vite', 'Vite', 'devicon:vitejs'),
   nextjs: tech('nextjs', 'Next.js', 'devicon:nextjs'),
   atlassian: tech('atlassian', 'Pragmatic Drag and Drop', 'logos:atlassian'),
+  reactRouter: tech('reactRouter', 'React Router', 'devicon:reactrouter'),
+  reactHookForm: tech('reactHookForm', 'React Hook Form', 'simple-icons:reacthookform'),
   i18next: tech('i18next', 'i18next', 'material-icon-theme:i18n'),
   javascript: tech('javascript', 'JavaScript', 'logos:javascript'),
   css: tech('css', 'CSS3', 'logos:css-3'),

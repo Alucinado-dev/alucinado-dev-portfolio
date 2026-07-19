@@ -14,6 +14,7 @@ export type ProjectLinksType = {
   github?: string
   isPrivateGithub: boolean
   legacy?: string
+  legacyLive?: string
 }
 
 export type FolderStructureType = {
@@ -35,4 +36,35 @@ export type ProjectDataType = {
   imageUrl: string
   links: ProjectLinksType
   techs: TechDetailType[]
+}
+
+export type ProjectCaseMediaType = {
+  src: string
+  width: number
+  height: number
+  altKey: string
+  captionKey: string
+}
+
+export type ProjectCaseTechnologyType = {
+  tech: TechDetailType
+}
+
+export type ProjectCaseDecisionGroupType = {
+  key: string
+  icon: string
+  technologyKeys: string[]
+}
+
+export type ProjectCaseStudyType = {
+  slug: string
+  media: ProjectCaseMediaType[]
+  technologies: ProjectCaseTechnologyType[]
+  decisionGroups: ProjectCaseDecisionGroupType[]
+  ecosystem: Array<{
+    icon: string
+    labelKey: string
+  }>
+  previousProjectSlug?: string
+  nextProjectSlug?: string
 }

@@ -342,7 +342,128 @@
           "Painel protegido para administração independente do portfólio.",
           "PWA com cache de recursos e suporte a instalação.",
           "Estrutura de SEO com sitemap e robots.txt."
-        ]
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "CASE COMERCIAL",
+            "description": "Frontend de uma plataforma institucional bilíngue criada para apresentar serviços de wedding planning, valorizar trabalhos realizados e transformar interesse em contatos mais qualificados.",
+            "status": "Projeto em produção e com manutenção ativa",
+            "accessTitle": "ACESSO AO PROJETO",
+            "privateRepositoryHelp": "O código não é público por se tratar de um trabalho comercial."
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:briefcase-business",
+                "title": "Experiência comercial",
+                "description": "Entrega para cliente real por meio da agência FloatHouse."
+              },
+              {
+                "icon": "lucide:panels-top-left",
+                "title": "Frontend completo",
+                "description": "Telas, fluxos responsivos, estados e animações sob minha responsabilidade."
+              },
+              {
+                "icon": "lucide:users-round",
+                "title": "Trabalho em equipe",
+                "description": "Alinhamentos, revisões e ajustes conduzidos com equipe e cliente."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "PROBLEMA E PRODUTO",
+            "title": "Uma presença digital preparada para apresentar valor antes do primeiro contato.",
+            "paragraphOne": "A Flor do Pomar precisava ir além de uma vitrine institucional. O site deveria explicar a empresa, o processo e os serviços de wedding planning e decoração para potenciais clientes em Portugal, incluindo visitantes em português e inglês.",
+            "paragraphTwo": "A jornada foi organizada para construir confiança por meio dos trabalhos realizados e conduzir a pessoa até um briefing detalhado. Ao mesmo tempo, o portfólio precisava continuar atualizável pela equipe administrativa sem depender de um programador."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Minha atuação no frontend, do início à entrega.",
+            "description": "Fui responsável pelas telas e interações do frontend. Além de implementar o que havia sido definido, interpretei requisitos, participei das revisões e ajustei a interface durante a validação do cliente.",
+            "items": [
+              {
+                "title": "Construção da interface",
+                "description": "Desenvolvi as páginas, a navegação bilíngue, os estados da interface e as adaptações responsivas."
+              },
+              {
+                "title": "Estados e movimento",
+                "description": "Implementei feedbacks visuais, animações e transições sem perder a clareza dos fluxos."
+              },
+              {
+                "title": "Revisões e ajustes",
+                "description": "Corrigi e refinei a implementação a partir dos alinhamentos com a equipe e dos retornos do cliente."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "Minha atuação foi no frontend. Identidade visual, conteúdo, backend e infraestrutura foram produzidos por outros integrantes do projeto."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Como organizei a base do frontend.",
+            "description": "A stack foi dividida entre a estrutura da aplicação, a construção da experiência visual e os recursos necessários para manter dados e fluxos previsíveis.",
+            "items": {
+              "foundation": {
+                "title": "Estrutura e contratos",
+                "description": "React organizou as telas em componentes reutilizáveis, TypeScript deu contratos aos dados e o Vite sustentou o ambiente de desenvolvimento e a entrega da aplicação."
+              },
+              "interface": {
+                "title": "Interface e idioma",
+                "description": "Tailwind apoiou a construção responsiva, Motion foi usado nas transições e i18next estruturou a experiência em português e inglês."
+              },
+              "reliability": {
+                "title": "Estado e validação",
+                "description": "Zustand compartilhou estados entre diferentes fluxos, Zod centralizou validações e PostHog registrou eventos relevantes da jornada de contato."
+              }
+            }
+          },
+          "gallery": {
+            "eyebrow": "DECISÃO DE INTERFACE",
+            "title": "Uma galeria que continua coerente mesmo quando o conteúdo muda.",
+            "description": "O portfólio recebe as imagens de uma fonte externa e as organiza em grupos com composições horizontais e verticais. A interface verifica o que realmente foi recebido antes de montar cada grupo, evitando que quantidades imprevisíveis de fotos quebrem o ritmo visual da página."
+          },
+          "contact": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Um briefing extenso sem parecer um formulário burocrático.",
+            "description": "A tela de contato combina uma apresentação visual fixa com uma área de preenchimento independente no desktop. O fluxo valida dados do evento, aceita anexos e muda de estrutura em telas menores, preservando clareza e continuidade até o envio."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Uma entrega real que ampliou tanto o repertório técnico quanto o profissional.",
+            "paragraphOne": "O produto entrou em produção e continua recebendo manutenção. O cliente demonstrou alta satisfação com a entrega e com um processo no qual pôde acompanhar e participar das decisões visuais.",
+            "paragraphTwo": "O principal aprendizado foi melhorar a comunicação com equipe e cliente, lidar com responsabilidade comercial e tratar o Figma como uma fonte de alinhamento mais rigorosa. Hoje eu também avaliaria Next.js e renderização no servidor para fortalecer roteamento, SEO e entrega de conteúdo."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "A stack usada diretamente por mim no desenvolvimento do frontend.",
+            "ecosystem": {
+              "title": "CONTEXTO DO PRODUTO",
+              "items": {
+                "api": "API externa",
+                "docker": "Docker",
+                "nginx": "Nginx"
+              },
+              "note": "Integrações e infraestrutura presentes no produto, implementadas por outros integrantes da equipe."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Página inicial da Flor do Pomar com imagem de casamento e apresentação da marca",
+              "portfolio": "Galeria da Flor do Pomar organizada em uma composição de fotografias de casamento",
+              "contact": "Tela de contacto da Flor do Pomar com fotografia e formulário de briefing"
+            },
+            "caption": {
+              "hero": "A abertura combina posicionamento visual, navegação bilíngue e acesso aos principais caminhos do produto.",
+              "portfolio": "A composição se adapta aos dados recebidos e preserva o ritmo entre imagens horizontais e verticais.",
+              "contact": "No desktop, imagem e formulário formam duas superfícies coordenadas; no mobile, o fluxo é reorganizado para leitura linear."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "archiveLabel": "ACERVO",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
       },
       "digital-web-watch": {
         "description": "Aplicativo de produtividade que reúne Pomodoro, Timer e Cronômetro em uma experiência personalizável e instalável.",
@@ -354,7 +475,139 @@
           "Internacionalização em português e inglês.",
           "Persistência local de preferências, volume e tempos configurados.",
           "PWA instalável para desktop e dispositivos móveis."
-        ]
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "RECONSTRUÇÃO DE PRODUTO",
+            "description": "Uma aplicação de produtividade que reúne Pomodoro, Timer e Cronômetro em uma experiência personalizável, persistente e instalável.",
+            "status": "Publicado e funcionando",
+            "accessTitle": "ACESSO AO PROJETO",
+            "legacyLabel": "Abrir a versão anterior"
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:refresh-cw",
+                "title": "Reconstrução completa",
+                "description": "Uma versão em JavaScript puro refeita com React e TypeScript."
+              },
+              {
+                "icon": "lucide:timer-reset",
+                "title": "Três modos de tempo",
+                "description": "Pomodoro, Timer e Cronômetro reunidos no mesmo produto."
+              },
+              {
+                "icon": "lucide:palette",
+                "title": "Seis temas completos",
+                "description": "Cores, tipografia, fundos e movimento mudam em conjunto."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "ORIGEM E PRODUTO",
+            "title": "Um desafio de JavaScript que evoluiu para uma aplicação React completa.",
+            "paragraphOne": "A primeira versão nasceu como um exercício para combinar lógica de tempo com temas visuais muito diferentes entre si. Depois de aprender React e TypeScript, reconstruí o projeto para revisar a arquitetura, os estados e a experiência como um todo.",
+            "paragraphTwo": "O produto atende quem precisa controlar ciclos de foco, contagens regressivas ou medições de tempo. Preferências, volume e configurações permanecem no navegador, sem depender de conta ou backend."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Produto autoral, da arquitetura à identidade visual.",
+            "description": "Defini os requisitos, redesenhei a aplicação e implementei individualmente os modos de tempo, estados, temas, idiomas e comportamento responsivo.",
+            "items": [
+              {
+                "title": "Arquitetura da refatoração",
+                "description": "Separei responsabilidades que antes estavam concentradas no JavaScript da primeira versão."
+              },
+              {
+                "title": "Lógica dos relógios",
+                "description": "Implementei configuração, contagem, pausas, voltas e feedbacks dos três modos."
+              },
+              {
+                "title": "Sistema visual",
+                "description": "Construí seis temas e coordenei tipografia, cores, Canvas, transições e som."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "O desenvolvimento e o design foram individuais. Alguns assets, sons e uma referência leve para o background vieram de fontes externas."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Uma nova base para separar lógica, estado e apresentação.",
+            "description": "A reconstrução permitiu distribuir responsabilidades entre componentes, stores e recursos específicos da interface.",
+            "items": {
+              "foundation": {
+                "title": "Base da reconstrução",
+                "description": "React substituiu a manipulação manual da primeira versão, TypeScript tornou os estados mais explícitos e o Vite sustentou o novo ambiente de desenvolvimento."
+              },
+              "experience": {
+                "title": "Temas e idiomas",
+                "description": "Tailwind organizou as variações responsivas, Motion conduziu transições entre estados e i18next estruturou português e inglês."
+              },
+              "state": {
+                "title": "Tempo e persistência",
+                "description": "Zustand separou os estados dos relógios, Zod validou configurações e Canvas manteve o background animado fora da árvore de componentes."
+              }
+            }
+          },
+          "product": {
+            "eyebrow": "SOLUÇÃO E EXPERIÊNCIA",
+            "title": "Três ferramentas, uma mesma linguagem de interação.",
+            "description": "Cada modo tem regras próprias, mas compartilha padrões de controle, configuração e feedback para que a troca não pareça uma mudança de produto.",
+            "items": [
+              {
+                "title": "Modos de tempo",
+                "description": "Pomodoro configurável, Timer regressivo e Cronômetro com registro de voltas."
+              },
+              {
+                "title": "Personalização",
+                "description": "Seis temas alteram a interface inteira, e não somente a cor do fundo."
+              },
+              {
+                "title": "Uso recorrente",
+                "description": "Preferências locais, alerta sonoro, dois idiomas e instalação como PWA."
+              }
+            ]
+          },
+          "challenge": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Manter os relógios previsíveis enquanto a interface continuava mudando.",
+            "paragraphOne": "A parte mais difícil foi combinar a lógica dos três modos com pausas, configurações e mudanças de tela sem perder o estado correto. Esse trabalho consolidou meu entendimento de lógica aplicada dentro do modelo de componentes do React.",
+            "paragraphTwo": "Os temas também exigiram muito CSS manual. Hoje eu avaliaria um sistema pronto, como os temas do DaisyUI, antes de manter tantas variações individualmente."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Uma reconstrução que tornou visível minha evolução no frontend.",
+            "paragraphOne": "A aplicação está publicada e é usada por um grupo pequeno. Os retornos recebidos destacaram principalmente o design e a variedade dos temas.",
+            "paragraphTwo": "O aprendizado central foi fazer lógica de tempo coexistir com React, estados compartilhados, persistência e uma interface que muda bastante sem se tornar imprevisível."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "Ferramentas aplicadas diretamente na reconstrução do produto.",
+            "ecosystem": {
+              "title": "CONTEXTO DO PRODUTO",
+              "items": {
+                "localStorage": "Persistência local",
+                "pwa": "PWA",
+                "vercel": "Vercel"
+              },
+              "note": "A aplicação funciona inteiramente no navegador e não possui backend."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Tela do Digital Web Watch no modo Pomodoro com controles de tempo e seletor de temas"
+            },
+            "caption": {
+              "hero": "A tela principal concentra os três modos, o tema ativo e os controles do relógio sem esconder o estado atual."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "previousLabel": "CASE ANTERIOR",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
       },
       "task-manager": {
         "description": "Interface Kanban para gerenciamento de tarefas, integrada a uma arquitetura backend em microsserviços.",
@@ -366,7 +619,139 @@
           "Classificação e filtragem de tarefas por prioridade.",
           "Interface em português e inglês.",
           "Componentes acessíveis e interações de arrastar e soltar."
-        ]
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "APLICAÇÃO KANBAN",
+            "description": "Frontend de uma aplicação Kanban com contas, prioridades, filtros e movimentação de tarefas, integrado a serviços desenvolvidos por outro integrante.",
+            "status": "Demonstração publicada e funcional",
+            "accessTitle": "ACESSO AO PROJETO"
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:users-round",
+                "title": "Projeto colaborativo",
+                "description": "Divisão real de responsabilidades entre frontend e backend."
+              },
+              {
+                "icon": "lucide:panels-top-left",
+                "title": "Design e frontend",
+                "description": "Interface, fluxos e identidade visual sob minha responsabilidade."
+              },
+              {
+                "icon": "lucide:plug-zap",
+                "title": "Integração com serviços",
+                "description": "Contas e tarefas conectadas ao backend do projeto."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "ORIGEM E PRODUTO",
+            "title": "Um projeto criado para aproximar o estudo de um fluxo real de desenvolvimento.",
+            "paragraphOne": "A ideia surgiu de uma proposta colaborativa: construir uma aplicação suficientemente completa para exigir divisão de responsabilidades, integração e decisões independentes. Eu ainda estava começando com React e aceitei assumir todo o frontend.",
+            "paragraphTwo": "O produto organiza tarefas pessoais ou de projetos em um quadro Kanban. A jornada inclui conta, sessão, criação e edição de tarefas, prioridades, filtros e movimentação entre etapas."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Da identidade visual à integração do frontend.",
+            "description": "Criei o design, organizei a arquitetura da interface e desenvolvi as telas, formulários, estados e interações do quadro. Os alinhamentos com o backend aconteciam em reuniões breves, enquanto cada parte era implementada separadamente.",
+            "items": [
+              {
+                "title": "Design da aplicação",
+                "description": "Defini a linguagem visual e transformei os fluxos de conta e tarefas em telas responsivas."
+              },
+              {
+                "title": "Quadro Kanban",
+                "description": "Implementei criação, edição, prioridades, filtros e movimentação das tarefas."
+              },
+              {
+                "title": "Integração",
+                "description": "Conectei o frontend aos serviços de conta e tarefas entregues pelo parceiro de backend."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "Minha autoria foi o design e o frontend. Backend, microsserviços, autenticação no servidor, MongoDB e RabbitMQ foram implementados por outro integrante."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Ferramentas escolhidas para sustentar formulários, rotas e interação direta.",
+            "description": "A stack foi organizada ao redor das necessidades reais do produto, sem atribuir ao frontend tecnologias pertencentes ao backend parceiro.",
+            "items": {
+              "foundation": {
+                "title": "Base do frontend",
+                "description": "React estruturou as telas e os estados, TypeScript trouxe contratos para os dados e o Vite sustentou o ambiente de desenvolvimento da aplicação."
+              },
+              "interface": {
+                "title": "Interface e idiomas",
+                "description": "Tailwind apoiou a responsividade, Motion foi aplicado aos feedbacks visuais e i18next organizou a interface em português e inglês."
+              },
+              "flows": {
+                "title": "Rotas e tarefas",
+                "description": "React Router separou os fluxos, React Hook Form e Zod organizaram formulários e validação, e Pragmatic Drag and Drop viabilizou a movimentação no Kanban."
+              }
+            }
+          },
+          "product": {
+            "eyebrow": "SOLUÇÃO E EXPERIÊNCIA",
+            "title": "Um fluxo completo, da conta ao quadro de tarefas.",
+            "description": "A experiência foi construída como uma aplicação conectada, não como um quadro isolado sem persistência ou identidade de usuário.",
+            "items": [
+              {
+                "title": "Conta e sessão",
+                "description": "Cadastro, acesso e recuperação de conta integrados aos serviços do produto."
+              },
+              {
+                "title": "Gestão de tarefas",
+                "description": "Criação, edição, exclusão e movimentação entre colunas do Kanban."
+              },
+              {
+                "title": "Organização visual",
+                "description": "Prioridades, filtros, temas e dois idiomas ajudam a adaptar o quadro ao uso."
+              }
+            ]
+          },
+          "challenge": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Aplicar React pela primeira vez em um produto com muitas regras conectadas.",
+            "paragraphOne": "O maior desafio foi sair de exercícios menores e lidar com formulários, sessão, tarefas, estados e respostas de uma API no mesmo frontend. Isso exigiu separar responsabilidades e entender como mudanças em um fluxo afetavam os demais.",
+            "paragraphTwo": "Escolhi manter o drag and drop mesmo sendo uma interação difícil para meu nível na época. Aprender a biblioteca e integrá-la ao quadro tornou a experiência mais próxima do produto que queríamos construir."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Meu primeiro aprendizado prático de React dentro de um projeto colaborativo.",
+            "paragraphOne": "A demonstração está publicada, funciona de ponta a ponta e foi utilizada por poucas pessoas. O projeto também recebeu retornos positivos de pessoas próximas e no LinkedIn.",
+            "paragraphTwo": "O principal aprendizado foi separar responsabilidades, integrar um frontend a um backend real e trabalhar com outra pessoa sem confundir autoria. Foi também a primeira vez que reuni meus estudos de React em uma aplicação maior."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "Ferramentas aplicadas diretamente por mim no design e desenvolvimento do frontend.",
+            "ecosystem": {
+              "title": "BACKEND DO PRODUTO",
+              "items": {
+                "api": "APIs de conta e tarefas",
+                "nestjs": "NestJS",
+                "mongodb": "MongoDB",
+                "rabbitmq": "RabbitMQ"
+              },
+              "note": "Essas tecnologias contextualizam o produto, mas foram implementadas pelo parceiro de backend."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Tela inicial do Task Manager com identidade visual espacial e acessos para login e cadastro"
+            },
+            "caption": {
+              "hero": "A abertura apresenta a identidade que criei para o produto e conduz aos fluxos de cadastro e acesso."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "previousLabel": "CASE ANTERIOR",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
       },
       "calculator": {
         "description": "Calculadora em JavaScript puro com histórico persistente, tratamento de erros e sete temas visuais.",
@@ -379,7 +764,134 @@
           "Tratamento de entradas inválidas e operações matemáticas impossíveis.",
           "Ações distintas para limpar tudo, limpar entrada e apagar o último caractere.",
           "Layout responsivo construído com CSS Grid e Flexbox."
-        ]
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "FUNDAMENTOS DA WEB",
+            "description": "Uma calculadora em JavaScript puro com operações encadeadas, histórico persistente, tratamento de erros e sete identidades visuais.",
+            "status": "Publicado e funcionando",
+            "accessTitle": "ACESSO AO PROJETO"
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:braces",
+                "title": "Sem framework",
+                "description": "HTML, CSS e JavaScript usados diretamente para exercitar as bases."
+              },
+              {
+                "icon": "lucide:palette",
+                "title": "Sete temas",
+                "description": "A calculadora, as fontes e o cenário mudam em conjunto."
+              },
+              {
+                "icon": "lucide:message-circle-heart",
+                "title": "Retorno no LinkedIn",
+                "description": "Meu projeto com maior resposta na plataforma e origem de novos contatos."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "ORIGEM E PRODUTO",
+            "title": "Um projeto escolhido para concentrar o desafio na lógica de JavaScript.",
+            "paragraphOne": "Eu queria praticar muita lógica com pouco HTML e sem depender de um framework. A calculadora permitiu trabalhar operações, entradas sucessivas, erros e histórico dentro de uma interface pequena, mas com vários estados possíveis.",
+            "paragraphTwo": "Embora o objetivo principal fosse o aprendizado, a aplicação também foi publicada para uso real. Ela oferece cálculos básicos e avançados, histórico e personalização visual sem backend."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Lógica, interface e temas desenvolvidos individualmente.",
+            "description": "Planejei e implementei sozinho o comportamento da calculadora, a manipulação do DOM, o histórico, a persistência e o sistema visual.",
+            "items": [
+              {
+                "title": "Motor de cálculo",
+                "description": "Implementei operações encadeadas, funções avançadas e regras para entradas sucessivas."
+              },
+              {
+                "title": "Estados e histórico",
+                "description": "Tratei limpeza parcial e total, erros, notação científica e registros persistidos."
+              },
+              {
+                "title": "Identidade visual",
+                "description": "Criei sete temas que modificam fontes, cores, superfícies e a aparência da calculadora."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "O projeto foi desenvolvido individualmente. GIFs e outros assets de pixel art usados nos cenários vieram de fontes externas."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Fundamentos da web usados sem uma camada de abstração.",
+            "description": "Na época eu ainda não conhecia frameworks, então estado, renderização e persistência foram organizados diretamente com recursos do navegador.",
+            "items": {
+              "logic": {
+                "title": "Lógica e estado manual",
+                "description": "JavaScript controla as operações, valida entradas, atualiza o display, monta o histórico e sincroniza preferências com o navegador."
+              },
+              "interface": {
+                "title": "Estrutura e temas",
+                "description": "HTML organiza os controles e painéis, enquanto CSS Variables, Grid e Flexbox sustentam responsividade e sete temas visualmente diferentes."
+              }
+            }
+          },
+          "product": {
+            "eyebrow": "SOLUÇÃO E EXPERIÊNCIA",
+            "title": "Mais estados do que a interface compacta sugere.",
+            "description": "Os controles foram separados para deixar claro quando apagar um caractere, limpar a entrada atual ou reiniciar todo o cálculo.",
+            "items": [
+              {
+                "title": "Operações",
+                "description": "Cálculos encadeados, potência, raiz, porcentagem e inversão de sinal."
+              },
+              {
+                "title": "Histórico e erros",
+                "description": "Registros persistentes e tratamento de entradas inválidas ou operações impossíveis."
+              },
+              {
+                "title": "Personalização",
+                "description": "Sete temas completos e preferência mantida entre visitas pelo LocalStorage."
+              }
+            ]
+          },
+          "challenge": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Fazer cálculos encadeados sem perder o significado de cada entrada.",
+            "paragraphOne": "A parte mais difícil foi controlar o valor atual, a operação pendente e o resultado anterior enquanto a pessoa continuava digitando. Funções como porcentagem, raiz e troca de sinal também precisavam respeitar o estado exibido.",
+            "paragraphTwo": "Construir isso sem framework tornou visíveis as responsabilidades que bibliotecas modernas costumam abstrair: atualizar o DOM, guardar estado, validar sequências e manter a interface sincronizada."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Um exercício de fundamentos que também gerou reconhecimento público.",
+            "paragraphOne": "O projeto está publicado e teve pouco uso recorrente, mas foi o meu trabalho com maior retorno no LinkedIn. O estilo em pixel art recebeu muitos elogios e a publicação gerou novos contatos.",
+            "paragraphTwo": "O aprendizado mais importante foi organizar lógica de JavaScript, cálculos e estados manualmente. Essa base tornou mais fácil entender depois o que frameworks resolvem e quais responsabilidades continuam pertencendo ao desenvolvedor."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "A base da web aplicada diretamente, sem framework ou gerenciador de estado.",
+            "ecosystem": {
+              "title": "CONTEXTO DO PRODUTO",
+              "items": {
+                "dom": "DOM do navegador",
+                "localStorage": "LocalStorage",
+                "vercel": "Vercel"
+              },
+              "note": "A aplicação é estática, persiste dados no navegador e não possui backend."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Futuristic Calculator no tema de cidade cyberpunk com histórico e seletor de temas"
+            },
+            "caption": {
+              "hero": "O tema altera o cenário, as fontes, as cores e a calculadora, mantendo os controles na mesma estrutura."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "previousLabel": "CASE ANTERIOR",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
       }
     },
     "technologies": {
@@ -399,6 +911,8 @@
       "vite": "Ferramenta de desenvolvimento e build utilizada nos projetos React anteriores ao portfólio em Next.js.",
       "nginx": "Servidor web e proxy reverso usado para entrega de arquivos, compressão e distribuição de tráfego.",
       "atlassian": "Biblioteca de arrastar e soltar usada para construir a interação do quadro Kanban com bom desempenho.",
+      "reactRouter": "Organiza as rotas e separa fluxos de navegação em aplicações React executadas no navegador.",
+      "reactHookForm": "Gerencia formulários e seus estados com integração a regras de validação.",
       "i18next": "Infraestrutura de internacionalização usada nos projetos React para organizar traduções e alternância de idioma.",
       "javascript": "Linguagem principal da web, utilizada para interações, regras de negócio e manipulação do DOM.",
       "css": "Linguagem responsável pela identidade visual, responsividade e organização dos layouts.",
