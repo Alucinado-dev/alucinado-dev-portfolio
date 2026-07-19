@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { Icon } from '@iconify/react'
 
+import { Link } from '@/i18n/navigation'
 import { siteLinks } from '@/lib/data/SiteData'
 import type { ProjectDataType } from '@/types/ProjectTypes'
 
@@ -75,9 +75,15 @@ export function ProjectArchiveCard({
               <span
                 key={tech.key}
                 title={tech.name}
-                className='flex h-7 w-7 items-center justify-center border border-white/8 bg-white/3 text-slate-500 grayscale transition-all hover:border-white/15 hover:text-slate-200 hover:grayscale-0'
+                className='flex h-7 w-7 items-center justify-center border border-white/8 bg-white/3 text-slate-300 transition-all hover:border-white/15 hover:bg-white/6'
               >
-                <Icon icon={tech.icon} className='h-4 w-4' aria-hidden='true' />
+                <Icon
+                  icon={tech.icon}
+                  className='h-4 w-4'
+                  style={{ color: tech.color, fill: tech.color }}
+                  aria-hidden='true'
+                />
+                <span className='sr-only'>{tech.name}</span>
               </span>
             ))}
           </div>
@@ -97,6 +103,7 @@ export function ProjectArchiveCard({
                   href={project.links.github}
                   target='_blank'
                   rel='noreferrer'
+                  aria-label={`${codeLabel}: ${project.title}`}
                   className='font-space-grotesk flex items-center gap-1.5 text-xs text-slate-400 transition-colors hover:text-purple-300'
                 >
                   <Icon icon='lucide:github' className='h-3.5 w-3.5' aria-hidden='true' />
@@ -107,6 +114,7 @@ export function ProjectArchiveCard({
 
             <Link
               href={siteLinks.projectDetails(project.slug)}
+              aria-label={`${viewLabel}: ${project.title}`}
               className='group/action font-space-grotesk border-cyan-bright/20 bg-cyan-bright/6 hover:bg-cyan-bright/11 flex items-center gap-2 border px-3 py-2 text-xs font-semibold text-cyan-100 transition-colors'
             >
               {viewLabel}

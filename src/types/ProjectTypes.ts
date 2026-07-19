@@ -2,6 +2,7 @@ export type TechDetailType = {
   key: string
   name: string
   icon: string
+  color?: string
 }
 
 export type ProjectFeatureType = {
