@@ -1,8 +1,12 @@
+'use client'
+
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { Icon } from '@iconify/react'
 
+import { Link } from '@/i18n/navigation'
+import { capturePortfolioEvent } from '@/lib/analytics'
 import { siteLinks } from '@/lib/data/SiteData'
 import type { TechDetailType } from '@/types/ProjectTypes'
 
@@ -63,11 +67,18 @@ export function ProjectCard({
   imageAlt,
 }: ProjectCardProps) {
   const colors = accentStyles[accent]
+  const locale = useLocale()
 
   return (
     <Link
       href={siteLinks.projectDetails(slug)}
       aria-label={`${accessibilityLabel}. ${technologiesLabel}`}
+      onClick={() =>
+        capturePortfolioEvent({
+          name: 'project_case_viewed',
+          properties: { locale, slug, source: 'home' },
+        })
+      }
       className={`group relative flex min-h-full flex-col overflow-hidden rounded-sm border border-white/9 bg-[#050b18] shadow-[0_24px_60px_-35px_rgba(0,0,0,0.95)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#07101f] hover:shadow-[0_32px_75px_-38px_rgba(0,0,0,0.98)] ${colors.border}`}
     >
       <div
@@ -126,7 +137,7 @@ export function ProjectCard({
                 <Icon icon={tag.icon} className='h-4 w-4' aria-hidden='true' />
               </span>
             ))}
-            {tags.length > 5 && <span className='font-syne-mono text-[10px] text-slate-600'>+{tags.length - 5}</span>}
+            {tags.length > 5 && <span className='font-syne-mono text-[10px] text-slate-400'>+{tags.length - 5}</span>}
           </div>
 
           <span

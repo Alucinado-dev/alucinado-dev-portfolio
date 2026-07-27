@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
+import { useReducedMotion } from 'motion/react'
+
 // ─────────────────────────────────────────────
 // useWindowSize — mesmo hook do MeteorShower
 // ─────────────────────────────────────────────
@@ -179,6 +181,7 @@ export const StarField = ({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const windowSize = useWindowSize()
   const sizeRef = useRef({ W: 0, H: 0 })
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -230,7 +233,7 @@ export const StarField = ({
     const draw = (timestamp: number) => {
       const { W, H } = sizeRef.current
       if (W === 0 || H === 0) {
-        animFrame = requestAnimationFrame(draw)
+        if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
         return
       }
 
@@ -258,10 +261,10 @@ export const StarField = ({
         ctx.globalAlpha = 1
       })
 
-      animFrame = requestAnimationFrame(draw)
+      if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
     }
 
-    animFrame = requestAnimationFrame(draw)
+    draw(0)
 
     return () => {
       cancelAnimationFrame(animFrame)
@@ -281,6 +284,7 @@ export const StarField = ({
     fixed,
     windowSize.width,
     windowSize.height,
+    prefersReducedMotion,
   ])
 
   const edgeFade =

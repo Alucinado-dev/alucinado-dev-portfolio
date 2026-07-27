@@ -4,6 +4,7 @@ import { Resend } from 'resend'
 import { z } from 'zod'
 
 import ContactNotificationEmail from '@/emails/ContactNotificationEmail'
+import { getPostHogClient } from '@/lib/posthog-server'
 import { contactRequestSchema } from '@/lib/validation/ContactSchema'
 import type { ContactResponse } from '@/types/ContactTypes'
 
@@ -34,6 +35,11 @@ function normalizedSubjectName(name: string) {
     .replace(/[\r\n\t]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
+}
+
+function safePostHogHeader(value: string | null) {
+  if (!value || value.length > 200 || !/^[a-zA-Z0-9._:-]+$/.test(value)) return undefined
+  return value
 }
 
 function hasExpectedTurnstileAction(action: string | undefined, secret: string) {
@@ -169,6 +175,26 @@ export async function POST(request: NextRequest) {
   } catch {
     logFailure(payload.requestId, 'resend_unavailable')
     return json({ ok: false, code: 'send_failed' }, 502)
+  }
+
+  const posthog = getPostHogClient()
+  if (posthog) {
+    try {
+      const distinctId = safePostHogHeader(request.headers.get('x-posthog-distinct-id')) ?? payload.requestId
+      const sessionId = safePostHogHeader(request.headers.get('x-posthog-session-id'))
+
+      posthog.capture({
+        distinctId,
+        event: 'contact_message_received',
+        properties: {
+          request_id: payload.requestId,
+          ...(sessionId ? { $session_id: sessionId } : {}),
+        },
+      })
+      await posthog.flush()
+    } catch (error) {
+      console.error('PostHog failed to capture contact_message_received', error)
+    }
   }
 
   return json({ ok: true })

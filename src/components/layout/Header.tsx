@@ -46,9 +46,10 @@ export default function Header() {
   }, [isMenuOpen])
 
   const isRouteActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
+  const currentRoute = siteNavigation.find(link => isRouteActive(link.href)) ?? siteNavigation[0]
 
   return (
-    <header className='sticky top-0 z-50 flex h-14 w-full items-center border-b border-white/10 bg-[#0a0a1a]/96 backdrop-blur-md'>
+    <header className='sticky top-0 z-50 flex h-14 w-full items-center overflow-visible border-b border-white/10 bg-[#050817]/96 backdrop-blur-md'>
       <div className='font-syne-mono hidden h-full flex-1 items-center gap-3 border-r border-white/10 px-6 text-[9px] text-white/35 select-none min-[1800px]:flex'>
         <span className='bg-tech-teal h-1.5 w-1.5 animate-pulse rounded-full shadow-[0_0_8px_rgba(20,184,166,0.7)]' />
         <span className='tracking-widest'>{t('systemStatus')}</span>
@@ -58,7 +59,13 @@ export default function Header() {
 
       <Container className='flex h-full items-center border-white/10 bg-[#020612] px-0'>
         <div className='flex h-full shrink-0 items-center border-r border-white/5 px-4 sm:px-6'>
-          <Logo />
+          <Link
+            href={siteNavigation[0].href}
+            aria-label={t('logoHome')}
+            className='focus-visible:ring-cyan-bright/60 relative outline-none focus-visible:ring-2'
+          >
+            <Logo />
+          </Link>
         </div>
 
         <div className='hidden h-full flex-1 md:flex md:justify-start'>
@@ -112,13 +119,18 @@ export default function Header() {
         </div>
       </Container>
 
-      <div className='font-syne-mono hidden h-full flex-1 items-center justify-end gap-4 border-l border-white/10 px-6 text-[9px] text-white/20 select-none min-[1800px]:flex'>
-        <span className='tracking-widest'>{t('locale', { locale: locale === 'en' ? 'EN-US' : 'PT-BR' })}</span>
-        <div className='flex h-2 items-end gap-0.5' aria-hidden='true'>
-          <span className='h-2 w-0.5 animate-bounce bg-[#ff00bb]/40' style={{ animationDelay: '0.1s' }} />
-          <span className='h-3.5 w-0.5 animate-bounce bg-[#00fbea]/60' style={{ animationDelay: '0.3s' }} />
-          <span className='h-2.5 w-0.5 animate-bounce bg-[#00fbea]/40' style={{ animationDelay: '0.2s' }} />
+      <div className='font-syne-mono hidden h-full flex-1 items-center justify-end gap-5 border-l border-white/10 px-6 text-[9px] select-none min-[1800px]:flex'>
+        <div className='flex items-center gap-2'>
+          <span className='text-white/20'>{t('currentRoute')}</span>
+          <span className='text-cyan-bright/65 tracking-widest'>{navigation(currentRoute.labelKey)}</span>
         </div>
+        <span className='h-4 w-px bg-white/8' aria-hidden='true' />
+        <span className='tracking-widest text-white/20'>
+          {t('locale', { locale: locale === 'en' ? 'EN-US' : 'PT-BR' })}
+        </span>
+        <span className='border-cyan-bright/30 relative h-3 w-3 rotate-45 border' aria-hidden='true'>
+          <span className='bg-plasma-purple absolute inset-1 shadow-[0_0_7px_rgba(139,92,246,0.7)]' />
+        </span>
       </div>
 
       <div className='pointer-events-none absolute right-0 bottom-0 left-0 h-px bg-linear-to-r from-transparent via-[#00fbea]/25 to-transparent' />

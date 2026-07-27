@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { Icon } from '@iconify/react'
 
 import { ProjectArchiveCard } from '@/components/features/ProjectArchiveCard'
+import { capturePortfolioEvent } from '@/lib/analytics'
 import { projects } from '@/lib/data/ProjectData'
 import type { ProjectNatureType, ProjectScopeType } from '@/types/ProjectTypes'
 
@@ -98,7 +99,7 @@ export default function ProjectsArchivePage() {
 
           <div className='grid gap-6 lg:grid-cols-2'>
             <fieldset className='space-y-3'>
-              <legend className='font-syne-mono flex items-center gap-2 text-[10px] tracking-[0.16em] text-slate-500 uppercase'>
+              <legend className='font-syne-mono flex items-center gap-2 text-[10px] tracking-[0.16em] text-slate-400 uppercase'>
                 <Icon icon='lucide:shapes' className='h-3.5 w-3.5' aria-hidden='true' />
                 {t('filters.nature')}
               </legend>
@@ -110,7 +111,13 @@ export default function ProjectsArchivePage() {
                       key={nature}
                       type='button'
                       aria-pressed={isActive}
-                      onClick={() => setActiveNature(nature)}
+                      onClick={() => {
+                        setActiveNature(nature)
+                        capturePortfolioEvent({
+                          name: 'project_filter_applied',
+                          properties: { filter_type: 'nature', filter_value: nature },
+                        })
+                      }}
                       className={`font-space-grotesk focus-visible:ring-cyan-bright/60 flex items-center gap-2 border px-3 py-2 text-xs font-medium transition-all focus-visible:ring-2 focus-visible:outline-none ${
                         isActive
                           ? 'border-cyan-bright/35 bg-cyan-bright/10 text-cyan-100 shadow-[0_0_18px_rgba(0,251,234,0.07)]'
@@ -118,7 +125,7 @@ export default function ProjectsArchivePage() {
                       }`}
                     >
                       {natureLabel(nature)}
-                      <span className={`font-syne-mono text-[9px] ${isActive ? 'text-cyan-bright' : 'text-slate-600'}`}>
+                      <span className={`font-syne-mono text-[9px] ${isActive ? 'text-cyan-bright' : 'text-slate-400'}`}>
                         {getNatureCount(nature)}
                       </span>
                     </button>
@@ -128,7 +135,7 @@ export default function ProjectsArchivePage() {
             </fieldset>
 
             <fieldset className='space-y-3'>
-              <legend className='font-syne-mono flex items-center gap-2 text-[10px] tracking-[0.16em] text-slate-500 uppercase'>
+              <legend className='font-syne-mono flex items-center gap-2 text-[10px] tracking-[0.16em] text-slate-400 uppercase'>
                 <Icon icon='lucide:panels-top-left' className='h-3.5 w-3.5' aria-hidden='true' />
                 {t('filters.scope')}
               </legend>
@@ -140,7 +147,13 @@ export default function ProjectsArchivePage() {
                       key={scope}
                       type='button'
                       aria-pressed={isActive}
-                      onClick={() => setActiveScope(scope)}
+                      onClick={() => {
+                        setActiveScope(scope)
+                        capturePortfolioEvent({
+                          name: 'project_filter_applied',
+                          properties: { filter_type: 'scope', filter_value: scope },
+                        })
+                      }}
                       className={`font-space-grotesk focus-visible:ring-plasma-purple/60 flex items-center gap-2 border px-3 py-2 text-xs font-medium transition-all focus-visible:ring-2 focus-visible:outline-none ${
                         isActive
                           ? 'border-plasma-purple/40 bg-plasma-purple/12 text-purple-100 shadow-[0_0_18px_rgba(139,92,246,0.09)]'
@@ -148,7 +161,7 @@ export default function ProjectsArchivePage() {
                       }`}
                     >
                       {scopeLabel(scope)}
-                      <span className={`font-syne-mono text-[9px] ${isActive ? 'text-purple-300' : 'text-slate-600'}`}>
+                      <span className={`font-syne-mono text-[9px] ${isActive ? 'text-purple-300' : 'text-slate-400'}`}>
                         {getScopeCount(scope)}
                       </span>
                     </button>

@@ -1,11 +1,11 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ThreeDots } from 'react-loader-spinner'
 import { toast } from 'react-toastify'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Icon } from '@iconify/react'
@@ -13,6 +13,7 @@ import { Icon } from '@iconify/react'
 import MeshBackground from '@/components/backgrounds/MeshBackground'
 import Container from '@/components/container/Container'
 import TurnstileWidget from '@/components/features/TurnstileWidget'
+import { capturePortfolioEvent, getPostHogCorrelationHeaders } from '@/lib/analytics'
 import { siteContact, siteLinks, siteSocialLinks } from '@/lib/data/SiteData'
 import { type ContactFields, createContactFieldsSchema } from '@/lib/validation/ContactSchema'
 import type { ContactResponse } from '@/types/ContactTypes'
@@ -28,6 +29,7 @@ const contactMesh = [
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim()
 
 export default function ContactSection() {
+  const locale = useLocale()
   const t = useTranslations('pages.home.contact')
   const [formStatus, setFormStatus] = useState<FormStatus>('idle')
   const [turnstileStatus, setTurnstileStatus] = useState<TurnstileStatus>(
@@ -36,6 +38,7 @@ export default function ContactSection() {
   const [turnstileToken, setTurnstileToken] = useState('')
   const [turnstileResetKey, setTurnstileResetKey] = useState(0)
   const [requestId, setRequestId] = useState('')
+  const hasStartedForm = useRef(false)
 
   const contactSchema = useMemo(
     () =>
@@ -61,9 +64,16 @@ export default function ContactSection() {
   })
 
   const markEditing = useCallback(() => {
+    if (!hasStartedForm.current) {
+      hasStartedForm.current = true
+      capturePortfolioEvent({
+        name: 'contact_form_started',
+        properties: { locale },
+      })
+    }
     setFormStatus('idle')
     setRequestId('')
-  }, [])
+  }, [locale])
 
   const resetTurnstile = useCallback(() => {
     setTurnstileToken('')
@@ -92,6 +102,7 @@ export default function ContactSection() {
     try {
       await navigator.clipboard.writeText(siteContact.email)
       toast.success(t('toast.emailCopied'), { toastId: 'contact-email-copied' })
+      capturePortfolioEvent({ name: 'email_copied', properties: { locale } })
     } catch {
       toast.error(t('toast.copyError'), { toastId: 'contact-email-copy-error' })
     }
@@ -100,6 +111,10 @@ export default function ContactSection() {
   async function sendMessage(fields: ContactFields) {
     if (!turnstileToken) {
       setFormStatus('error')
+      capturePortfolioEvent({
+        name: 'contact_form_submission_failed',
+        properties: { locale, reason: 'verification_missing' },
+      })
       toast.error(t('toast.verificationError'), { toastId: 'contact-verification-error' })
       return
     }
@@ -110,7 +125,10 @@ export default function ContactSection() {
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...getPostHogCorrelationHeaders(),
+        },
         body: JSON.stringify({
           ...fields,
           requestId: currentRequestId,
@@ -126,6 +144,16 @@ export default function ContactSection() {
 
         const isVerificationFailure = !result.ok && result.code === 'verification_failed'
         const isUnavailable = !result.ok && result.code === 'service_unavailable'
+        const reason = isVerificationFailure
+          ? 'verification_failed'
+          : isUnavailable
+            ? 'service_unavailable'
+            : 'send_failed'
+
+        capturePortfolioEvent({
+          name: 'contact_form_submission_failed',
+          properties: { locale, reason },
+        })
 
         toast.error(
           isVerificationFailure
@@ -142,16 +170,28 @@ export default function ContactSection() {
       setRequestId('')
       setFormStatus('success')
       resetTurnstile()
+      capturePortfolioEvent({
+        name: 'contact_form_submitted',
+        properties: { locale },
+      })
       toast.success(t('toast.sent'), { toastId: 'contact-message-sent' })
     } catch {
       setFormStatus('error')
       resetTurnstile()
+      capturePortfolioEvent({
+        name: 'contact_form_submission_failed',
+        properties: { locale, reason: 'network_error' },
+      })
       toast.error(t('toast.serviceUnavailable'), { toastId: 'contact-service-unavailable' })
     }
   }
 
   function showValidationError() {
     setFormStatus('error')
+    capturePortfolioEvent({
+      name: 'contact_form_submission_failed',
+      properties: { locale, reason: 'validation_failed' },
+    })
     toast.error(t('toast.validationError'), { toastId: 'contact-validation-error' })
   }
 
@@ -203,7 +243,7 @@ export default function ContactSection() {
           </header>
 
           <div className='grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch'>
-            <aside className='flex flex-col border border-white/9 bg-[#07101e]/82 p-5 md:p-6'>
+            <div className='flex flex-col border border-white/9 bg-[#07101e]/82 p-5 md:p-6'>
               <div className='mb-8'>
                 <Icon icon='lucide:messages-square' className='text-cyan-bright mb-4 h-7 w-7' aria-hidden='true' />
                 <h3 className='font-space-grotesk text-xl font-semibold text-slate-100'>{t('direct.title')}</h3>
@@ -245,6 +285,12 @@ export default function ContactSection() {
                       href={link.href}
                       target='_blank'
                       rel='noopener noreferrer'
+                      onClick={() =>
+                        capturePortfolioEvent({
+                          name: 'social_link_clicked',
+                          properties: { locale, platform: link.key },
+                        })
+                      }
                       className='font-space-grotesk hover:border-plasma-purple/35 hover:bg-plasma-purple/6 focus-visible:ring-plasma-purple/60 flex items-center justify-between border border-white/9 bg-white/3 px-4 py-3 text-xs font-semibold tracking-[0.06em] text-slate-300 uppercase transition outline-none hover:text-purple-200 focus-visible:ring-2'
                       aria-label={t(`accessibility.${link.key}`)}
                     >
@@ -257,10 +303,11 @@ export default function ContactSection() {
                   ))}
                 </div>
               </div>
-            </aside>
+            </div>
 
             <form
               onSubmit={handleSubmit(sendMessage, showValidationError)}
+              onInput={markEditing}
               noValidate
               className='relative border border-white/9 bg-[#060c19]/88 p-5 md:p-6'
             >
@@ -278,7 +325,7 @@ export default function ContactSection() {
                 aria-hidden='true'
                 className='pointer-events-none absolute top-0 -left-250 h-px w-px overflow-hidden'
               >
-                <label htmlFor='contact-website'>Website</label>
+                <label htmlFor='contact-website'>{t('form.websiteLabel')}</label>
                 <input id='contact-website' type='text' tabIndex={-1} autoComplete='off' {...register('website')} />
               </div>
 
@@ -300,7 +347,7 @@ export default function ContactSection() {
                     aria-describedby={errors.name ? 'contact-name-error' : undefined}
                     disabled={isSubmitting}
                     className={fieldClass}
-                    {...register('name', { onChange: markEditing })}
+                    {...register('name')}
                   />
                   <p id='contact-name-error' className='font-outfit mt-1.5 min-h-5 text-xs text-rose-300' role='alert'>
                     {errors.name?.message}
@@ -325,7 +372,7 @@ export default function ContactSection() {
                     aria-describedby={errors.email ? 'contact-email-error' : undefined}
                     disabled={isSubmitting}
                     className={fieldClass}
-                    {...register('email', { onChange: markEditing })}
+                    {...register('email')}
                   />
                   <p id='contact-email-error' className='font-outfit mt-1.5 min-h-5 text-xs text-rose-300' role='alert'>
                     {errors.email?.message}
@@ -349,7 +396,7 @@ export default function ContactSection() {
                   aria-describedby={errors.message ? 'contact-message-error' : undefined}
                   disabled={isSubmitting}
                   className={`${fieldClass} resize-y`}
-                  {...register('message', { onChange: markEditing })}
+                  {...register('message')}
                 />
                 <p id='contact-message-error' className='font-outfit mt-1.5 min-h-5 text-xs text-rose-300' role='alert'>
                   {errors.message?.message}

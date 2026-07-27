@@ -1,6 +1,6 @@
 export const projectMedia = {
   florDoPomar: {
-    cover: '/img/projects/flor-do-pomar.jpeg',
+    cover: '/img/projects/flor-do-pomar.webp',
     portfolio: '/img/projects/flor-do-pomar/portfolio.jpg',
     contact: '/img/projects/flor-do-pomar/contacto.jpg',
   },

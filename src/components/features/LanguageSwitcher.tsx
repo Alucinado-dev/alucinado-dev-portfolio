@@ -1,35 +1,28 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { usePathname, useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { motion } from 'motion/react'
+
+import { usePathname, useRouter } from '@/i18n/navigation'
+import { capturePortfolioEvent } from '@/lib/analytics'
 
 export const LanguageSwitcher = () => {
   const pathname = usePathname()
   const router = useRouter()
+  const currentLocale = useLocale()
   const accessibility = useTranslations('common.accessibility')
   const language = useTranslations('common.language')
 
-  // Detecta o locale atual mapeando os primeiros caracteres da rota (/pt/... ou /en/...)
-  const currentLocale = pathname?.startsWith('/en') ? 'en' : 'pt'
-
   const toggleLanguage = (locale: 'pt' | 'en') => {
-    if (locale === currentLocale) return
-    if (!pathname) return
+    if (locale === currentLocale || !pathname) return
 
-    // Reconstrói a URL mantendo a rota interna intacta
-    let newPath = pathname
-    if (currentLocale === 'en') {
-      newPath = pathname.replace('/en', '/pt')
-    } else {
-      newPath = pathname.startsWith('/pt') ? pathname.replace('/pt', '/en') : `/en${pathname}`
-    }
-
-    // Se o resultado for apenas o prefixo limpo com barra, garante a raiz
-    if (newPath === '/pt' || newPath === '/en/') newPath = '/pt' // ou dependendo da estrutura padrão
-
-    router.push(newPath)
+    const suffix = `${window.location.search}${window.location.hash}`
+    capturePortfolioEvent({
+      name: 'language_switched',
+      properties: { from_locale: currentLocale, to_locale: locale },
+    })
+    router.replace(`${pathname}${suffix}`, { locale })
   }
 
   return (
@@ -39,12 +32,13 @@ export const LanguageSwitcher = () => {
       className='font-syne-mono flex h-14 items-center border-l border-white/5 px-4 text-[10px] tracking-widest text-white/40'
     >
       <div className='relative flex items-center gap-1 rounded-xs border border-white/5 bg-black/40 p-1 select-none'>
-        {/* Botão PT */}
         <button
+          type='button'
           onClick={() => toggleLanguage('pt')}
           aria-label={language('portuguese')}
+          aria-pressed={currentLocale === 'pt'}
           className='relative z-10 cursor-pointer px-2 py-0.5 font-bold uppercase transition-colors'
-          style={{ color: currentLocale === 'pt' ? '#00fbea' : 'rgba(255,255,255,0.3)' }}
+          style={{ color: currentLocale === 'pt' ? '#00fbea' : 'rgba(255,255,255,0.58)' }}
         >
           PT
           {currentLocale === 'pt' && (
@@ -56,16 +50,17 @@ export const LanguageSwitcher = () => {
           )}
         </button>
 
-        <span className='font-sans text-[8px] text-white/10'>/</span>
+        <span aria-hidden='true' className='font-sans text-[8px] text-white/25'>
+          /
+        </span>
 
-        {/* Botão EN */}
         <button
+          type='button'
           onClick={() => toggleLanguage('en')}
           aria-label={language('english')}
-          title={language('comingSoon')}
-          disabled
-          className='relative z-10 cursor-not-allowed px-2 py-0.5 font-bold uppercase opacity-45'
-          style={{ color: currentLocale === 'en' ? '#00fbea' : 'rgba(255,255,255,0.3)' }}
+          aria-pressed={currentLocale === 'en'}
+          className='relative z-10 cursor-pointer px-2 py-0.5 font-bold uppercase transition-colors'
+          style={{ color: currentLocale === 'en' ? '#00fbea' : 'rgba(255,255,255,0.58)' }}
         >
           EN
           {currentLocale === 'en' && (

@@ -13,6 +13,7 @@
 # testing
 /coverage
 /context/
+/.codex/*
 
 # next.js
 /.next/
@@ -52,3 +53,4 @@ next-env.d.ts
 # Gerado por ferramentas
 *.log
 .turbo
+.env.local

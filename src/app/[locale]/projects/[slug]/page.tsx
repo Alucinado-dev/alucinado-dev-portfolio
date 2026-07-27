@@ -3,9 +3,9 @@ import { getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
 import { FlorDoPomarCase } from '@/components/cases/FlorDoPomarCase'
-import { LegacyProjectCase } from '@/components/cases/LegacyProjectCase'
 import { StandardProjectCase } from '@/components/cases/StandardProjectCase'
 import { projects } from '@/lib/data/ProjectData'
+import { localizedAlternates } from '@/lib/site-url'
 
 type ProjectDetailsPageProps = {
   params: Promise<{
@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: ProjectDetailsPageProps): Pro
   return {
     title: `${project.title} | Lucino Campos`,
     description,
+    alternates: localizedAlternates(locale, `/projects/${project.slug}`),
     openGraph: {
       title: `${project.title} | Lucino Campos`,
       description,
@@ -43,13 +44,9 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
     notFound()
   }
 
-  if (locale === 'pt' && project.slug === 'flor-do-pomar') {
+  if (project.slug === 'flor-do-pomar') {
     return <FlorDoPomarCase locale={locale} project={project} />
   }
 
-  if (locale === 'pt') {
-    return <StandardProjectCase locale={locale} project={project} />
-  }
-
-  return <LegacyProjectCase locale={locale} project={project} />
+  return <StandardProjectCase locale={locale} project={project} />
 }

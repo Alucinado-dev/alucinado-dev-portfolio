@@ -11,11 +11,13 @@ import {
   VT323,
   Zen_Dots,
 } from 'next/font/google'
+import { headers } from 'next/headers'
 
 import Container from '@/components/container/Container'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 import { AppProviders } from '@/components/providers/AppProviders'
+import { getSiteUrl } from '@/lib/site-url'
 
 import '../../styles/globals.css'
 
@@ -94,8 +96,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   })
 
   return {
+    metadataBase: getSiteUrl(),
     title: t('title'),
     description: t('description'),
+    applicationName: 'alucinado.dev',
+    authors: [{ name: 'Lucino Campos' }],
+    creator: 'Lucino Campos',
+    openGraph: {
+      type: 'website',
+      siteName: 'alucinado.dev',
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
   }
 }
 
@@ -106,17 +119,31 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: Promise<{ locale: string }>
 }) {
+  const [{ locale }, requestHeaders] = await Promise.all([params, headers()])
+  const accessibility = await getTranslations({ locale, namespace: 'common.accessibility' })
+  const receivedCountryCode = requestHeaders.get('x-vercel-ip-country')?.toUpperCase()
+  const countryCode = receivedCountryCode && /^[A-Z]{2}$/.test(receivedCountryCode) ? receivedCountryCode : undefined
+
   return (
     <html
-      lang={(await params).locale}
+      lang={locale}
       className='h-full scroll-smooth antialiased motion-reduce:scroll-auto'
+      data-country={countryCode}
       data-scroll-behavior='smooth'
       suppressHydrationWarning
     >
       <body className={`${fonts} relative flex min-h-full flex-col`}>
         <AppProviders>
+          <a
+            href='#conteudo-principal'
+            className='font-space-grotesk focus:bg-cyan-bright fixed top-2 left-2 z-100 -translate-y-24 px-4 py-3 text-sm font-semibold text-[#010205] transition-transform focus:translate-y-0 focus:outline-none'
+          >
+            {accessibility('skipToContent')}
+          </a>
           <Header />
-          <Container>{children}</Container>
+          <Container id='conteudo-principal' tabIndex={-1}>
+            {children}
+          </Container>
           <Footer />
         </AppProviders>
       </body>

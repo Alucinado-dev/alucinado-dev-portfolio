@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+
 import Sidebar from '@/components/layout/Sidebar'
 import AboutSection from '@/components/sections/AboutSection'
 import ContactSection from '@/components/sections/ContactSection'
@@ -5,6 +8,26 @@ import ExperienceSection from '@/components/sections/ExperienceSection'
 import HeroSection from '@/components/sections/HeroSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import StackSection from '@/components/sections/StackSection'
+import { localizedAlternates } from '@/lib/site-url'
+
+type HomePageProps = {
+  params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'pages.home.seo' })
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: localizedAlternates(locale, '/'),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+    },
+  }
+}
 
 export default function HomePage() {
   return (

@@ -27,6 +27,7 @@
     },
     "accessibility": {
       "languageSwitcher": "Selecionar idioma",
+      "skipToContent": "Pular para o conteúdo principal",
       "downloadCv": "Baixar o currículo de Lucino Campos em PDF",
       "projectImageAlt": "Captura de tela do projeto {title}",
       "projectDetails": "Abrir o case do projeto {title}",
@@ -35,12 +36,15 @@
       "emailProfile": "Enviar um e-mail para Lucino Campos",
       "linkedinProfile": "Abrir o perfil de Lucino Campos no LinkedIn",
       "instagramProfile": "Abrir o perfil de Lucino Campos no Instagram",
+      "notifications": "Notificações do portfólio",
       "terminalLog": "Apresentação profissional em formato de terminal"
     },
     "header": {
       "systemStatus": "PORTFÓLIO ATIVO",
       "version": "VERSÃO 2026.07",
       "locale": "IDIOMA: [{locale}]",
+      "currentRoute": "ROTA ATUAL:",
+      "logoHome": "Ir para a página inicial",
       "mobileNavigation": "Navegação principal",
       "openMenu": "Abrir menu de navegação",
       "closeMenu": "Fechar menu de navegação"
@@ -61,16 +65,155 @@
       "stableSystem": "SISTEMA_ESTÁVEL"
     },
     "footer": {
+      "brand": "alucinado.dev",
       "identity": "LUCINO CAMPOS // DESENVOLVEDOR FRONTEND",
+      "description": "Interfaces claras, responsivas e construídas com atenção ao produto, ao código e a quem vai usar.",
+      "navigationTitle": "NAVEGAÇÃO",
+      "contactTitle": "CONTATO",
+      "contactDescription": "Links para acompanhar meu trabalho ou iniciar uma conversa.",
+      "onlineStatus": "PORTFÓLIO ONLINE",
+      "logoHome": "Voltar para a página inicial",
       "builtWith": "CRIADO COM NEXT.JS E TYPESCRIPT",
-      "copyright": "ALUCINADO DEV"
+      "copyright": "ALUCINADO DEV",
+      "analyticsNotice": "MÉTRICAS ANÔNIMAS, SEM COOKIES",
+      "disableAnalytics": "DESATIVAR",
+      "enableAnalytics": "ATIVAR"
     }
   },
   "pages": {
+    "loading": {
+      "label": "Carregando conteúdo"
+    },
+    "notFound": {
+      "metadataTitle": "Página não encontrada | Lucino Campos",
+      "eyebrow": "ROTA NÃO ENCONTRADA",
+      "title": "Esta página não existe.",
+      "description": "O endereço pode estar incorreto ou a página pode ter sido movida. Você pode voltar ao início e continuar navegando pelo portfólio.",
+      "homeAction": "Voltar ao início"
+    },
+    "error": {
+      "eyebrow": "FALHA DE INTERFACE",
+      "title": "Não foi possível carregar esta página.",
+      "description": "Ocorreu um erro inesperado. Tente carregar o conteúdo novamente; se o problema continuar, você ainda pode usar a navegação principal.",
+      "retryAction": "Tentar novamente"
+    },
+    "about": {
+      "seo": {
+        "title": "Sobre mim | Lucino Campos",
+        "description": "Conheça meu caminho até a programação, o que estou estudando agora e um pouco do que faço quando saio da frente da tela."
+      },
+      "hero": {
+        "eyebrow": "ALÉM DO CÓDIGO",
+        "title": "Quero fazer a lógica virar algo real.",
+        "introduction": "Sempre me dei bem com lógica e gosto ainda mais quando consigo usá-la para construir algo que funciona de verdade.",
+        "direction": "Por isso, quando decidi mudar de carreira, a programação pareceu um caminho natural. Comecei estudando sozinho, passei por HTML, CSS, React e TypeScript e agora estou avançando no Next.js e no backend.",
+        "contactAction": "Conversar comigo",
+        "portraitAlt": "Retrato de Lucino Campos",
+        "portraitCaption": "Lucino Campos · Brasil"
+      },
+      "journey": {
+        "eyebrow": "TRABALHO EM EQUIPE",
+        "title": "Cheguei à programação já sabendo trabalhar em equipe e entregar o que foi combinado.",
+        "beginning": "Antes de trabalhar como desenvolvedor, passei pela Zaffiro, empresa júnior da UFPA. Como Scrum Master, ajudei a organizar demandas, acompanhar o trabalho da equipe e manter todo mundo alinhado.",
+        "team": "Como freelancer, passei a aplicar isso no desenvolvimento: entender requisitos, cumprir prazos, responder a feedback e ajustar a interface durante a validação com a equipe e o cliente.",
+        "present": "Sou iniciante como desenvolvedor, não no trabalho em equipe. Já precisei assumir responsabilidades, prestar contas do andamento e levar entregas até o fim.",
+        "imageAlt": "Pessoa trabalhando em um notebook dentro de um café noturno com vista para uma cidade futurista",
+        "imageCaption": "CENA ILUSTRATIVA"
+      },
+      "learning": {
+        "eyebrow": "APRENDENDO AGORA",
+        "title": "Meu próximo passo é me tornar um desenvolvedor full-stack.",
+        "description": "Minha base está no frontend. Agora estou estudando o que acontece do outro lado da aplicação para conseguir construir fluxos completos, do navegador ao servidor.",
+        "imageAlt": "Mãos conectando equipamentos de rede em uma bancada de estudos com notebook e pequenos servidores",
+        "imageCaption": "ESTUDANDO ALÉM DO FRONTEND",
+        "items": {
+          "rendering": {
+            "title": "Servidor ou navegador?",
+            "description": "Estou aprendendo a decidir onde cada parte da aplicação deve rodar e o que essa escolha muda no carregamento, no SEO e na experiência de quem usa."
+          },
+          "server": {
+            "title": "Rotas, validação e integrações",
+            "description": "Tenho usado este portfólio para praticar Route Handlers, validação no servidor, envio de e-mail e integrações com serviços externos."
+          },
+          "delivery": {
+            "title": "Colocar no ar e manter funcionando",
+            "description": "Também estou aprendendo sobre deploy, variáveis de ambiente, segurança e tratamento de falhas. Quero entender o que mantém a aplicação funcionando depois que a interface fica pronta."
+          }
+        }
+      },
+      "signals": {
+        "github": {
+          "accessibilityLabel": "Meu mapa de contribuições no GitHub",
+          "eyebrow": "GITHUB",
+          "sectionTitle": "Meu mapa de contribuições no GitHub.",
+          "description": "Uso este mapa para acompanhar minha atividade no GitHub. Ele reúne contribuições em estudos, projetos pessoais e trabalhos que mantenho ao longo do ano.",
+          "summary": "{count, plural, =0 {Nenhuma contribuição registrada} =1 {Uma contribuição registrada} other {# contribuições registradas}} nos últimos 12 meses",
+          "mapLabel": "Mapa de contribuições dos últimos 12 meses",
+          "less": "Menos",
+          "more": "Mais",
+          "activityTitle": "Atividade no período",
+          "commits": "Commits",
+          "pullRequests": "Pull requests",
+          "issues": "Issues",
+          "pullRequestReviews": "Revisões de pull request",
+          "privateContributions": "{count, plural, =1 {# contribuição privada aparece apenas na soma e no mapa.} other {# contribuições privadas aparecem apenas na soma e no mapa.}}",
+          "languagesTitle": "Linguagens nos meus repositórios",
+          "languagesDescription": "Distribuição aproximada pelo tamanho dos arquivos nos repositórios que pertencem ao meu perfil.",
+          "languagesLabel": "Distribuição das linguagens nos repositórios",
+          "action": "Abrir GitHub",
+          "fallbackTitle": "Meu perfil continua disponível no GitHub.",
+          "fallback": "Ver perfil no GitHub"
+        },
+        "wakatime": {
+          "accessibilityLabel": "Minha atividade recente registrada pelo WakaTime",
+          "eyebrow": "WAKATIME",
+          "sectionTitle": "Minha semana no editor.",
+          "description": "Uso o WakaTime para acompanhar quanto tempo passo programando e quais linguagens aparecem nesse período. Os dados abaixo mostram meus últimos sete dias no editor.",
+          "totalLabel": "Tempo registrado",
+          "averageLabel": "Média diária",
+          "activeDaysLabel": "Dias com atividade",
+          "activeDays": "{count, plural, =0 {Nenhum dia} =1 {Um dia} other {# dias}}",
+          "languagesLabel": "Linguagens mais usadas",
+          "otherLanguage": "Outros",
+          "rhythmLabel": "Ritmo dos últimos sete dias",
+          "dayActivity": "Atividade registrada em {day}"
+        },
+        "spotify": {
+          "accessibilityLabel": "Músicas que ouvi recentemente no Spotify",
+          "eyebrow": "SPOTIFY",
+          "sectionTitle": "Minha vibe recentemente.",
+          "description": "Quase sempre tem música tocando enquanto estudo, trabalho ou descanso. Estas foram as últimas faixas que ouvi.",
+          "loading": "Consultando atividade do Spotify",
+          "playing": "Ouvindo agora",
+          "recent": "Última faixa ouvida",
+          "historyTitle": "Últimas no histórico",
+          "selectTrack": "Ouvir {title}, de {artist}",
+          "playerFrameTitle": "Player do Spotify para {title}, de {artist}",
+          "action": "Abrir no Spotify",
+          "albumAlt": "Capa do álbum da música {title}"
+        }
+      },
+      "personal": {
+        "eyebrow": "FORA DA TELA",
+        "title": "Quando fecho o notebook, gosto de ir para a quadra.",
+        "volleyball": "Jogo vôlei porque gosto da movimentação, da disputa e, principalmente, de estar com outras pessoas. Depois de muito tempo concentrado em frente à tela, ir para a quadra muda completamente o ritmo do meu dia.",
+        "balance": "Não jogo profissionalmente. É um hobby que me ajuda a sair da rotina, me movimentar e passar um tempo com outras pessoas.",
+        "photoAlt": "Lucino Campos usando uniforme de vôlei diante de um painel de quadra",
+        "photoCaption": "VÔLEI · FORA DA TELA"
+      },
+      "closing": {
+        "title": "Quer ver o que eu faço na prática?",
+        "description": "Na página de projetos você pode ver o que já construí e qual foi minha participação em cada trabalho. Se tiver uma ideia ou oportunidade, pode falar comigo.",
+        "contactAction": "Entrar em contato"
+      },
+      "accessibility": {
+        "pageLabel": "Sobre Lucino Campos"
+      }
+    },
     "home": {
       "seo": {
         "title": "Lucino Campos | Desenvolvedor Frontend",
-        "description": "Projetos, experiência e tecnologias de Lucino Campos, desenvolvedor frontend especializado no ecossistema React."
+        "description": "Projetos, experiência e tecnologias de Lucino Campos, desenvolvedor frontend com foco no ecossistema React."
       },
       "navigation": {
         "label": "Navegação pelas seções da página",
@@ -194,33 +337,35 @@
               "Participação no fluxo dos projetos, do levantamento de requisitos e desenvolvimento até a homologação, publicação e ajustes posteriores."
             ]
           },
-          "zaffiro": {
-            "periodStart": "2023",
-            "periodEnd": "2024",
-            "title": "Scrum Master e liderança ágil",
-            "organization": "Empresa Júnior Zaffiro · UFPA",
-            "location": "Belém, PA",
-            "highlights": [
-              "Facilitação de sprints, dailies e retrospectivas para manter organização e cadência de entrega.",
-              "Mapeamento de impedimentos e apoio ao time na melhoria dos processos de trabalho.",
-              "Planejamento de releases e gestão de backlog em conjunto com stakeholders."
-            ]
-          },
           "transition": {
-            "periodStart": "2023",
+            "periodStart": "2025",
             "periodEnd": "",
             "title": "Transição para tecnologia",
             "organization": "Estudos autodidatas",
             "location": "Brasil",
             "description": "Início de uma rotina dedicada ao desenvolvimento web, arquitetura de componentes, lógica de programação, gerenciamento de estado e ecossistema TypeScript."
           },
-          "education": {
+          "zaffiro": {
             "periodStart": "2020",
+            "periodEnd": "2023",
+            "title": "Assessor de Projetos",
+            "organization": "Empresa Júnior Zaffiro · UFPA",
+            "location": "Belém, PA",
+            "highlights": [
+              "Apoio à organização e ao gerenciamento dos projetos da empresa, além da criação, documentação e melhoria de processos internos.",
+              "Atuação como Scrum Master em projetos organizados com Kanban e Trello.",
+              "Participação nas etapas de venda e pós-venda, com acompanhamento ao cliente e prospecção ativa e passiva.",
+              "Breve participação no setor de marketing, contribuindo para a criação de conteúdo para as redes sociais."
+            ]
+          },
+
+          "education": {
+            "periodStart": "2017",
             "periodEnd": "2023",
             "title": "Engenharia Biomédica · graduação interrompida",
             "organization": "Universidade Federal do Pará",
             "location": "Belém, PA",
-            "description": "Desenvolvimento de base analítica e raciocínio lógico por meio de física experimental, modelagem matemática e introdução à programação."
+            "description": "Desenvolvimento de base analítica e raciocínio lógico por meio de física e calculo, teórico e experimental, modelagem matemática e introdução à programação."
           }
         },
         "accessibility": {
@@ -244,6 +389,7 @@
         },
         "form": {
           "title": "Conte um pouco sobre o contato",
+          "websiteLabel": "Website",
           "integrationNotice": "A mensagem será enviada diretamente para o meu e-mail profissional.",
           "statusInitial": "INICIAL",
           "statusEditing": "EM PREENCHIMENTO",

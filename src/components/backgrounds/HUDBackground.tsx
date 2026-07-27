@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import { useReducedMotion } from 'motion/react'
+
 export type BeamDecoration = 'none' | 'chevron' | 'circuit' | 'dot'
 
 export interface TrackBeam {
@@ -78,12 +80,13 @@ export const HudTerminal = ({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const sizeRef = useRef({ W: 0, H: 0 })
+  const prefersReducedMotion = useReducedMotion()
 
   // Estado interno para reatividade física ao mouse (Efeito de Profundidade do HUD)
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
-    if (!fixed) return
+    if (!fixed || prefersReducedMotion) return
     const handleMouseMove = (e: MouseEvent) => {
       const nx = (e.clientX / window.innerWidth - 0.5) * 12
       const ny = (e.clientY / window.innerHeight - 0.5) * 12
@@ -91,7 +94,7 @@ export const HudTerminal = ({
     }
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [fixed])
+  }, [fixed, prefersReducedMotion])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -102,7 +105,7 @@ export const HudTerminal = ({
     let animFrame: number
     let particles: Particle[] = []
 
-    const initParticles = (W: number, H: number) => {
+    const initParticles = (W: number, _H: number) => {
       particles = tracks.flatMap(track =>
         (track.beams || []).map(beam => ({
           color: beam.color || '#00fbea',
@@ -132,10 +135,10 @@ export const HudTerminal = ({
 
     if (canvas.parentElement) observer.observe(canvas.parentElement)
 
-    const draw = (timestamp: number) => {
+    const draw = (_timestamp: number) => {
       const { W, H } = sizeRef.current
       if (W === 0 || H === 0) {
-        animFrame = requestAnimationFrame(draw)
+        if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
         return
       }
 
@@ -281,7 +284,7 @@ export const HudTerminal = ({
         ctx.stroke()
       }
 
-      animFrame = requestAnimationFrame(draw)
+      if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
     }
 
     animFrame = requestAnimationFrame(draw)
@@ -290,7 +293,7 @@ export const HudTerminal = ({
       cancelAnimationFrame(animFrame)
       observer.disconnect()
     }
-  }, [tracks, showCenterBracket])
+  }, [tracks, showCenterBracket, prefersReducedMotion])
 
   const edgeFade = `linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)`
 
@@ -305,8 +308,8 @@ export const HudTerminal = ({
         zIndex,
         opacity,
         pointerEvents: 'none',
-        transform: `translate3d(${mouseOffset.x}px, ${mouseOffset.y}px, 0)`,
-        transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)',
+        transform: prefersReducedMotion ? 'none' : `translate3d(${mouseOffset.x}px, ${mouseOffset.y}px, 0)`,
+        transition: prefersReducedMotion ? 'none' : 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)',
       }}
     >
       <canvas

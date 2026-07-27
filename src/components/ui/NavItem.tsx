@@ -17,9 +17,18 @@ export const NavItem = ({ href, children }: NavItemProps) => {
     <Link
       href={href}
       aria-current={isActive ? 'page' : undefined}
-      className='group font-rajdhani relative flex h-14 cursor-pointer flex-col justify-center border-r border-white/5 px-6 text-sm font-medium tracking-[0.12em] uppercase transition-all duration-300 select-none'
+      className='group font-rajdhani relative flex h-14 cursor-pointer flex-col justify-center overflow-hidden border-r border-white/5 px-6 text-sm font-medium tracking-[0.12em] uppercase transition-all duration-300 select-none'
       style={{ backgroundColor: isActive ? 'rgba(0, 251, 234, 0.015)' : 'transparent' }}
     >
+      <span
+        className='pointer-events-none absolute inset-0 opacity-[0.035]'
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)',
+          backgroundSize: '12px 12px',
+        }}
+        aria-hidden='true'
+      />
       <span
         className='relative z-10 transition-colors duration-300'
         style={{
@@ -43,6 +52,7 @@ export const NavItem = ({ href, children }: NavItemProps) => {
       )}
 
       <span className='absolute bottom-1 left-1 h-1 w-1 bg-white/5 transition-colors group-hover:bg-[#00fbea]/30' />
+      <span className='border-cyan-bright/0 group-hover:border-cyan-bright/25 absolute top-1 right-1 h-2 w-2 border-t border-r transition-colors' />
     </Link>
   )
 }

@@ -7,6 +7,7 @@ import MeshBackground from '@/components/backgrounds/MeshBackground'
 import { CaseReveal } from '@/components/cases/CaseReveal'
 import { CaseSectionHeading } from '@/components/cases/CaseSectionHeading'
 import { CaseTechnologyAside } from '@/components/cases/CaseTechnologyAside'
+import TrackedExternalLink from '@/components/features/TrackedExternalLink'
 import { Link } from '@/i18n/navigation'
 import { getProjectCaseStudy } from '@/lib/data/CaseStudyData'
 import { projects } from '@/lib/data/ProjectData'
@@ -113,37 +114,46 @@ export async function StandardProjectCase({ locale, project }: StandardProjectCa
                 <p className='font-syne-mono mb-3 text-[9px] tracking-[0.16em] text-slate-500 uppercase'>
                   {text('hero.accessTitle')}
                 </p>
-                <a
+                <TrackedExternalLink
                   href={project.links.live}
                   target='_blank'
                   rel='noreferrer'
+                  event='project_live_demo_clicked'
+                  slug={project.slug}
+                  source='case'
                   aria-label={accessibility('externalProject', { title: project.title })}
                   className='font-space-grotesk border-cyan-bright/35 bg-cyan-bright/10 hover:bg-cyan-bright/16 focus-visible:ring-cyan-bright/60 flex min-h-11 w-full items-center justify-between gap-3 border px-4 py-3 text-xs font-semibold text-cyan-50 transition-colors focus-visible:ring-2 focus-visible:outline-none'
                 >
                   {actions('liveDemo')}
                   <Icon icon='lucide:external-link' className='h-4 w-4' aria-hidden='true' />
-                </a>
+                </TrackedExternalLink>
                 {project.links.github && (
-                  <a
+                  <TrackedExternalLink
                     href={project.links.github}
                     target='_blank'
                     rel='noreferrer'
+                    event='project_source_clicked'
+                    slug={project.slug}
+                    source='case'
                     className='font-space-grotesk focus-visible:ring-plasma-purple/60 mt-2 flex min-h-11 w-full items-center justify-between gap-3 border border-white/10 bg-white/[0.025] px-4 py-3 text-xs font-medium text-slate-300 transition-colors hover:border-purple-300/25 hover:text-purple-200 focus-visible:ring-2 focus-visible:outline-none'
                   >
                     {actions('viewCode')}
                     <Icon icon='lucide:github' className='h-4 w-4' aria-hidden='true' />
-                  </a>
+                  </TrackedExternalLink>
                 )}
                 {project.links.legacyLive && (
-                  <a
+                  <TrackedExternalLink
                     href={project.links.legacyLive}
                     target='_blank'
                     rel='noreferrer'
+                    event='project_live_demo_clicked'
+                    slug={project.slug}
+                    source='case'
                     className='font-outfit mt-4 flex items-center gap-2 border-t border-white/8 pt-4 text-xs text-slate-500 transition-colors hover:text-slate-300'
                   >
                     <Icon icon='lucide:history' className='h-3.5 w-3.5' aria-hidden='true' />
                     {text('hero.legacyLabel')}
-                  </a>
+                  </TrackedExternalLink>
                 )}
               </div>
             </div>

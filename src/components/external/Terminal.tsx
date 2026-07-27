@@ -220,9 +220,9 @@ export const Terminal = ({ children, className }: TerminalProps) => {
         </div>
 
         {/* FOOTER REATIVO DINÂMICO */}
-        <div className='font-rajdhani grid grid-cols-2 items-center border-t border-cyan-950/70 bg-[#020713] px-3.5 py-2 text-[10px] font-bold tracking-widest text-slate-500 select-none sm:grid-cols-3 sm:px-4 sm:text-[11px]'>
+        <div className='font-rajdhani grid grid-cols-2 items-center border-t border-cyan-950/70 bg-[#020713] px-3.5 py-2 text-[10px] font-bold tracking-widest text-slate-400 select-none sm:grid-cols-3 sm:px-4 sm:text-[11px]'>
           <div className='flex items-center gap-1'>
-            <Icon icon='lucide:globe' className='h-3 w-3 text-slate-600' />
+            <Icon icon='lucide:globe' className='h-3 w-3 text-slate-400' />
             <span>
               {t('footer.language')}: [{locale.toLocaleUpperCase()}]
             </span>

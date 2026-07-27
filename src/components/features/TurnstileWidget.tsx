@@ -93,7 +93,7 @@ export default function TurnstileWidget({
         onLoad={renderWidget}
         onError={onError}
       />
-      <div ref={containerRef} aria-label={label} className='min-h-0 w-full' />
+      <div ref={containerRef} role='group' aria-label={label} className='min-h-0 w-full' />
     </>
   )
 }

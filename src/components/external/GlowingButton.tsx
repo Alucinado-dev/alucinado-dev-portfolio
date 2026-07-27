@@ -2,8 +2,7 @@
 
 import { type ComponentPropsWithoutRef } from 'react'
 
-import Link from 'next/link'
-
+import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils/cn'
 
 export interface AnimatedGradientTextProps extends ComponentPropsWithoutRef<'span'> {

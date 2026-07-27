@@ -1,11 +1,11 @@
 import { getTranslations } from 'next-intl/server'
-import Link from 'next/link'
 
 import { Icon } from '@iconify/react'
 
 import MeshBackground from '@/components/backgrounds/MeshBackground'
 import Container from '@/components/container/Container'
 import { ProjectCard, type ProjectCardAccent } from '@/components/features/ProjectCard'
+import { Link } from '@/i18n/navigation'
 import { projects } from '@/lib/data/ProjectData'
 import { siteLinks } from '@/lib/data/SiteData'
 

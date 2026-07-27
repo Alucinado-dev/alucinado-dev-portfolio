@@ -1,8 +1,13 @@
+'use client'
+
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 
 import { Icon } from '@iconify/react'
 
+import TrackedExternalLink from '@/components/features/TrackedExternalLink'
 import { Link } from '@/i18n/navigation'
+import { capturePortfolioEvent } from '@/lib/analytics'
 import { siteLinks } from '@/lib/data/SiteData'
 import type { ProjectDataType } from '@/types/ProjectTypes'
 
@@ -33,6 +38,8 @@ export function ProjectArchiveCard({
   imageAlt,
   eagerImage = false,
 }: ProjectArchiveCardProps) {
+  const locale = useLocale()
+
   return (
     <article className='group hover:border-cyan-bright/25 relative flex min-h-105 flex-col overflow-hidden border border-white/9 bg-[#050b18] shadow-[0_28px_75px_-45px_rgba(0,0,0,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071120]'>
       <div className='relative aspect-video overflow-hidden border-b border-white/7 bg-black/30'>
@@ -56,7 +63,7 @@ export function ProjectArchiveCard({
       <div className='flex flex-1 flex-col p-5'>
         <div className='mb-4 flex items-start justify-between gap-4'>
           <div>
-            <span className='font-syne-mono text-[9px] tracking-[0.16em] text-slate-600'>{project.id}</span>
+            <span className='font-syne-mono text-[9px] tracking-[0.16em] text-slate-400'>{project.id}</span>
             <h2 className='font-space-grotesk mt-1 text-xl font-bold text-slate-100 transition-colors group-hover:text-cyan-100'>
               {project.title}
             </h2>
@@ -91,7 +98,7 @@ export function ProjectArchiveCard({
           <div className='flex items-center justify-between gap-3'>
             {project.links.isPrivateGithub ? (
               <span
-                className='font-space-grotesk flex items-center gap-1.5 text-xs text-slate-600'
+                className='font-space-grotesk flex items-center gap-1.5 text-xs text-slate-400'
                 title={privateLabel}
               >
                 <Icon icon='lucide:lock-keyhole' className='h-3.5 w-3.5' aria-hidden='true' />
@@ -99,22 +106,31 @@ export function ProjectArchiveCard({
               </span>
             ) : (
               project.links.github && (
-                <a
+                <TrackedExternalLink
                   href={project.links.github}
                   target='_blank'
                   rel='noreferrer'
+                  event='project_source_clicked'
+                  slug={project.slug}
+                  source='archive'
                   aria-label={`${codeLabel}: ${project.title}`}
                   className='font-space-grotesk flex items-center gap-1.5 text-xs text-slate-400 transition-colors hover:text-purple-300'
                 >
                   <Icon icon='lucide:github' className='h-3.5 w-3.5' aria-hidden='true' />
                   {codeLabel}
-                </a>
+                </TrackedExternalLink>
               )
             )}
 
             <Link
               href={siteLinks.projectDetails(project.slug)}
               aria-label={`${viewLabel}: ${project.title}`}
+              onClick={() =>
+                capturePortfolioEvent({
+                  name: 'project_case_viewed',
+                  properties: { locale, slug: project.slug, source: 'archive' },
+                })
+              }
               className='group/action font-space-grotesk border-cyan-bright/20 bg-cyan-bright/6 hover:bg-cyan-bright/11 flex items-center gap-2 border px-3 py-2 text-xs font-semibold text-cyan-100 transition-colors'
             >
               {viewLabel}

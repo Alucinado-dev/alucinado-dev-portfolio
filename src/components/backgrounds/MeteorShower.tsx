@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 import { useWindowSize } from '@uidotdev/usehooks'
+import { useReducedMotion } from 'motion/react'
 
 type MeteorParticle = {
   x: number
@@ -185,6 +186,7 @@ export const MeteorShower = ({
   // Isso garante que o canvas seja redimensionado quando a janela mudar,
   // sem precisar de event listener manual dentro do useEffect do canvas.
   const windowSize = useWindowSize()
+  const prefersReducedMotion = useReducedMotion()
 
   // Tamanho atual exposto ao loop de animação via ref — sem re-render.
   const sizeRef = useRef({ W: 0, H: 0 })
@@ -298,7 +300,7 @@ export const MeteorShower = ({
     const draw = () => {
       const { W, H } = sizeRef.current
       if (W === 0 || H === 0) {
-        animFrame = requestAnimationFrame(draw)
+        if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
         return
       }
 
@@ -341,7 +343,7 @@ export const MeteorShower = ({
         ctx.globalAlpha = 1
       })
 
-      animFrame = requestAnimationFrame(draw)
+      if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
     }
 
     draw()
@@ -368,6 +370,7 @@ export const MeteorShower = ({
     // windowSize entra nas deps para que o modo fixed reaja ao resize via hook
     windowSize.width,
     windowSize.height,
+    prefersReducedMotion,
   ])
 
   // ── Máscara de fade nas bordas ─────────────────────────────────

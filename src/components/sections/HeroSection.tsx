@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 import { Icon } from '@iconify/react'
@@ -9,6 +9,7 @@ import { motion } from 'motion/react'
 import MeshBackground from '@/components/backgrounds/MeshBackground'
 import { ProjectButton } from '@/components/external/GlowingButton'
 import { AnimatedSpan, Terminal, TypingAnimation } from '@/components/external/Terminal'
+import { capturePortfolioEvent } from '@/lib/analytics'
 import { siteLinks } from '@/lib/data/SiteData'
 
 type ProofPoint = {
@@ -22,6 +23,7 @@ const heroPanelMesh = [
 ]
 
 export default function HeroSection() {
+  const locale = useLocale()
   const t = useTranslations('pages.home.hero')
   const actions = useTranslations('common.actions')
   const accessibility = useTranslations('common.accessibility')
@@ -127,6 +129,12 @@ export default function HeroSection() {
                 href={siteLinks.cv}
                 download='Lucino_Campos_CV.pdf'
                 aria-label={accessibility('downloadCv')}
+                onClick={() =>
+                  capturePortfolioEvent({
+                    name: 'cv_downloaded',
+                    properties: { locale, placement: 'hero' },
+                  })
+                }
                 className='group font-space-grotesk hover:border-pink-neon/30 hover:bg-pink-neon/6 flex items-center justify-center gap-2.5 border border-white/12 bg-white/4 px-6 py-3.5 text-xs font-semibold tracking-[0.08em] text-slate-300 uppercase transition-colors hover:text-slate-50'
               >
                 {actions('downloadCv')}

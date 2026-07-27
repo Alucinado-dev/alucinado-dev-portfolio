@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useMediaQuery, useWindowSize } from '@uidotdev/usehooks'
-import { motion, useMotionValue, useTransform } from 'motion/react'
+import { motion, useMotionValue, useReducedMotion, useTransform } from 'motion/react'
 
 import { BlobBackground } from '@/components/backgrounds/Blobs'
 import GrainNoise from '@/components/backgrounds/GrainNoise'
@@ -19,11 +19,14 @@ const Background = () => {
   const t = useTranslations('common.backgroundHud')
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
+  const prefersReducedMotion = useReducedMotion()
 
   const { width, height } = useWindowSize()
   const isMobile = useMediaQuery('(max-width: 480px)')
 
   useEffect(() => {
+    if (prefersReducedMotion) return
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX)
       mouseY.set(e.clientY)
@@ -32,7 +35,7 @@ const Background = () => {
     window.addEventListener('mousemove', handleMouseMove)
 
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [mouseX, mouseY])
+  }, [mouseX, mouseY, prefersReducedMotion])
 
   const xNebula = useTransform(mouseX, [0, width ?? 1], [80, -80])
   const yNebula = useTransform(mouseY, [0, height ?? 1], [80, -80])
@@ -175,7 +178,10 @@ const Background = () => {
         subLabelFontFamily='var(--font-syne-mono), monospace'
       />
 
-      <motion.div style={{ x: xNebula, y: yNebula }} className='fixed -inset-64 mix-blend-screen'>
+      <motion.div
+        style={prefersReducedMotion ? undefined : { x: xNebula, y: yNebula }}
+        className='fixed -inset-64 mix-blend-screen'
+      >
         <BlobBackground
           fixed
           zIndex={1}
@@ -186,7 +192,10 @@ const Background = () => {
           ]}
         />
       </motion.div>
-      <motion.div style={{ x: xStarsFar, y: yStarsFar }} className='pointer-events-none fixed inset-0'>
+      <motion.div
+        style={prefersReducedMotion ? undefined : { x: xStarsFar, y: yStarsFar }}
+        className='pointer-events-none fixed inset-0'
+      >
         <StarField
           fixed
           zIndex={2}
@@ -200,7 +209,10 @@ const Background = () => {
         />
       </motion.div>
 
-      <motion.div style={{ x: xStarsMedium, y: yStarsMedium }} className='pointer-events-none fixed inset-0'>
+      <motion.div
+        style={prefersReducedMotion ? undefined : { x: xStarsMedium, y: yStarsMedium }}
+        className='pointer-events-none fixed inset-0'
+      >
         <StarField
           fixed
           zIndex={3}
@@ -214,7 +226,10 @@ const Background = () => {
         />
       </motion.div>
 
-      <motion.div style={{ x: xStarsNear, y: yStarsNear }} className='pointer-events-none fixed inset-0'>
+      <motion.div
+        style={prefersReducedMotion ? undefined : { x: xStarsNear, y: yStarsNear }}
+        className='pointer-events-none fixed inset-0'
+      >
         <StarField
           fixed
           zIndex={4}
@@ -227,7 +242,10 @@ const Background = () => {
           twinkle
         />
       </motion.div>
-      <motion.div style={{ x: xMeteorFar, y: yMeteorFar }} className='pointer-events-none fixed -inset-96'>
+      <motion.div
+        style={prefersReducedMotion ? undefined : { x: xMeteorFar, y: yMeteorFar }}
+        className='pointer-events-none fixed -inset-96'
+      >
         <MeteorShower
           fixed
           zIndex={3}
@@ -243,7 +261,10 @@ const Background = () => {
         />
       </motion.div>
 
-      <motion.div style={{ x: xMeteorMid, y: yMeteorMid }} className='pointer-events-none fixed -inset-96'>
+      <motion.div
+        style={prefersReducedMotion ? undefined : { x: xMeteorMid, y: yMeteorMid }}
+        className='pointer-events-none fixed -inset-96'
+      >
         <MeteorShower
           fixed
           zIndex={4}
@@ -259,7 +280,10 @@ const Background = () => {
         />
       </motion.div>
 
-      <motion.div style={{ x: xMeteorNear, y: yMeteorNear }} className='pointer-events-none fixed -inset-96'>
+      <motion.div
+        style={prefersReducedMotion ? undefined : { x: xMeteorNear, y: yMeteorNear }}
+        className='pointer-events-none fixed -inset-96'
+      >
         <MeteorShower
           fixed
           zIndex={5}
