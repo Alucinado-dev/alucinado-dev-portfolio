@@ -1,4 +1,11 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
+
+import { useReducedMotion } from 'motion/react'
+
+import { type RandomSeed, createRandom, cssColorToRgb, frameScale, resizeCanvas } from './canvas'
+import { usePageVisibility } from './usePageVisibility'
 
 // ─────────────────────────────────────────────
 // Tipos
@@ -76,6 +83,8 @@ export interface BeamRainProps {
   zIndex?: number
 
   className?: string
+  /** Seed opcional para reproduzir atrasos e posições aleatórias. */
+  seed?: RandomSeed
 }
 
 // ─────────────────────────────────────────────
@@ -96,31 +105,14 @@ type BeamParticle = {
   phase: number
   // para dot
   dotY: number
-  // para burst
-  isBurst: boolean
-  burstOpacity: number
 }
 
 // ─────────────────────────────────────────────
 // Helpers de desenho
 // ─────────────────────────────────────────────
 
-const hexToRgb = (hex: string): string => {
-  const clean = hex.replace('#', '')
-  const full =
-    clean.length === 3
-      ? clean
-          .split('')
-          .map(c => c + c)
-          .join('')
-      : clean
-  const n = parseInt(full, 16)
-  if (isNaN(n)) return '255,255,255'
-  return `${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}`
-}
-
 const drawBeamLine = (ctx: CanvasRenderingContext2D, b: BeamParticle, alpha: number, mode: BeamMode) => {
-  const rgb = hexToRgb(b.color)
+  const rgb = cssColorToRgb(ctx, b.color) ?? '255, 255, 255'
 
   // Gradiente vertical do beam
   const grad = ctx.createLinearGradient(b.x, b.y, b.x, b.y + b.height)
@@ -152,7 +144,7 @@ const drawBeamLine = (ctx: CanvasRenderingContext2D, b: BeamParticle, alpha: num
 }
 
 const drawChevrons = (ctx: CanvasRenderingContext2D, b: BeamParticle, alpha: number) => {
-  const rgb = hexToRgb(b.color)
+  const rgb = cssColorToRgb(ctx, b.color) ?? '255, 255, 255'
   const spacing = 28
   const size = 5
   const count = Math.floor(b.height / spacing)
@@ -175,7 +167,7 @@ const drawChevrons = (ctx: CanvasRenderingContext2D, b: BeamParticle, alpha: num
 }
 
 const drawCircuit = (ctx: CanvasRenderingContext2D, b: BeamParticle, alpha: number) => {
-  const rgb = hexToRgb(b.color)
+  const rgb = cssColorToRgb(ctx, b.color) ?? '255, 255, 255'
   const spacing = 40
   const count = Math.floor(b.height / spacing)
 
@@ -208,7 +200,7 @@ const drawCircuit = (ctx: CanvasRenderingContext2D, b: BeamParticle, alpha: numb
 }
 
 const drawDot = (ctx: CanvasRenderingContext2D, b: BeamParticle, alpha: number, timestamp: number) => {
-  const rgb = hexToRgb(b.color)
+  const rgb = cssColorToRgb(ctx, b.color) ?? '255, 255, 255'
   const dotY = b.y + (b.dotY % b.height)
   const pulse = 0.7 + 0.3 * Math.sin(timestamp * 0.005 + b.phase)
 
@@ -292,12 +284,16 @@ export const BeamRain = ({
   fixed = false,
   zIndex = 0,
   className,
+  seed,
 }: BeamRainProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const windowSize = useWindowSize()
   const sizeRef = useRef({ W: 0, H: 0 })
+  const prefersReducedMotion = useReducedMotion()
+  const isPageVisible = usePageVisibility()
 
   useEffect(() => {
+    if (!isPageVisible) return
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -305,22 +301,22 @@ export const BeamRain = ({
 
     let animFrame: number
     let particles: BeamParticle[] = []
+    const random = createRandom(seed)
 
     const applySize = (W: number, H: number) => {
       if (W === 0 || H === 0) return
       sizeRef.current = { W, H }
-      canvas.width = W
-      canvas.height = H
+      resizeCanvas(canvas, ctx, W, H)
       initBeams(W, H)
     }
 
     const initBeams = (W: number, H: number) => {
       particles = beamConfigs.map((cfg, i) => {
         const height = cfg.height ?? 300
-        const delay = cfg.delay ?? Math.random() * H
+        const delay = cfg.delay ?? random() * H
         return {
           x: (cfg.x / 100) * W,
-          y: mode === 'random' ? Math.random() * H : -height - delay,
+          y: mode === 'random' ? random() * H : -height - delay,
           color: cfg.color ?? '#f72585',
           maxOpacity: cfg.opacity ?? 0.7,
           opacity: cfg.opacity ?? 0.7,
@@ -330,8 +326,6 @@ export const BeamRain = ({
           decoration: cfg.decoration ?? 'none',
           phase: i * (Math.PI / beamConfigs.length),
           dotY: 0,
-          isBurst: false,
-          burstOpacity: 0,
         }
       })
     }
@@ -352,53 +346,57 @@ export const BeamRain = ({
       }
     }
 
+    let previousTimestamp = 0
+
     const draw = (timestamp: number) => {
       const { W, H } = sizeRef.current
       if (W === 0 || H === 0) {
-        animFrame = requestAnimationFrame(draw)
+        if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
         return
       }
 
       ctx.clearRect(0, 0, W, H)
+      const delta = frameScale(timestamp, previousTimestamp)
+      previousTimestamp = timestamp
 
       particles.forEach((b, i) => {
         // ── Atualiza posição e opacidade por modo ──────────────────
         let alpha = b.maxOpacity
 
         if (mode === 'loop') {
-          b.y += b.speed
+          b.y += b.speed * delta
           if (b.y > H) b.y = -b.height
           alpha = b.maxOpacity
         } else if (mode === 'random') {
-          b.y += b.speed
+          b.y += b.speed * delta
           if (b.y > H + b.height) {
-            b.y = -b.height - Math.random() * H * 0.5
-            b.x = ((beamConfigs[i].x + (Math.random() - 0.5) * 10) / 100) * W
+            b.y = -b.height - random() * H * 0.5
+            b.x = ((beamConfigs[i].x + (random() - 0.5) * 10) / 100) * W
           }
           alpha = b.maxOpacity
         } else if (mode === 'fade') {
-          b.y += b.speed
+          b.y += b.speed * delta
           if (b.y > H + b.height) b.y = -b.height
           // Fade baseado na posição: 0 no topo, máximo no meio, 0 no fundo
           const progress = (b.y + b.height) / (H + b.height * 2)
           alpha = b.maxOpacity * Math.sin(Math.PI * Math.max(0, Math.min(1, progress)))
         } else if (mode === 'pulse') {
-          b.y += b.speed
+          b.y += b.speed * delta
           if (b.y > H) b.y = -b.height
-          alpha = b.maxOpacity * (0.4 + 0.6 * Math.sin(timestamp * 0.002 + b.phase))
+          alpha = b.maxOpacity * Math.max(0, 0.4 + 0.6 * Math.sin(timestamp * 0.002 + b.phase))
         } else if (mode === 'burst') {
           // Burst: velocidade alta, aparece e some rápido
-          b.y += b.speed * 4
+          b.y += b.speed * 4 * delta
           const progress = (b.y + b.height) / (H + b.height * 2)
           // Curva sharp: sobe rápido e cai rápido
           alpha = b.maxOpacity * Math.pow(Math.sin(Math.PI * Math.max(0, Math.min(1, progress))), 3)
           if (b.y > H + b.height) {
-            b.y = -b.height - Math.random() * H * 0.3
+            b.y = -b.height - random() * H * 0.3
           }
         }
 
         // Atualiza posição do dot
-        b.dotY = (b.dotY + b.speed * 1.5) % b.height
+        b.dotY = (b.dotY + b.speed * 1.5 * delta) % b.height
 
         if (alpha <= 0.01) return
 
@@ -411,16 +409,16 @@ export const BeamRain = ({
         if (b.decoration === 'dot') drawDot(ctx, b, alpha, timestamp)
       })
 
-      animFrame = requestAnimationFrame(draw)
+      if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
     }
 
-    animFrame = requestAnimationFrame(draw)
+    draw(0)
 
     return () => {
       cancelAnimationFrame(animFrame)
       observer?.disconnect()
     }
-  }, [beamConfigs, mode, fixed, windowSize.width, windowSize.height])
+  }, [beamConfigs, mode, fixed, windowSize.width, windowSize.height, prefersReducedMotion, seed, isPageVisible])
 
   const edgeFade = `linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)`
 

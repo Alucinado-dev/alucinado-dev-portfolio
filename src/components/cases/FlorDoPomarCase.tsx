@@ -80,7 +80,7 @@ export async function FlorDoPomarCase({ locale, project }: FlorDoPomarCaseProps)
                 </div>
 
                 <div className='space-y-4'>
-                  <h1 className='font-space-grotesk text-4xl leading-none font-bold tracking-[-0.04em] text-slate-50 sm:text-5xl md:text-6xl'>
+                  <h1 className='font-audiowide text-4xl leading-none font-normal tracking-[-0.04em] text-slate-50 sm:text-5xl md:text-6xl'>
                     {project.title}
                   </h1>
                   <p className='font-outfit max-w-2xl text-base leading-7 font-light text-slate-200/78 md:text-lg md:leading-8'>

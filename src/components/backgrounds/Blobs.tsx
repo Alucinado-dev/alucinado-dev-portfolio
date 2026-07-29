@@ -13,16 +13,16 @@ export interface BlobConfig {
   color: string
 
   /**
-   * Largura do blob em pixels.
+   * Largura do blob. Aceita número em pixels ou qualquer tamanho CSS válido.
    * @default 400
    */
-  width?: number
+  width?: CSSProperties['width']
 
   /**
-   * Altura do blob em pixels. Se omitido, usa o valor de `width` (blob circular).
+   * Altura do blob. Se omitido, usa o valor de `width` (blob circular).
    * @default igual a width
    */
-  height?: number
+  height?: CSSProperties['height']
 
   /**
    * Posição horizontal. Aceita qualquer valor CSS: `'50%'`, `'calc(50% - 200px)'`, `'-10%'`, etc.
@@ -229,8 +229,6 @@ export const BlobBackground = ({ blobs, fixed = false, zIndex = 0, className }: 
               filter: `blur(${blur}px)`,
               transform: anchorToTransform(anchorX, anchorY),
               zIndex: blobZ,
-              // Evita que o blur crie um halo além do container
-              willChange: 'filter',
             }}
           />
         )

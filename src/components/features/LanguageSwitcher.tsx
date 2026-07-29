@@ -50,7 +50,7 @@ export const LanguageSwitcher = () => {
           )}
         </button>
 
-        <span aria-hidden='true' className='font-sans text-[8px] text-white/25'>
+        <span aria-hidden='true' className='font-zen-dots text-[8px] text-white/25'>
           /
         </span>
 

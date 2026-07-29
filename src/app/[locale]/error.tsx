@@ -29,7 +29,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
       <section className='relative w-full max-w-2xl border border-white/10 bg-[#050817]/88 px-6 py-12 text-center shadow-[0_28px_80px_-48px_rgba(0,0,0,0.95)] sm:px-10'>
         <span className='font-syne-mono text-cyber-orange text-[9px] tracking-[0.2em] uppercase'>{t('eyebrow')}</span>
         <Icon icon='lucide:triangle-alert' className='text-cyber-orange mx-auto mt-6 h-8 w-8' aria-hidden='true' />
-        <h1 className='font-space-grotesk mt-5 text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl'>
+        <h1 className='font-zen-dots mt-5 text-3xl font-normal tracking-tight text-slate-50 sm:text-4xl'>
           {t('title')}
         </h1>
         <p className='font-outfit mx-auto mt-5 max-w-lg text-base leading-8 font-light text-slate-400'>

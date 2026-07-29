@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 128" fill="none">
+  <title>Alucinado — por Lucino Campos</title>
+  <g transform="translate(12 12) scale(1.625)">
+    <path d="M5 58 24.5 6H36L16.5 58H5Z" fill="#00FBEA"/>
+    <path d="M38 6 59 58H46L32.5 23.5 38 6Z" fill="#00FBEA"/>
+    <path d="M21 39H41.5L46 50H17L21 39Z" fill="#00FBEA"/>
+    <path d="m32 31 5.5 8H27l5-8Z" fill="#010205"/>
+    <path d="M49 11h9v3h-9z" fill="#00FBEA" opacity=".42"/>
+  </g>
+  <text x="132" y="69" fill="#F8FAFC" font-family="Audiowide, Arial Black, sans-serif" font-size="42" letter-spacing="6">ALUCINADO</text>
+  <text x="135" y="98" fill="#64748B" font-family="Syne Mono, Consolas, monospace" font-size="11" letter-spacing="4">POR LUCINO CAMPOS</text>
+</svg>

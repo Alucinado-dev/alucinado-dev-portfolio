@@ -1,7 +1,12 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 
 import { useWindowSize } from '@uidotdev/usehooks'
 import { useReducedMotion } from 'motion/react'
+
+import { type RandomSeed, createRandom, frameScale, resizeCanvas } from './canvas'
+import { usePageVisibility } from './usePageVisibility'
 
 type MeteorParticle = {
   x: number
@@ -121,6 +126,8 @@ export interface MeteorShowerProps {
    * Classe CSS extra aplicada ao canvas (útil para `mix-blend-mode`, etc).
    */
   className?: string
+  /** Seed opcional para reproduzir a mesma sequência de meteoros. */
+  seed?: RandomSeed
 }
 
 // ─────────────────────────────────────────────
@@ -179,6 +186,7 @@ export const MeteorShower = ({
   fadeEdgePercent = 5,
   zIndex = 0,
   className,
+  seed,
 }: MeteorShowerProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -187,11 +195,13 @@ export const MeteorShower = ({
   // sem precisar de event listener manual dentro do useEffect do canvas.
   const windowSize = useWindowSize()
   const prefersReducedMotion = useReducedMotion()
+  const isPageVisible = usePageVisibility()
 
   // Tamanho atual exposto ao loop de animação via ref — sem re-render.
   const sizeRef = useRef({ W: 0, H: 0 })
 
   useEffect(() => {
+    if (!isPageVisible) return
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -199,6 +209,7 @@ export const MeteorShower = ({
 
     let animFrame: number
     let meteors: MeteorParticle[] = []
+    const random = createRandom(seed)
 
     /**
      * Cria um meteoro.
@@ -215,9 +226,13 @@ export const MeteorShower = ({
      * Para ângulo de 30° (padrão): meteoros entram pela borda superior E pela esquerda.
      * O parâmetro t cobre toda a soma das duas bordas proporcionalmente ao tamanho.
      */
+    const RAD = (angle * Math.PI) / 180
+    const velocityX = Math.sin(RAD)
+    const velocityY = Math.cos(RAD)
+
     const spawnMeteor = (W: number, H: number, initial = false): MeteorParticle => {
-      const length = minLength + Math.random() * (maxLength - minLength)
-      const w = minWidth + Math.random() * (maxWidth - minWidth)
+      const length = minLength + random() * (maxLength - minLength)
+      const w = minWidth + random() * (maxWidth - minWidth)
 
       let x: number
       let y: number
@@ -226,29 +241,20 @@ export const MeteorShower = ({
         // Distribuição inicial: cobre toda a tela + uma margem extra além das bordas
         // para que nem todos comecem visíveis ao mesmo tempo
         const margin = length + 100
-        x = -margin + Math.random() * (W + margin * 2)
-        y = -margin + Math.random() * (H + margin * 2)
+        x = -margin + random() * (W + margin * 2)
+        y = -margin + random() * (H + margin * 2)
       } else {
-        // Spawn uniforme ao longo da linha de entrada perpendicular ao ângulo.
-        // Para ângulos entre 0° e 90° (diagonal pra baixo-direita):
-        //   - borda de entrada superior: x ∈ [0, W], y = negativo
-        //   - borda de entrada esquerda: y ∈ [0, H], x = negativo
-        // Sorteia um ponto ao longo da soma das duas bordas ponderada pelo tamanho.
-        const topWeight = W // comprimento da borda superior
-        const leftWeight = H // comprimento da borda esquerda
-        const total = topWeight + leftWeight
-        const t = Math.random() * total
+        const margin = length + random() * 80
+        const horizontalEdgeWeight = W * Math.abs(velocityY)
+        const verticalEdgeWeight = H * Math.abs(velocityX)
+        const edge = random() * (horizontalEdgeWeight + verticalEdgeWeight)
 
-        const margin = length + Math.random() * 80
-
-        if (t < topWeight) {
-          // Entra pelo topo — cobre toda a largura incluindo além das bordas
-          x = -margin * Math.abs(Math.cos((angle * Math.PI) / 180)) + (t / topWeight) * (W + margin)
-          y = -margin
+        if (edge < horizontalEdgeWeight) {
+          x = random() * W
+          y = velocityY >= 0 ? -margin : H + margin
         } else {
-          // Entra pela esquerda — cobre toda a altura
-          x = -margin
-          y = ((t - topWeight) / leftWeight) * (H + margin) - margin * Math.abs(Math.sin((angle * Math.PI) / 180))
+          x = velocityX >= 0 ? -margin : W + margin
+          y = random() * H
         }
       }
 
@@ -256,8 +262,8 @@ export const MeteorShower = ({
         x,
         y,
         length,
-        speed: speed + Math.random() * speedVariance,
-        opacity: minOpacity + Math.random() * (maxOpacity - minOpacity),
+        speed: speed + random() * speedVariance,
+        opacity: minOpacity + random() * (maxOpacity - minOpacity),
         width: w,
       }
     }
@@ -266,8 +272,7 @@ export const MeteorShower = ({
     const applySize = (W: number, H: number) => {
       if (W === 0 || H === 0) return
       sizeRef.current = { W, H }
-      canvas.width = W
-      canvas.height = H
+      resizeCanvas(canvas, ctx, W, H)
       meteors = Array.from({ length: count }, () => spawnMeteor(W, H, true))
     }
 
@@ -290,14 +295,11 @@ export const MeteorShower = ({
       }
     }
 
-    // ── Pré-calcula ângulo uma única vez ───────────────────────────
-    const RAD = (angle * Math.PI) / 180
-    const cos = Math.cos(RAD)
-    const sin = Math.sin(RAD)
-
     // ── Loop de animação ───────────────────────────────────────────
     // Lê W/H do sizeRef — nunca do DOM. Zero custo de layout query por frame.
-    const draw = () => {
+    let previousTimestamp = 0
+
+    const draw = (timestamp: number) => {
       const { W, H } = sizeRef.current
       if (W === 0 || H === 0) {
         if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
@@ -306,19 +308,24 @@ export const MeteorShower = ({
 
       ctx.clearRect(0, 0, W, H)
 
+      const delta = frameScale(timestamp, previousTimestamp)
+      previousTimestamp = timestamp
+
       meteors.forEach(m => {
-        m.x += m.speed * cos
-        m.y += m.speed * sin
+        m.x += m.speed * velocityX * delta
+        m.y += m.speed * velocityY * delta
 
         // Saiu da tela — respawn fora da borda
-        if (m.x > W + m.length || m.y > H + m.length) {
+        const leftHorizontally = velocityX >= 0 ? m.x > W + m.length : m.x < -m.length
+        const leftVertically = velocityY >= 0 ? m.y > H + m.length : m.y < -m.length
+        if (leftHorizontally || leftVertically) {
           Object.assign(m, spawnMeteor(W, H, false))
         }
 
         const headX = m.x
         const headY = m.y
-        const tailX = headX - m.length * cos
-        const tailY = headY - m.length * sin
+        const tailX = headX - m.length * velocityX
+        const tailY = headY - m.length * velocityY
 
         // Gradiente cauda → cabeça
         const grad = ctx.createLinearGradient(tailX, tailY, headX, headY)
@@ -346,7 +353,7 @@ export const MeteorShower = ({
       if (!prefersReducedMotion) animFrame = requestAnimationFrame(draw)
     }
 
-    draw()
+    draw(0)
 
     return () => {
       cancelAnimationFrame(animFrame)
@@ -371,6 +378,8 @@ export const MeteorShower = ({
     windowSize.width,
     windowSize.height,
     prefersReducedMotion,
+    seed,
+    isPageVisible,
   ])
 
   // ── Máscara de fade nas bordas ─────────────────────────────────

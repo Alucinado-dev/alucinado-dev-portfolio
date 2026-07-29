@@ -64,7 +64,7 @@ export function ProjectArchiveCard({
         <div className='mb-4 flex items-start justify-between gap-4'>
           <div>
             <span className='font-syne-mono text-[9px] tracking-[0.16em] text-slate-400'>{project.id}</span>
-            <h2 className='font-space-grotesk mt-1 text-xl font-bold text-slate-100 transition-colors group-hover:text-cyan-100'>
+            <h2 className='font-asimovian mt-1 text-xl font-normal text-slate-100 transition-colors group-hover:text-cyan-100'>
               {project.title}
             </h2>
             <p className='font-syne-mono text-tech-teal mt-1.5 text-[9px] tracking-[0.12em] uppercase'>

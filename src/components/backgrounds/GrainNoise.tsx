@@ -2,15 +2,32 @@
 
 import { useEffect, useRef } from 'react'
 
+import { type RandomSeed, createRandom } from './canvas'
+
 type GrainNoiseProps = {
   opacity?: number
+  /** Intensidade luminosa do ruído entre 0 e 1. @default 1 */
+  intensity?: number
+  /** @deprecated Use `intensity`. Mantido para compatibilidade. */
   density?: number
   zIndex?: number
   fixed?: boolean
+  className?: string
+  /** Seed opcional para reproduzir exatamente a mesma textura. */
+  seed?: RandomSeed
 }
 
-export default function GrainNoise({ opacity = 0.05, density = 1, zIndex = 1, fixed = true }: GrainNoiseProps) {
+export default function GrainNoise({
+  opacity = 0.05,
+  intensity,
+  density,
+  zIndex = 1,
+  fixed = true,
+  className,
+  seed,
+}: GrainNoiseProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const resolvedIntensity = Math.max(0, Math.min(1, intensity ?? density ?? 1))
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -25,9 +42,10 @@ export default function GrainNoise({ opacity = 0.05, density = 1, zIndex = 1, fi
 
     const imageData = ctx.createImageData(size, size)
     const data = imageData.data
+    const random = createRandom(seed)
 
     for (let i = 0; i < data.length; i += 4) {
-      const value = Math.random() * 255 * density
+      const value = random() * 255 * resolvedIntensity
 
       data[i] = value
       data[i + 1] = value
@@ -36,12 +54,13 @@ export default function GrainNoise({ opacity = 0.05, density = 1, zIndex = 1, fi
     }
 
     ctx.putImageData(imageData, 0, 0)
-  }, [density])
+  }, [resolvedIntensity, seed])
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden
+      className={className}
       style={{
         position: fixed ? 'fixed' : 'absolute',
         inset: 0,

@@ -73,7 +73,7 @@ export default function AboutSection() {
                 <Icon icon='lucide:user-round-search' className='h-4 w-4' aria-hidden='true' />
                 {t('eyebrow')}
               </div>
-              <h2 className='font-space-grotesk max-w-2xl text-2xl leading-tight font-bold tracking-tight text-slate-50 md:text-3xl'>
+              <h2 className='font-zen-dots max-w-2xl text-2xl leading-tight font-normal tracking-tight text-slate-50 md:text-3xl'>
                 {t('title')}
               </h2>
             </motion.div>

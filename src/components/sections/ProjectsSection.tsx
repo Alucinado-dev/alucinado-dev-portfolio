@@ -39,7 +39,7 @@ export default async function ProjectsSection() {
                 <Icon icon='lucide:folder-kanban' className='h-4 w-4' aria-hidden='true' />
                 {t('eyebrow')}
               </div>
-              <h2 className='font-space-grotesk text-2xl font-bold tracking-tight text-slate-50 md:text-3xl'>
+              <h2 className='font-zen-dots text-2xl font-normal tracking-tight text-slate-50 md:text-3xl'>
                 {t('title')}
               </h2>
             </div>

@@ -54,15 +54,7 @@ export default function Footer() {
             aria-label={footer('logoHome')}
             className='focus-visible:ring-cyan-bright/60 inline-flex items-center gap-4 outline-none focus-visible:ring-2'
           >
-            <Logo size='footer' />
-            <div>
-              <span className='font-space-grotesk block text-lg font-semibold tracking-[-0.02em] text-slate-100'>
-                {footer('brand')}
-              </span>
-              <span className='font-syne-mono text-[8px] tracking-[0.16em] text-slate-500 uppercase'>
-                {footer('identity')}
-              </span>
-            </div>
+            <Logo size='footer' variant='signature' />
           </Link>
           <p className='font-outfit mt-5 max-w-xs text-sm leading-7 font-light text-slate-400'>
             {footer('description')}

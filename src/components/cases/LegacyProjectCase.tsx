@@ -45,7 +45,7 @@ export async function LegacyProjectCase({ locale, project }: LegacyProjectCasePr
               <span className='text-white/15'>/</span>
               <span className='text-cyan-300'>{taxonomy(`scope.${project.scope}`)}</span>
             </div>
-            <h1 className='font-space-grotesk text-4xl font-bold tracking-tight text-slate-50 md:text-5xl'>
+            <h1 className='font-audiowide text-4xl font-normal tracking-tight text-slate-50 md:text-5xl'>
               {project.title}
             </h1>
             <p className='font-outfit max-w-3xl text-base leading-7 font-light text-slate-300/75'>
@@ -103,13 +103,13 @@ export async function LegacyProjectCase({ locale, project }: LegacyProjectCasePr
         <div className='grid items-start gap-8 lg:grid-cols-[1fr_360px]'>
           <div className='space-y-8'>
             <section className='border border-white/9 bg-[#050b18] p-6 md:p-8'>
-              <h2 className='font-space-grotesk mb-5 text-xl font-bold text-slate-100'>{t('overview')}</h2>
+              <h2 className='font-zen-dots mb-5 text-xl font-normal text-slate-100'>{t('overview')}</h2>
               <p className='font-outfit text-[15px] leading-7 font-light text-slate-300/78 md:text-base md:leading-8'>
                 {projectContent(`${project.slug}.extendedDescription`)}
               </p>
             </section>
             <section className='border border-white/9 bg-[#07101f] p-6 md:p-8'>
-              <h2 className='font-space-grotesk mb-5 text-xl font-bold text-slate-100'>{t('features')}</h2>
+              <h2 className='font-zen-dots mb-5 text-xl font-normal text-slate-100'>{t('features')}</h2>
               <ul className='grid gap-3 sm:grid-cols-2'>
                 {features.map(feature => (
                   <li
@@ -129,7 +129,7 @@ export async function LegacyProjectCase({ locale, project }: LegacyProjectCasePr
           </div>
 
           <aside className='border-plasma-purple/20 border bg-[#080d1d]/96 p-5 lg:sticky lg:top-24'>
-            <h2 className='font-space-grotesk mb-5 border-b border-white/8 pb-4 text-sm font-semibold text-slate-200'>
+            <h2 className='font-zen-dots mb-5 border-b border-white/8 pb-4 text-sm font-normal text-slate-200'>
               {t('stack')}
             </h2>
             <div className='custom-scrollbar max-h-130 space-y-4 overflow-y-auto pr-2'>

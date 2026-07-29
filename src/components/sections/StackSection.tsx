@@ -77,7 +77,7 @@ export default function StackSection() {
               <Icon icon='lucide:blocks' className='h-4 w-4' aria-hidden='true' />
               {t('eyebrow')}
             </div>
-            <h2 className='font-space-grotesk text-2xl font-bold tracking-tight text-slate-50 md:text-3xl'>
+            <h2 className='font-zen-dots text-2xl font-normal tracking-tight text-slate-50 md:text-3xl'>
               {t('title')}
             </h2>
             <p className='font-outfit text-sm leading-6 font-light text-slate-300/70 md:text-base md:leading-7'>
@@ -155,7 +155,7 @@ export default function StackSection() {
                   <div className='flex h-14 w-14 items-center justify-center border border-white/10 bg-white/5'>
                     <Icon icon={selectedTech.icon} className='h-8 w-8 text-slate-100' aria-hidden='true' />
                   </div>
-                  <h3 className='font-space-grotesk text-2xl font-bold text-slate-50'>{selectedTech.name}</h3>
+                  <h3 className='font-asimovian text-2xl font-normal text-slate-50'>{selectedTech.name}</h3>
                 </div>
 
                 <p className='font-outfit text-sm leading-7 font-light text-slate-300/78 md:text-base'>

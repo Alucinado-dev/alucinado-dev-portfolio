@@ -24,42 +24,42 @@ import '../../styles/globals.css'
 const outfit = Outfit({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
-  variable: '--font-outfit',
+  variable: '--font-outfit-loaded',
   display: 'swap',
 })
 
 const SpaceGrotesk = Space_Grotesk({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-space-grotesk-loaded',
   display: 'swap',
 })
 
 const SyneMono = Syne_Mono({
   weight: ['400'],
   subsets: ['latin'],
-  variable: '--font-syne-mono',
+  variable: '--font-syne-mono-loaded',
   display: 'swap',
 })
 
 const Exo2 = Exo_2({
   weight: ['200', '300', '400', '500', '600', '700', '800', '900', '100'],
   subsets: ['latin'],
-  variable: '--font-exo-2',
+  variable: '--font-exo-2-loaded',
   display: 'swap',
 })
 
 const rajdhani = Rajdhani({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--font-rajdhani',
+  variable: '--font-rajdhani-loaded',
   display: 'swap',
 })
 
 const asimovian = Asimovian({
   weight: ['400'],
   subsets: ['latin'],
-  variable: '--font-asimovian',
+  variable: '--font-asimovian-loaded',
   display: 'swap',
   adjustFontFallback: false,
 })
@@ -67,21 +67,21 @@ const asimovian = Asimovian({
 const audiowide = Audiowide({
   weight: ['400'],
   subsets: ['latin'],
-  variable: '--font-audiowide',
+  variable: '--font-audiowide-loaded',
   display: 'swap',
 })
 
 const zenDots = Zen_Dots({
   weight: ['400'],
   subsets: ['latin'],
-  variable: '--font-zen-dots',
+  variable: '--font-zen-dots-loaded',
   display: 'swap',
 })
 
 const vt323 = VT323({
   weight: ['400'],
   subsets: ['latin'],
-  variable: '--font-vt323',
+  variable: '--font-vt323-loaded',
   display: 'swap',
 })
 

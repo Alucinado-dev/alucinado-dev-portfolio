@@ -5,16 +5,20 @@
   --foreground: #171717;
 }
 
-@theme {
-  --font-outfit: var(--font-outfit);
-  --font-space-grotesk: var(--font-space-grotesk);
-  --font-syne-mono: var(--font-syne-mono);
-  --font-exo-2: var(--font-exo-2);
-  --font-rajdhani: var(--font-rajdhani);
-  --font-asimovian: var(--font-asimovian);
-  --font-audiowide: var(--font-audiowide);
-  --font-zen-dots: var(--font-zen-dots);
-  --font-vt323: var(--font-vt323);
+@theme inline {
+  --font-outfit: var(--font-outfit-loaded), var(--font-space-grotesk-loaded), sans-serif;
+  --font-space-grotesk: var(--font-space-grotesk-loaded), var(--font-outfit-loaded), sans-serif;
+  --font-syne-mono: var(--font-syne-mono-loaded), var(--font-vt323-loaded), monospace;
+  --font-exo-2: var(--font-exo-2-loaded), var(--font-space-grotesk-loaded), var(--font-outfit-loaded), sans-serif;
+  --font-rajdhani: var(--font-rajdhani-loaded), var(--font-exo-2-loaded), var(--font-space-grotesk-loaded), sans-serif;
+  --font-asimovian:
+    var(--font-asimovian-loaded), var(--font-audiowide-loaded), var(--font-zen-dots-loaded),
+    var(--font-space-grotesk-loaded), sans-serif;
+  --font-audiowide:
+    var(--font-audiowide-loaded), var(--font-zen-dots-loaded), var(--font-space-grotesk-loaded), sans-serif;
+  --font-zen-dots:
+    var(--font-zen-dots-loaded), var(--font-audiowide-loaded), var(--font-space-grotesk-loaded), sans-serif;
+  --font-vt323: var(--font-vt323-loaded), var(--font-syne-mono-loaded), monospace;
 }
 
 @theme {

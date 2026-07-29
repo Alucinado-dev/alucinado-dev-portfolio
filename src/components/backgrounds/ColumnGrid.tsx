@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { type CSSProperties, useId } from 'react'
 
 // ─────────────────────────────────────────────
 // Tipos
@@ -200,6 +200,7 @@ export const ColumnGrid = ({
   zIndex = 0,
   className,
 }: ColumnGridProps) => {
+  const instanceId = useId()
   // Resolve quantas colunas usar em cada breakpoint
   // Como é CSS puro, usamos variáveis CSS e media queries inline via style tag
   const md = columnsMd ?? columns
@@ -282,7 +283,7 @@ export const ColumnGrid = ({
                 transform: 'translateX(-50%)',
                 color: col.lColor,
                 fontSize: 10,
-                fontFamily: 'monospace',
+                fontFamily: 'var(--font-syne-mono)',
                 fontWeight: 600,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
@@ -301,52 +302,34 @@ export const ColumnGrid = ({
   return (
     <>
       {/* Media queries para responsividade */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-          .cg-mobile { display: flex !important; }
-          .cg-md     { display: none  !important; }
-          .cg-lg     { display: none  !important; }
+      <style>{`
+          [data-column-grid="${instanceId}"] .cg-mobile { display: flex !important; }
+          [data-column-grid="${instanceId}"] .cg-md     { display: none  !important; }
+          [data-column-grid="${instanceId}"] .cg-lg     { display: none  !important; }
           @media (min-width: 768px) {
-            .cg-mobile { display: none  !important; }
-            .cg-md     { display: flex  !important; }
+            [data-column-grid="${instanceId}"] .cg-mobile { display: none  !important; }
+            [data-column-grid="${instanceId}"] .cg-md     { display: flex  !important; }
           }
           @media (min-width: 1024px) {
-            .cg-md { display: none  !important; }
-            .cg-lg { display: flex  !important; }
+            [data-column-grid="${instanceId}"] .cg-md { display: none  !important; }
+            [data-column-grid="${instanceId}"] .cg-lg { display: flex  !important; }
           }
-        `,
-        }}
-      />
+        `}</style>
 
-      <div aria-hidden='true' className={className} style={containerStyle}>
+      <div aria-hidden='true' className={className} data-column-grid={instanceId} style={containerStyle}>
         {/* Mobile */}
         <div className='cg-mobile' style={{ width: '100%', height: '100%' }}>
           {renderColumns(columns)}
         </div>
 
-        {/* md — só monta se diferente de mobile */}
-        {md !== columns ? (
-          <div className='cg-md' style={{ width: '100%', height: '100%' }}>
-            {renderColumns(md)}
-          </div>
-        ) : (
-          // Mesmo count que mobile — reutiliza o mesmo bloco com classe md
-          <div className='cg-md' style={{ width: '100%', height: '100%' }}>
-            {renderColumns(md)}
-          </div>
-        )}
+        {/* Variações responsivas; apenas uma fica visível por breakpoint */}
+        <div className='cg-md' style={{ width: '100%', height: '100%' }}>
+          {renderColumns(md)}
+        </div>
 
-        {/* lg — só monta se diferente de md */}
-        {lg !== md ? (
-          <div className='cg-lg' style={{ width: '100%', height: '100%' }}>
-            {renderColumns(lg)}
-          </div>
-        ) : (
-          <div className='cg-lg' style={{ width: '100%', height: '100%' }}>
-            {renderColumns(lg)}
-          </div>
-        )}
+        <div className='cg-lg' style={{ width: '100%', height: '100%' }}>
+          {renderColumns(lg)}
+        </div>
       </div>
     </>
   )

@@ -16,7 +16,7 @@ export default async function NotFound() {
         <div className='font-audiowide mt-5 text-7xl tracking-[-0.06em] text-slate-50 sm:text-8xl' aria-hidden='true'>
           404
         </div>
-        <h1 className='font-space-grotesk mt-5 text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl'>
+        <h1 className='font-zen-dots mt-5 text-3xl font-normal tracking-tight text-slate-50 sm:text-4xl'>
           {t('title')}
         </h1>
         <p className='font-outfit mx-auto mt-5 max-w-xl text-base leading-8 font-light text-slate-400'>

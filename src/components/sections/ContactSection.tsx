@@ -234,7 +234,7 @@ export default function ContactSection() {
               <Icon icon='lucide:send' className='h-4 w-4' aria-hidden='true' />
               {t('eyebrow')}
             </div>
-            <h2 className='font-space-grotesk text-2xl font-bold tracking-tight text-slate-50 md:text-3xl'>
+            <h2 className='font-zen-dots text-2xl font-normal tracking-tight text-slate-50 md:text-3xl'>
               {t('title')}
             </h2>
             <p className='font-outfit max-w-2xl text-sm leading-6 font-light text-slate-300/75 md:text-base md:leading-7'>
@@ -246,7 +246,7 @@ export default function ContactSection() {
             <div className='flex flex-col border border-white/9 bg-[#07101e]/82 p-5 md:p-6'>
               <div className='mb-8'>
                 <Icon icon='lucide:messages-square' className='text-cyan-bright mb-4 h-7 w-7' aria-hidden='true' />
-                <h3 className='font-space-grotesk text-xl font-semibold text-slate-100'>{t('direct.title')}</h3>
+                <h3 className='font-asimovian text-xl font-normal text-slate-100'>{t('direct.title')}</h3>
                 <p className='font-outfit mt-3 text-sm leading-6 font-light text-slate-400'>
                   {t('direct.description')}
                 </p>
@@ -313,7 +313,7 @@ export default function ContactSection() {
             >
               <div className='mb-6 flex items-start justify-between gap-4 border-b border-white/8 pb-5'>
                 <div>
-                  <h3 className='font-space-grotesk text-lg font-semibold text-slate-100'>{t('form.title')}</h3>
+                  <h3 className='font-asimovian text-lg font-normal text-slate-100'>{t('form.title')}</h3>
                   <p className='font-outfit mt-1 text-xs leading-5 text-slate-500'>{t('form.integrationNotice')}</p>
                 </div>
                 <span className='font-syne-mono border border-white/8 bg-white/3 px-2 py-1 text-[8px] tracking-[0.14em] text-slate-500 uppercase'>

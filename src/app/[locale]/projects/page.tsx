@@ -71,7 +71,7 @@ export default function ProjectsArchivePage() {
               <Icon icon='lucide:folder-git-2' className='h-4 w-4' aria-hidden='true' />
               {t('eyebrow')}
             </div>
-            <h1 className='font-space-grotesk text-3xl font-bold tracking-tight text-slate-50 md:text-4xl'>
+            <h1 className='font-audiowide text-3xl font-normal tracking-tight text-slate-50 md:text-4xl'>
               {t('title')}
             </h1>
             <p className='font-outfit max-w-2xl text-sm leading-6 font-light text-slate-300/70 md:text-base md:leading-7'>

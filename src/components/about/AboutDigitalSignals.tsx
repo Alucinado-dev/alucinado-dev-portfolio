@@ -52,7 +52,7 @@ export async function AboutDigitalSignals({ locale }: AboutDigitalSignalsProps) 
               <Icon icon='lucide:github' className='h-4 w-4' aria-hidden='true' />
               {t('github.eyebrow')}
             </div>
-            <h2 className='font-space-grotesk mt-5 text-3xl leading-tight font-bold tracking-tight text-slate-50 md:text-4xl'>
+            <h2 className='font-zen-dots mt-5 text-3xl leading-tight font-normal tracking-tight text-slate-50 md:text-4xl'>
               {t('github.sectionTitle')}
             </h2>
           </div>
@@ -203,7 +203,7 @@ export async function AboutDigitalSignals({ locale }: AboutDigitalSignalsProps) 
                 <Icon icon='lucide:keyboard' className='h-4 w-4' aria-hidden='true' />
                 {t('wakatime.eyebrow')}
               </div>
-              <h2 className='font-space-grotesk mt-5 text-3xl leading-tight font-bold tracking-tight text-slate-50 md:text-4xl'>
+              <h2 className='font-zen-dots mt-5 text-3xl leading-tight font-normal tracking-tight text-slate-50 md:text-4xl'>
                 {t('wakatime.sectionTitle')}
               </h2>
             </div>
@@ -302,7 +302,7 @@ export async function AboutDigitalSignals({ locale }: AboutDigitalSignalsProps) 
               <Icon icon='lucide:headphones' className='h-4 w-4' aria-hidden='true' />
               {t('spotify.eyebrow')}
             </div>
-            <h2 className='font-space-grotesk mt-5 text-3xl leading-tight font-bold tracking-tight text-slate-50 md:text-4xl'>
+            <h2 className='font-zen-dots mt-5 text-3xl leading-tight font-normal tracking-tight text-slate-50 md:text-4xl'>
               {t('spotify.sectionTitle')}
             </h2>
           </div>

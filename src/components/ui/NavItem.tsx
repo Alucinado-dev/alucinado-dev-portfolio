@@ -17,7 +17,7 @@ export const NavItem = ({ href, children }: NavItemProps) => {
     <Link
       href={href}
       aria-current={isActive ? 'page' : undefined}
-      className='group font-rajdhani relative flex h-14 cursor-pointer flex-col justify-center overflow-hidden border-r border-white/5 px-6 text-sm font-medium tracking-[0.12em] uppercase transition-all duration-300 select-none'
+      className='group font-asimovian relative flex h-14 cursor-pointer flex-col justify-center overflow-hidden border-r border-white/5 px-6 text-sm font-normal tracking-[0.12em] uppercase transition-all duration-300 select-none'
       style={{ backgroundColor: isActive ? 'rgba(0, 251, 234, 0.015)' : 'transparent' }}
     >
       <span

@@ -1,6 +1,11 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 
 import { useReducedMotion } from 'motion/react'
+
+import { type RandomSeed, createRandom, resizeCanvas } from './canvas'
+import { usePageVisibility } from './usePageVisibility'
 
 // ─────────────────────────────────────────────
 // useWindowSize — mesmo hook do MeteorShower
@@ -131,6 +136,8 @@ export interface StarFieldProps {
    * Classe CSS extra aplicada ao canvas.
    */
   className?: string
+  /** Seed opcional para manter a mesma distribuição entre remontagens. */
+  seed?: RandomSeed
 }
 
 // ─────────────────────────────────────────────
@@ -177,13 +184,16 @@ export const StarField = ({
   fadeEdgePercent = 0,
   zIndex = 0,
   className,
+  seed,
 }: StarFieldProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const windowSize = useWindowSize()
   const sizeRef = useRef({ W: 0, H: 0 })
   const prefersReducedMotion = useReducedMotion()
+  const isPageVisible = usePageVisibility()
 
   useEffect(() => {
+    if (!isPageVisible) return
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -191,24 +201,24 @@ export const StarField = ({
 
     let animFrame: number
     let stars: StarParticle[] = []
+    const random = createRandom(seed)
 
     // ── Cria uma estrela com posição aleatória dentro da tela ──────
     const spawnStar = (W: number, H: number): StarParticle => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      radius: minRadius + Math.random() * (maxRadius - minRadius),
-      baseOpacity: minOpacity + Math.random() * (maxOpacity - minOpacity),
-      phase: Math.random() * Math.PI * 2,
+      x: random() * W,
+      y: random() * H,
+      radius: minRadius + random() * (maxRadius - minRadius),
+      baseOpacity: minOpacity + random() * (maxOpacity - minOpacity),
+      phase: random() * Math.PI * 2,
       // Converte ciclos/s para rad/ms: speed_rad_ms = cycles_per_s * 2π / 1000
-      twinkleSpeed: ((minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)) * Math.PI * 2) / 1000,
+      twinkleSpeed: ((minTwinkleSpeed + random() * (maxTwinkleSpeed - minTwinkleSpeed)) * Math.PI * 2) / 1000,
     })
 
     // ── Aplica tamanho e redistribui estrelas ──────────────────────
     const applySize = (W: number, H: number) => {
       if (W === 0 || H === 0) return
       sizeRef.current = { W, H }
-      canvas.width = W
-      canvas.height = H
+      resizeCanvas(canvas, ctx, W, H)
       stars = Array.from({ length: count }, () => spawnStar(W, H))
     }
 
@@ -285,6 +295,8 @@ export const StarField = ({
     windowSize.width,
     windowSize.height,
     prefersReducedMotion,
+    seed,
+    isPageVisible,
   ])
 
   const edgeFade =

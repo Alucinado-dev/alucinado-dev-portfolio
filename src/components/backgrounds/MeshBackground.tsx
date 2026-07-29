@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 
+import { cssColorToRgb, resizeCanvas } from './canvas'
+
 // ─────────────────────────────────────────────
 // Tipos
 // ─────────────────────────────────────────────
@@ -43,22 +45,8 @@ export interface MeshBackgroundProps {
 }
 
 // ─────────────────────────────────────────────
-// Helper — converte hex para rgb
+// Cores CSS são normalizadas pelo contexto 2D antes de compor os gradientes.
 // ─────────────────────────────────────────────
-
-const hexToRgb = (hex: string): [number, number, number] | null => {
-  const clean = hex.replace('#', '')
-  const full =
-    clean.length === 3
-      ? clean
-          .split('')
-          .map(c => c + c)
-          .join('')
-      : clean
-  const n = parseInt(full, 16)
-  if (isNaN(n)) return null
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255]
-}
 
 // ─────────────────────────────────────────────
 // Componente
@@ -115,13 +103,12 @@ export const MeshBackground = ({
         const radius = ((point.spread ?? 60) / 100) * diagonal
         const opacity = point.opacity ?? 0.8
 
-        const rgb = hexToRgb(point.color)
+        const rgb = cssColorToRgb(ctx, point.color)
         if (!rgb) return
 
-        const [r, g, b] = rgb
         const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius)
-        grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${opacity})`)
-        grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`)
+        grad.addColorStop(0, `rgba(${rgb}, ${opacity})`)
+        grad.addColorStop(1, `rgba(${rgb}, 0)`)
 
         ctx.fillStyle = grad
         ctx.fillRect(0, 0, W, H)
@@ -129,8 +116,8 @@ export const MeshBackground = ({
     }
 
     const applySize = (W: number, H: number) => {
-      canvas.width = W
-      canvas.height = H
+      if (W === 0 || H === 0) return
+      resizeCanvas(canvas, ctx, W, H)
       draw(W, H)
     }
 

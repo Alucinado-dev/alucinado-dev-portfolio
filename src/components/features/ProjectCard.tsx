@@ -107,7 +107,7 @@ export function ProjectCard({
         <div className='mb-4 flex items-start justify-between gap-4'>
           <div className='space-y-1'>
             <h3
-              className={`font-space-grotesk text-lg font-bold tracking-tight text-slate-100 transition-colors ${colors.text}`}
+              className={`font-asimovian text-lg font-normal tracking-tight text-slate-100 transition-colors ${colors.text}`}
             >
               {title}
             </h3>

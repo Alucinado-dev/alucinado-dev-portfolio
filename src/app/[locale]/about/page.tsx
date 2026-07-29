@@ -65,7 +65,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               {t('hero.eyebrow')}
             </div>
 
-            <h1 className='font-space-grotesk text-4xl leading-[1.04] font-bold tracking-[-0.045em] text-slate-50 sm:text-5xl md:text-6xl lg:text-7xl'>
+            <h1 className='font-audiowide text-4xl leading-[1.04] font-normal tracking-[-0.045em] text-slate-50 sm:text-5xl md:text-6xl lg:text-7xl'>
               {t('hero.title')}
             </h1>
 
@@ -130,7 +130,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             <Icon icon='lucide:route' className='h-4 w-4' aria-hidden='true' />
             {t('journey.eyebrow')}
           </div>
-          <h2 className='font-space-grotesk mt-5 text-3xl leading-tight font-bold tracking-tight text-slate-50 md:text-4xl'>
+          <h2 className='font-zen-dots mt-5 text-3xl leading-tight font-normal tracking-tight text-slate-50 md:text-4xl'>
             {t('journey.title')}
           </h2>
           <figure className='relative mt-9 aspect-3/2 overflow-hidden border border-white/9 bg-[#050a14]'>
@@ -165,7 +165,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               <Icon icon='lucide:book-open-check' className='h-4 w-4' aria-hidden='true' />
               {t('learning.eyebrow')}
             </div>
-            <h2 className='font-space-grotesk mt-5 text-3xl leading-tight font-bold tracking-tight text-slate-50 md:text-4xl'>
+            <h2 className='font-zen-dots mt-5 text-3xl leading-tight font-normal tracking-tight text-slate-50 md:text-4xl'>
               {t('learning.title')}
             </h2>
             <p className='font-outfit mt-5 max-w-md text-base leading-7 font-light text-slate-400'>
@@ -248,7 +248,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               <Icon icon='lucide:sun-medium' className='h-4 w-4' aria-hidden='true' />
               {t('personal.eyebrow')}
             </div>
-            <h2 className='font-space-grotesk mt-5 text-3xl leading-tight font-bold tracking-tight text-slate-50 md:text-4xl'>
+            <h2 className='font-zen-dots mt-5 text-3xl leading-tight font-normal tracking-tight text-slate-50 md:text-4xl'>
               {t('personal.title')}
             </h2>
             <div className='font-outfit mt-6 space-y-5 text-base leading-8 font-light text-slate-300/78'>
@@ -264,7 +264,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className='bg-cyan-bright/35 absolute top-0 left-0 h-px w-24' aria-hidden='true' />
           <div className='bg-plasma-purple/35 absolute right-0 bottom-0 h-px w-24' aria-hidden='true' />
           <Icon icon='lucide:messages-square' className='text-tech-teal mx-auto h-6 w-6' aria-hidden='true' />
-          <h2 className='font-space-grotesk mx-auto mt-5 max-w-2xl text-2xl font-bold tracking-tight text-slate-50 md:text-3xl'>
+          <h2 className='font-zen-dots mx-auto mt-5 max-w-2xl text-2xl font-normal tracking-tight text-slate-50 md:text-3xl'>
             {t('closing.title')}
           </h2>
           <p className='font-outfit mx-auto mt-4 max-w-xl text-sm leading-7 font-light text-slate-400 md:text-base'>
