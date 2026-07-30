@@ -1,10 +1,18 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Lucino Campos — Desenvolvedor Frontend'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
+
+/* eslint-disable @next/next/no-img-element -- ImageResponse/Satori embeds the local data URL through a native img. */
+
+export const alt = 'Alucinado.dev — Desenvolvedor Frontend'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const emblem = await readFile(join(process.cwd(), 'public', 'brand', 'alucinado-logo.png'), 'base64')
+  const emblemSrc = `data:image/png;base64,${emblem}`
+
   return new ImageResponse(
     <div
       style={{
@@ -13,6 +21,7 @@ export default function OpenGraphImage() {
         display: 'flex',
         position: 'relative',
         overflow: 'hidden',
+        alignItems: 'center',
         background: '#010205',
         color: '#f8fafc',
         fontFamily: 'Arial, sans-serif',
@@ -24,7 +33,7 @@ export default function OpenGraphImage() {
           inset: 0,
           display: 'flex',
           background:
-            'radial-gradient(circle at 78% 20%, rgba(0,251,234,0.18), transparent 34%), radial-gradient(circle at 18% 86%, rgba(139,92,246,0.2), transparent 38%)',
+            'radial-gradient(circle at 22% 50%, rgba(255,0,187,0.15), transparent 35%), radial-gradient(circle at 78% 50%, rgba(0,251,234,0.14), transparent 38%)',
         }}
       />
       <div
@@ -35,47 +44,45 @@ export default function OpenGraphImage() {
           border: '1px solid rgba(255,255,255,0.12)',
         }}
       />
+
       <div
         style={{
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
-          padding: '84px 92px',
           width: '100%',
+          padding: '66px 78px',
         }}
       >
-        <div style={{ display: 'flex', width: 176, height: 176, marginRight: 56 }}>
-          <svg viewBox='0 0 64 64' width='176' height='176'>
-            <path d='M5 58 24.5 6H36L16.5 58H5Z' fill='#00fbea' />
-            <path d='M38 6 59 58H46L32.5 23.5 38 6Z' fill='#00fbea' />
-            <path d='M21 39H41.5L46 50H17L21 39Z' fill='#00fbea' />
-            <path d='m32 31 5.5 8H27l5-8Z' fill='#010205' />
-            <path d='M49 11h9v3h-9z' fill='#00fbea' opacity='.42' />
-          </svg>
+        <div
+          style={{
+            display: 'flex',
+            width: 430,
+            height: 430,
+            marginRight: 64,
+            overflow: 'hidden',
+            border: '1px solid rgba(255,255,255,0.08)',
+            background: '#010205',
+          }}
+        >
+          <img src={emblemSrc} width='430' height='430' alt='' />
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 760 }}>
+
+        <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 540 }}>
+          <div style={{ display: 'flex', color: '#94a3b8', fontSize: 19, letterSpacing: 7 }}>
+            IDENTIDADE // SINAL ATIVO
+          </div>
+          <div style={{ display: 'flex', marginTop: 28, fontSize: 58, fontWeight: 800, letterSpacing: 2 }}>
+            ALUCINADO.DEV
+          </div>
+          <div style={{ display: 'flex', marginTop: 18, color: '#cbd5e1', fontSize: 29 }}>DESENVOLVEDOR FRONTEND</div>
           <div
             style={{
               display: 'flex',
-              color: '#14b8a6',
-              fontSize: 22,
-              letterSpacing: 8,
-              textTransform: 'uppercase',
-            }}
-          >
-            identidade // sinal ativo
-          </div>
-          <div style={{ display: 'flex', marginTop: 24, fontSize: 70, fontWeight: 800, letterSpacing: 6 }}>
-            ALUCINADO
-          </div>
-          <div style={{ display: 'flex', marginTop: 16, color: '#cbd5e1', fontSize: 31 }}>por Lucino Campos</div>
-          <div
-            style={{
-              display: 'flex',
-              width: 180,
+              width: 230,
               height: 4,
               marginTop: 38,
-              background: 'linear-gradient(90deg, #00fbea, #8b5cf6)',
+              background: 'linear-gradient(90deg, #ff00bb, #7c3aed, #00fbea)',
             }}
           />
         </div>

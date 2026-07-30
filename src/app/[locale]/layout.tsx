@@ -105,9 +105,32 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       type: 'website',
       siteName: 'alucinado.dev',
+      title: t('title'),
+      description: t('description'),
+      url: getSiteUrl(),
+      images: [
+        {
+          url: `${getSiteUrl()}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: 'alucinado.dev',
+        },
+      ],
+      countryName: 'BR',
     },
     twitter: {
       card: 'summary_large_image',
+      creator: 'Lucino Campos',
+      title: t('title'),
+      images: [
+        {
+          url: `${getSiteUrl()}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: 'alucinado.dev',
+        },
+      ],
+      description: t('description'),
     },
   }
 }
