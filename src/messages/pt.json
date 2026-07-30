@@ -1,0 +1,1087 @@
+{
+  "metadata": {
+    "title": "Lucino Campos | Desenvolvedor Frontend",
+    "description": "Portfólio de Lucino Campos, desenvolvedor frontend com experiência em React, Next.js, TypeScript e aplicações web em produção."
+  },
+  "common": {
+    "navigation": {
+      "home": "Início",
+      "about": "Sobre",
+      "projects": "Projetos"
+    },
+    "language": {
+      "portuguese": "Português",
+      "english": "Inglês",
+      "comingSoon": "Versão em inglês em breve"
+    },
+    "actions": {
+      "viewProjects": "Ver projetos",
+      "downloadCv": "Baixar currículo",
+      "viewCase": "Ver case",
+      "viewArchive": "Ver todos os projetos",
+      "resetFilters": "Limpar filtros",
+      "backToArchive": "Voltar aos projetos",
+      "liveDemo": "Abrir projeto",
+      "viewCode": "Ver código",
+      "privateRepository": "Repositório privado"
+    },
+    "accessibility": {
+      "languageSwitcher": "Selecionar idioma",
+      "skipToContent": "Pular para o conteúdo principal",
+      "downloadCv": "Baixar o currículo de Lucino Campos em PDF",
+      "projectImageAlt": "Captura de tela do projeto {title}",
+      "projectDetails": "Abrir o case do projeto {title}",
+      "externalProject": "Abrir {title} em uma nova aba",
+      "githubProfile": "Abrir o perfil de Lucino Campos no GitHub",
+      "emailProfile": "Enviar um e-mail para Lucino Campos",
+      "linkedinProfile": "Abrir o perfil de Lucino Campos no LinkedIn",
+      "instagramProfile": "Abrir o perfil de Lucino Campos no Instagram",
+      "notifications": "Notificações do portfólio",
+      "terminalLog": "Apresentação profissional em formato de terminal"
+    },
+    "header": {
+      "systemStatus": "PORTFÓLIO ATIVO",
+      "version": "VERSÃO 2026.07",
+      "locale": "IDIOMA: [{locale}]",
+      "currentRoute": "ROTA ATUAL:",
+      "logoHome": "Ir para a página inicial",
+      "mobileNavigation": "Navegação principal",
+      "openMenu": "Abrir menu de navegação",
+      "closeMenu": "Fechar menu de navegação"
+    },
+    "backgroundHud": {
+      "sectorOne": "// SETOR_01",
+      "sectorTwo": "// SETOR_02",
+      "sideAxis": "EIXO_LATERAL",
+      "flow": "// FLUXO_04",
+      "bufferReady": "BUFFER_PRONTO",
+      "center": "// CENTRO",
+      "centralSystem": "SISTEMA_CENTRAL",
+      "trace": "// TRAÇO_90",
+      "altitude": "ALT_982m",
+      "core": "// NÚCLEO",
+      "warning": "ALERTA_NÍVEL_02",
+      "indexData": "// ÍNDICE_DADOS",
+      "stableSystem": "SISTEMA_ESTÁVEL"
+    },
+    "footer": {
+      "brand": "alucinado.dev",
+      "identity": "LUCINO CAMPOS // DESENVOLVEDOR FRONTEND",
+      "description": "Interfaces claras, responsivas e construídas com atenção ao produto, ao código e a quem vai usar.",
+      "navigationTitle": "NAVEGAÇÃO",
+      "contactTitle": "CONTATO",
+      "contactDescription": "Links para acompanhar meu trabalho ou iniciar uma conversa.",
+      "onlineStatus": "PORTFÓLIO ONLINE",
+      "logoHome": "Voltar para a página inicial",
+      "builtWith": "CRIADO COM NEXT.JS E TYPESCRIPT",
+      "copyright": "ALUCINADO DEV",
+      "analyticsNotice": "MÉTRICAS ANÔNIMAS, SEM COOKIES",
+      "disableAnalytics": "DESATIVAR",
+      "enableAnalytics": "PERMITIR MÉTRICAS"
+    }
+  },
+  "pages": {
+    "loading": {
+      "label": "Carregando conteúdo"
+    },
+    "notFound": {
+      "metadataTitle": "Página não encontrada | Lucino Campos",
+      "eyebrow": "ROTA NÃO ENCONTRADA",
+      "title": "Esta página não existe.",
+      "description": "O endereço pode estar incorreto ou a página pode ter sido movida. Você pode voltar ao início e continuar navegando pelo portfólio.",
+      "homeAction": "Voltar ao início"
+    },
+    "error": {
+      "eyebrow": "FALHA DE INTERFACE",
+      "title": "Não foi possível carregar esta página.",
+      "description": "Ocorreu um erro inesperado. Tente carregar o conteúdo novamente; se o problema continuar, você ainda pode usar a navegação principal.",
+      "retryAction": "Tentar novamente"
+    },
+    "about": {
+      "seo": {
+        "title": "Sobre mim | Lucino Campos",
+        "description": "Conheça meu caminho até a programação, o que estou estudando agora e um pouco do que faço quando saio da frente da tela."
+      },
+      "hero": {
+        "eyebrow": "ALÉM DO CÓDIGO",
+        "title": "Quero fazer a lógica virar algo real.",
+        "introduction": "Sempre me dei bem com lógica e gosto ainda mais quando consigo usá-la para construir algo que funciona de verdade.",
+        "direction": "Por isso, quando decidi mudar de carreira, a programação pareceu um caminho natural. Comecei estudando sozinho, passei por HTML, CSS, React e TypeScript e agora estou avançando no Next.js e no backend.",
+        "contactAction": "Conversar comigo",
+        "portraitAlt": "Retrato de Lucino Campos",
+        "portraitCaption": "Lucino Campos · Brasil"
+      },
+      "journey": {
+        "eyebrow": "TRABALHO EM EQUIPE",
+        "title": "Cheguei à programação já sabendo trabalhar em equipe e entregar o que foi combinado.",
+        "beginning": "Antes de trabalhar como desenvolvedor, passei pela Zaffiro, empresa júnior da UFPA. Como Scrum Master, ajudei a organizar demandas, acompanhar o trabalho da equipe e manter todo mundo alinhado.",
+        "team": "Como freelancer, passei a aplicar isso no desenvolvimento: entender requisitos, cumprir prazos, responder a feedback e ajustar a interface durante a validação com a equipe e o cliente.",
+        "present": "Sou iniciante como desenvolvedor, não no trabalho em equipe. Já precisei assumir responsabilidades, prestar contas do andamento e levar entregas até o fim.",
+        "imageAlt": "Pessoa trabalhando em um notebook dentro de um café noturno com vista para uma cidade futurista",
+        "imageCaption": "CENA ILUSTRATIVA"
+      },
+      "learning": {
+        "eyebrow": "APRENDENDO AGORA",
+        "title": "Meu próximo passo é me tornar um desenvolvedor full-stack.",
+        "description": "Minha base está no frontend. Agora estou estudando o que acontece do outro lado da aplicação para conseguir construir fluxos completos, do navegador ao servidor.",
+        "imageAlt": "Mãos conectando equipamentos de rede em uma bancada de estudos com notebook e pequenos servidores",
+        "imageCaption": "ESTUDANDO ALÉM DO FRONTEND",
+        "items": {
+          "rendering": {
+            "title": "Servidor ou navegador?",
+            "description": "Estou aprendendo a decidir onde cada parte da aplicação deve rodar e o que essa escolha muda no carregamento, no SEO e na experiência de quem usa."
+          },
+          "server": {
+            "title": "Rotas, validação e integrações",
+            "description": "Tenho usado este portfólio para praticar Route Handlers, validação no servidor, envio de e-mail e integrações com serviços externos."
+          },
+          "delivery": {
+            "title": "Colocar no ar e manter funcionando",
+            "description": "Também estou aprendendo sobre deploy, variáveis de ambiente, segurança e tratamento de falhas. Quero entender o que mantém a aplicação funcionando depois que a interface fica pronta."
+          }
+        }
+      },
+      "signals": {
+        "github": {
+          "accessibilityLabel": "Meu mapa de contribuições no GitHub",
+          "eyebrow": "GITHUB",
+          "sectionTitle": "Meu mapa de contribuições no GitHub.",
+          "description": "Uso este mapa para acompanhar minha atividade no GitHub. Ele reúne contribuições em estudos, projetos pessoais e trabalhos que mantenho ao longo do ano.",
+          "summary": "{count, plural, =0 {Nenhuma contribuição registrada} =1 {Uma contribuição registrada} other {# contribuições registradas}} nos últimos 12 meses",
+          "mapLabel": "Mapa de contribuições dos últimos 12 meses",
+          "less": "Menos",
+          "more": "Mais",
+          "activityTitle": "Atividade no período",
+          "commits": "Commits",
+          "pullRequests": "Pull requests",
+          "issues": "Issues",
+          "pullRequestReviews": "Revisões de pull request",
+          "privateContributions": "{count, plural, =1 {# contribuição privada aparece apenas na soma e no mapa.} other {# contribuições privadas aparecem apenas na soma e no mapa.}}",
+          "languagesTitle": "Linguagens nos meus repositórios",
+          "languagesDescription": "Distribuição aproximada pelo tamanho dos arquivos nos repositórios que pertencem ao meu perfil.",
+          "languagesLabel": "Distribuição das linguagens nos repositórios",
+          "action": "Abrir GitHub",
+          "fallbackTitle": "Meu perfil continua disponível no GitHub.",
+          "fallback": "Ver perfil no GitHub"
+        },
+        "wakatime": {
+          "accessibilityLabel": "Minha atividade recente registrada pelo WakaTime",
+          "eyebrow": "WAKATIME",
+          "sectionTitle": "Minha semana no editor.",
+          "description": "Uso o WakaTime para acompanhar quanto tempo passo programando e quais linguagens aparecem nesse período. Os dados abaixo mostram meus últimos sete dias no editor.",
+          "totalLabel": "Tempo registrado",
+          "averageLabel": "Média diária",
+          "activeDaysLabel": "Dias com atividade",
+          "activeDays": "{count, plural, =0 {Nenhum dia} =1 {Um dia} other {# dias}}",
+          "languagesLabel": "Linguagens mais usadas",
+          "otherLanguage": "Outros",
+          "rhythmLabel": "Ritmo dos últimos sete dias",
+          "dayActivity": "Atividade registrada em {day}"
+        },
+        "spotify": {
+          "accessibilityLabel": "Músicas que ouvi recentemente no Spotify",
+          "eyebrow": "SPOTIFY",
+          "sectionTitle": "Minha vibe recentemente.",
+          "description": "Quase sempre tem música tocando enquanto estudo, trabalho ou descanso. Estas foram as últimas faixas que ouvi.",
+          "loading": "Consultando atividade do Spotify",
+          "playing": "Ouvindo agora",
+          "recent": "Última faixa ouvida",
+          "historyTitle": "Últimas no histórico",
+          "selectTrack": "Ouvir {title}, de {artist}",
+          "playerFrameTitle": "Player do Spotify para {title}, de {artist}",
+          "action": "Abrir no Spotify",
+          "albumAlt": "Capa do álbum da música {title}"
+        }
+      },
+      "personal": {
+        "eyebrow": "FORA DA TELA",
+        "title": "Quando fecho o notebook, gosto de ir para a quadra.",
+        "volleyball": "Jogo vôlei porque gosto da movimentação, da disputa e, principalmente, de estar com outras pessoas. Depois de muito tempo concentrado em frente à tela, ir para a quadra muda completamente o ritmo do meu dia.",
+        "balance": "Não jogo profissionalmente. É um hobby que me ajuda a sair da rotina, me movimentar e passar um tempo com outras pessoas.",
+        "photoAlt": "Lucino Campos usando uniforme de vôlei diante de um painel de quadra",
+        "photoCaption": "VÔLEI · FORA DA TELA"
+      },
+      "closing": {
+        "title": "Quer ver o que eu faço na prática?",
+        "description": "Na página de projetos você pode ver o que já construí e qual foi minha participação em cada trabalho. Se tiver uma ideia ou oportunidade, pode falar comigo.",
+        "contactAction": "Entrar em contato"
+      },
+      "accessibility": {
+        "pageLabel": "Sobre Lucino Campos"
+      }
+    },
+    "home": {
+      "seo": {
+        "title": "Lucino Campos | Desenvolvedor Frontend",
+        "description": "Projetos, experiência e tecnologias de Lucino Campos, desenvolvedor frontend com foco no ecossistema React."
+      },
+      "navigation": {
+        "label": "Navegação pelas seções da página",
+        "sections": {
+          "inicio": "Início",
+          "projetos": "Projetos",
+          "sobre": "Sobre",
+          "stack": "Stack",
+          "experience": "Experiência",
+          "contato": "Contato"
+        }
+      },
+      "hero": {
+        "availability": "Disponível para oportunidades",
+        "opportunityTypes": ["CLT", "PJ", "FREELANCE"],
+        "professionalLabel": "PERFIL PROFISSIONAL",
+        "name": "Lucino Campos",
+        "role": "Desenvolvedor Frontend",
+        "description": "Crio interfaces web claras, responsivas e prontas para produção. Transformo requisitos de negócio em produtos confiáveis com React, Next.js e TypeScript.",
+        "proofPoints": [
+          { "icon": "lucide:users-round", "label": "Colaboração em equipe" },
+          { "icon": "lucide:briefcase-business", "label": "Experiência comercial" },
+          { "icon": "lucide:languages", "label": "Inglês B2 certificado" }
+        ],
+        "terminal": {
+          "title": "alucinado.dev",
+          "command": "alucinado.dev iniciar --perfil=frontend",
+          "loadingProfile": "Carregando perfil profissional...",
+          "telemetry": "Telemetria PostHog sincronizada.",
+          "background": "Ambiente visual interativo carregado.",
+          "integrity": "Dados do portfólio carregados com sucesso.",
+          "environment": "Ambiente de apresentação preparado.",
+          "coreStack": "Stack principal: Next.js 16 · React 19 · TypeScript",
+          "workflow": "Processo: entender o problema, construir e validar.",
+          "priorities": "Prioridade: interfaces claras, acessíveis e confiáveis.",
+          "synchronizing": "Organizando experiência, projetos e tecnologias...",
+          "success": "[PRONTO] Perfil profissional carregado.",
+          "hint": "Role para explorar os projetos",
+          "footer": {
+            "language": "IDIOMA",
+            "starting": "INICIANDO...",
+            "connecting": "CARREGANDO...",
+            "ready": "PRONTO",
+            "status": "STATUS",
+            "progress": "PROGRESSO"
+          }
+        },
+        "accessibility": {
+          "sectionLabel": "Apresentação de Lucino Campos",
+          "scrollToProjects": "Ir para os projetos em destaque"
+        }
+      },
+      "projects": {
+        "eyebrow": "TRABALHOS SELECIONADOS",
+        "title": "Projetos em destaque",
+        "description": "Uma seleção de produtos digitais que demonstra como transformo requisitos reais em interfaces confiáveis, performáticas e prontas para uso.",
+        "card": {
+          "moreTechnologies": "+{count}",
+          "viewDetails": "Conhecer o projeto",
+          "roleLabel": "Atuação",
+          "technologiesLabel": "Tecnologias principais: {technologies}"
+        },
+        "accessibility": {
+          "sectionLabel": "Projetos em destaque"
+        }
+      },
+      "about": {
+        "eyebrow": "SOBRE MIM",
+        "title": "Experiência prática, aprendizado contínuo",
+        "paragraphs": {
+          "commercial": "Minha experiência com projetos reais ensinou que desenvolver uma boa interface vai além do código: exige entender o contexto, alinhar expectativas, lidar com prazos e acompanhar a entrega até o uso.",
+          "profile": "Sou desenvolvedor frontend júnior focado em React, Next.js, TypeScript e Tailwind CSS. Trabalho de forma organizada e iterativa: começo pelo essencial, valido as decisões, refatoro e evoluo o produto.",
+          "background": "Antes da transição para tecnologia, atuei como Scrum Master na empresa júnior Zaffiro da UFPA. Essa experiência fortaleceu minha comunicação, organização de processos e capacidade de trabalhar com diferentes perfis."
+        },
+        "cards": {
+          "freelance": {
+            "title": "Experiência comercial",
+            "label": "CLIENTE INTERNACIONAL",
+            "description": "Software entregue em produção para o mercado europeu, com participação em requisitos, arquitetura de interface e evolução do produto."
+          },
+          "leadership": {
+            "title": "Liderança e processos",
+            "label": "TRABALHO EM EQUIPE",
+            "description": "Experiência como Scrum Master, facilitando rotinas ágeis, organizando demandas e mantendo comunicação direta com equipe e stakeholders."
+          },
+          "communication": {
+            "title": "Comunicação em inglês",
+            "label": "TOEFL ITP · B2",
+            "description": "Proficiência B2 certificada, com autonomia para compreender documentações e discussões técnicas da minha área e colaborar em contextos profissionais."
+          }
+        },
+        "accessibility": {
+          "sectionLabel": "Sobre Lucino Campos"
+        }
+      },
+      "stack": {
+        "eyebrow": "FERRAMENTAS E TECNOLOGIAS",
+        "title": "Stack que transforma ideias em produto",
+        "description": "Tecnologias que uso para construir interfaces, validar dados, organizar aplicações e entregar produtos com qualidade. Selecione uma ferramenta para entender seu papel.",
+        "selectedLabel": "Tecnologia selecionada",
+        "accessibility": {
+          "sectionLabel": "Tecnologias e ferramentas",
+          "selectTechnology": "Exibir detalhes sobre {technology}",
+          "detailsRegion": "Detalhes da tecnologia selecionada"
+        }
+      },
+      "experience": {
+        "eyebrow": "TRAJETÓRIA",
+        "title": "Experiência e formação",
+        "description": "Uma trajetória construída entre entrega de software, liderança, estudo autodidata e uma base acadêmica analítica.",
+        "items": {
+          "floathouse": {
+            "periodStart": "JAN 2026",
+            "periodEnd": "PRESENTE",
+            "title": "Desenvolvedor Frontend Freelancer",
+            "organization": "Agência FloatHouse",
+            "location": "Remoto",
+            "highlights": [
+              "Desenvolvimento de interfaces e aplicações web para clientes da agência, transformando requisitos de negócio em soluções responsivas e prontas para produção.",
+              "Colaboração no refinamento de escopo, definição de prioridades, revisões e validação das entregas com os clientes.",
+              "Participação no fluxo dos projetos, do levantamento de requisitos e desenvolvimento até a homologação, publicação e ajustes posteriores."
+            ]
+          },
+          "transition": {
+            "periodStart": "2025",
+            "periodEnd": "",
+            "title": "Transição para tecnologia",
+            "organization": "Estudos autodidatas",
+            "location": "Brasil",
+            "description": "Início de uma rotina dedicada ao desenvolvimento web, arquitetura de componentes, lógica de programação, gerenciamento de estado e ecossistema TypeScript."
+          },
+          "zaffiro": {
+            "periodStart": "2020",
+            "periodEnd": "2023",
+            "title": "Assessor de Projetos",
+            "organization": "Empresa Júnior Zaffiro · UFPA",
+            "location": "Belém, PA",
+            "highlights": [
+              "Apoio à organização e ao gerenciamento dos projetos da empresa, além da criação, documentação e melhoria de processos internos.",
+              "Atuação como Scrum Master em projetos organizados com Kanban e Trello.",
+              "Participação nas etapas de venda e pós-venda, com acompanhamento ao cliente e prospecção ativa e passiva.",
+              "Breve participação no setor de marketing, contribuindo para a criação de conteúdo para as redes sociais."
+            ]
+          },
+
+          "education": {
+            "periodStart": "2017",
+            "periodEnd": "2023",
+            "title": "Engenharia Biomédica · graduação interrompida",
+            "organization": "Universidade Federal do Pará",
+            "location": "Belém, PA",
+            "description": "Desenvolvimento de base analítica e raciocínio lógico por meio de física e calculo, teórico e experimental, modelagem matemática e introdução à programação."
+          }
+        },
+        "accessibility": {
+          "sectionLabel": "Experiência profissional e formação"
+        }
+      },
+      "contact": {
+        "eyebrow": "VAMOS CONVERSAR",
+        "title": "Tem um projeto ou uma oportunidade em mente?",
+        "description": "Estou aberto a oportunidades profissionais e projetos em que eu possa contribuir com interfaces claras, responsivas e bem estruturadas.",
+        "direct": {
+          "title": "Contato direto",
+          "description": "Se preferir um caminho mais direto, envie um e-mail ou acesse meus perfis profissionais.",
+          "emailLabel": "E-mail profissional",
+          "copy": "Copiar",
+          "socialLabels": {
+            "github": "GitHub",
+            "linkedin": "LinkedIn",
+            "instagram": "Instagram"
+          }
+        },
+        "form": {
+          "title": "Conte um pouco sobre o contato",
+          "websiteLabel": "Website",
+          "integrationNotice": "A mensagem será enviada diretamente para o meu e-mail profissional.",
+          "statusInitial": "INICIAL",
+          "statusEditing": "EM PREENCHIMENTO",
+          "statusSending": "ENVIANDO",
+          "statusSuccess": "ENVIADA",
+          "statusError": "REVISAR",
+          "nameLabel": "Nome",
+          "namePlaceholder": "Como posso chamar você?",
+          "emailLabel": "E-mail",
+          "emailPlaceholder": "voce@empresa.com",
+          "messageLabel": "Mensagem",
+          "messagePlaceholder": "Fale sobre a oportunidade, o projeto ou o contexto em que posso ajudar.",
+          "privacyNote": "Seus dados serão usados somente para que eu possa responder a este contato.",
+          "successMessage": "Mensagem enviada. Vou responder pelo e-mail informado assim que possível.",
+          "errorMessage": "Não foi possível concluir o envio. Seus dados continuam preenchidos e você pode tentar novamente.",
+          "send": "Enviar mensagem",
+          "sending": "Enviando...",
+          "verifying": "Verificando..."
+        },
+        "validation": {
+          "name": "Informe um nome com pelo menos 2 caracteres.",
+          "nameMax": "Use no máximo 80 caracteres no nome.",
+          "email": "Informe um endereço de e-mail válido.",
+          "message": "Escreva uma mensagem com pelo menos 20 caracteres.",
+          "messageMax": "Use no máximo 3.000 caracteres na mensagem."
+        },
+        "security": {
+          "verifying": "Verificando a segurança do envio...",
+          "verified": "Verificação de segurança concluída.",
+          "error": "A verificação falhou. Tente novamente.",
+          "unavailable": "O envio online está temporariamente indisponível. Use o e-mail ao lado.",
+          "retry": "Tentar novamente"
+        },
+        "toast": {
+          "emailCopied": "E-mail copiado para a área de transferência.",
+          "copyError": "Não foi possível copiar o e-mail automaticamente.",
+          "sent": "Mensagem enviada com sucesso.",
+          "sendError": "Não foi possível enviar a mensagem. Tente novamente.",
+          "verificationError": "A verificação de segurança expirou ou falhou. Tente novamente.",
+          "serviceUnavailable": "O envio está indisponível agora. Você pode usar o e-mail direto.",
+          "validationError": "Revise os campos destacados antes de continuar."
+        },
+        "accessibility": {
+          "sectionLabel": "Contato profissional",
+          "copyEmail": "Copiar o e-mail profissional de Lucino Campos",
+          "checking": "Verificando a segurança do envio",
+          "sending": "Enviando a mensagem",
+          "securityVerification": "Verificação de segurança do formulário de contato",
+          "github": "Abrir o perfil de Lucino Campos no GitHub em uma nova aba",
+          "linkedin": "Abrir o perfil de Lucino Campos no LinkedIn em uma nova aba",
+          "instagram": "Abrir o perfil de Lucino Campos no Instagram em uma nova aba"
+        }
+      }
+    },
+    "projects": {
+      "seo": {
+        "title": "Projetos | Lucino Campos",
+        "description": "Acervo de projetos frontend, aplicações comerciais e estudos autorais desenvolvidos por Lucino Campos."
+      },
+      "archive": {
+        "eyebrow": "ACERVO DE PROJETOS",
+        "title": "Produtos, experimentos e entregas reais",
+        "description": "Explore projetos comerciais, colaborações e aplicações autorais. Use os filtros para encontrar trabalhos por natureza ou escopo.",
+        "results": "{count, plural, =0 {Nenhum projeto} =1 {# projeto} other {# projetos}}",
+        "building": "Novos projetos em desenvolvimento",
+        "roleLabel": "Atuação",
+        "filters": {
+          "nature": "Natureza",
+          "scope": "Escopo",
+          "all": "Todos"
+        },
+        "empty": {
+          "title": "Nenhum projeto corresponde a esses filtros.",
+          "description": "Tente outra combinação ou limpe os filtros para visualizar todo o acervo. Novos projetos estão em desenvolvimento e serão adicionados aqui."
+        }
+      },
+      "details": {
+        "notFound": "Projeto não encontrado.",
+        "overview": "Visão geral",
+        "features": "Funcionalidades",
+        "stack": "Tecnologias e decisões",
+        "role": "Minha atuação",
+        "privateRepositoryHelp": "O código deste projeto não é público."
+      },
+      "accessibility": {
+        "archiveLabel": "Acervo de projetos",
+        "filtersLabel": "Filtros do acervo de projetos"
+      }
+    }
+  },
+  "content": {
+    "taxonomy": {
+      "nature": {
+        "autoral": "Autoral",
+        "colaborativo": "Colaborativo",
+        "freelancer": "Freelancer"
+      },
+      "scope": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "fullstack": "Full-stack"
+      },
+      "role": {
+        "frontendDeveloper": "Desenvolvedor Frontend"
+      }
+    },
+    "projects": {
+      "flor-do-pomar": {
+        "description": "Plataforma institucional premium e multilíngue para uma empresa de casamentos em Portugal, com gestão de conteúdo, privacidade e foco em desempenho.",
+        "extendedDescription": "A Flor do Pomar é uma aplicação web desenvolvida para uma empresa de wedding planning e decoração de casamentos em Portugal. O produto foi pensado para transmitir o posicionamento premium da marca, facilitar o contato com clientes internacionais e permitir que a equipe atualize o próprio portfólio sem depender de um desenvolvedor.",
+        "features": [
+          "Navegação em português e inglês com rotas específicas para cada idioma.",
+          "Formulário de briefing com validação de dados e envio de anexos.",
+          "Gestão de consentimento de cookies alinhada à GDPR.",
+          "Painel protegido para administração independente do portfólio.",
+          "PWA com cache de recursos e suporte a instalação.",
+          "Estrutura de SEO com sitemap e robots.txt."
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "CASE COMERCIAL",
+            "description": "Frontend de uma plataforma institucional bilíngue criada para apresentar serviços de wedding planning, valorizar trabalhos realizados e transformar interesse em contatos mais qualificados.",
+            "status": "Projeto em produção e com manutenção ativa",
+            "accessTitle": "ACESSO AO PROJETO",
+            "privateRepositoryHelp": "O código não é público por se tratar de um trabalho comercial."
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:briefcase-business",
+                "title": "Experiência comercial",
+                "description": "Entrega para cliente real por meio da agência FloatHouse."
+              },
+              {
+                "icon": "lucide:panels-top-left",
+                "title": "Frontend completo",
+                "description": "Telas, fluxos responsivos, estados e animações sob minha responsabilidade."
+              },
+              {
+                "icon": "lucide:users-round",
+                "title": "Trabalho em equipe",
+                "description": "Alinhamentos, revisões e ajustes conduzidos com equipe e cliente."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "PROBLEMA E PRODUTO",
+            "title": "Uma presença digital preparada para apresentar valor antes do primeiro contato.",
+            "paragraphOne": "A Flor do Pomar precisava ir além de uma vitrine institucional. O site deveria explicar a empresa, o processo e os serviços de wedding planning e decoração para potenciais clientes em Portugal, incluindo visitantes em português e inglês.",
+            "paragraphTwo": "A jornada foi organizada para construir confiança por meio dos trabalhos realizados e conduzir a pessoa até um briefing detalhado. Ao mesmo tempo, o portfólio precisava continuar atualizável pela equipe administrativa sem depender de um programador."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Minha atuação no frontend, do início à entrega.",
+            "description": "Fui responsável pelas telas e interações do frontend. Além de implementar o que havia sido definido, interpretei requisitos, participei das revisões e ajustei a interface durante a validação do cliente.",
+            "items": [
+              {
+                "title": "Construção da interface",
+                "description": "Desenvolvi as páginas, a navegação bilíngue, os estados da interface e as adaptações responsivas."
+              },
+              {
+                "title": "Estados e movimento",
+                "description": "Implementei feedbacks visuais, animações e transições sem perder a clareza dos fluxos."
+              },
+              {
+                "title": "Revisões e ajustes",
+                "description": "Corrigi e refinei a implementação a partir dos alinhamentos com a equipe e dos retornos do cliente."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "Minha atuação foi no frontend. Identidade visual, conteúdo, backend e infraestrutura foram produzidos por outros integrantes do projeto."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Como organizei a base do frontend.",
+            "description": "A stack foi dividida entre a estrutura da aplicação, a construção da experiência visual e os recursos necessários para manter dados e fluxos previsíveis.",
+            "items": {
+              "foundation": {
+                "title": "Estrutura e contratos",
+                "description": "React organizou as telas em componentes reutilizáveis, TypeScript deu contratos aos dados e o Vite sustentou o ambiente de desenvolvimento e a entrega da aplicação."
+              },
+              "interface": {
+                "title": "Interface e idioma",
+                "description": "Tailwind apoiou a construção responsiva, Motion foi usado nas transições e i18next estruturou a experiência em português e inglês."
+              },
+              "reliability": {
+                "title": "Estado e validação",
+                "description": "Zustand compartilhou estados entre diferentes fluxos, Zod centralizou validações e PostHog registrou eventos relevantes da jornada de contato."
+              }
+            }
+          },
+          "gallery": {
+            "eyebrow": "DECISÃO DE INTERFACE",
+            "title": "Uma galeria que continua coerente mesmo quando o conteúdo muda.",
+            "description": "O portfólio recebe as imagens de uma fonte externa e as organiza em grupos com composições horizontais e verticais. A interface verifica o que realmente foi recebido antes de montar cada grupo, evitando que quantidades imprevisíveis de fotos quebrem o ritmo visual da página."
+          },
+          "contact": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Um briefing extenso sem parecer um formulário burocrático.",
+            "description": "A tela de contato combina uma apresentação visual fixa com uma área de preenchimento independente no desktop. O fluxo valida dados do evento, aceita anexos e muda de estrutura em telas menores, preservando clareza e continuidade até o envio."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Uma entrega real que ampliou tanto o repertório técnico quanto o profissional.",
+            "paragraphOne": "O produto entrou em produção e continua recebendo manutenção. O cliente demonstrou alta satisfação com a entrega e com um processo no qual pôde acompanhar e participar das decisões visuais.",
+            "paragraphTwo": "O principal aprendizado foi melhorar a comunicação com equipe e cliente, lidar com responsabilidade comercial e tratar o Figma como uma fonte de alinhamento mais rigorosa. Hoje eu também avaliaria Next.js e renderização no servidor para fortalecer roteamento, SEO e entrega de conteúdo."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "A stack usada diretamente por mim no desenvolvimento do frontend.",
+            "ecosystem": {
+              "title": "CONTEXTO DO PRODUTO",
+              "items": {
+                "api": "API externa",
+                "docker": "Docker",
+                "nginx": "Nginx"
+              },
+              "note": "Integrações e infraestrutura presentes no produto, implementadas por outros integrantes da equipe."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Página inicial da Flor do Pomar com imagem de casamento e apresentação da marca",
+              "portfolio": "Galeria da Flor do Pomar organizada em uma composição de fotografias de casamento",
+              "contact": "Tela de contacto da Flor do Pomar com fotografia e formulário de briefing"
+            },
+            "caption": {
+              "hero": "A abertura combina posicionamento visual, navegação bilíngue e acesso aos principais caminhos do produto.",
+              "portfolio": "A composição se adapta aos dados recebidos e preserva o ritmo entre imagens horizontais e verticais.",
+              "contact": "No desktop, imagem e formulário formam duas superfícies coordenadas; no mobile, o fluxo é reorganizado para leitura linear."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "archiveLabel": "ACERVO",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
+      },
+      "digital-web-watch": {
+        "description": "Aplicativo de produtividade que reúne Pomodoro, Timer e Cronômetro em uma experiência personalizável e instalável.",
+        "extendedDescription": "O Digital Web Watch é um produto focado em gerenciamento de tempo e produtividade. Ele reúne três modos de cronometragem e nasceu como uma reconstrução completa de uma versão anterior feita em JavaScript puro, permitindo revisar arquitetura, estados, acessibilidade e experiência visual.",
+        "features": [
+          "Pomodoro com ciclos personalizáveis, Timer regressivo e Cronômetro com voltas.",
+          "Seis temas visuais que alteram a identidade completa da interface.",
+          "Background animado com Canvas API.",
+          "Internacionalização em português e inglês.",
+          "Persistência local de preferências, volume e tempos configurados.",
+          "PWA instalável para desktop e dispositivos móveis."
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "RECONSTRUÇÃO DE PRODUTO",
+            "description": "Uma aplicação de produtividade que reúne Pomodoro, Timer e Cronômetro em uma experiência personalizável, persistente e instalável.",
+            "status": "Publicado e funcionando",
+            "accessTitle": "ACESSO AO PROJETO",
+            "legacyLabel": "Abrir a versão anterior"
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:refresh-cw",
+                "title": "Reconstrução completa",
+                "description": "Uma versão em JavaScript puro refeita com React e TypeScript."
+              },
+              {
+                "icon": "lucide:timer-reset",
+                "title": "Três modos de tempo",
+                "description": "Pomodoro, Timer e Cronômetro reunidos no mesmo produto."
+              },
+              {
+                "icon": "lucide:palette",
+                "title": "Seis temas completos",
+                "description": "Cores, tipografia, fundos e movimento mudam em conjunto."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "ORIGEM E PRODUTO",
+            "title": "Um desafio de JavaScript que evoluiu para uma aplicação React completa.",
+            "paragraphOne": "A primeira versão nasceu como um exercício para combinar lógica de tempo com temas visuais muito diferentes entre si. Depois de aprender React e TypeScript, reconstruí o projeto para revisar a arquitetura, os estados e a experiência como um todo.",
+            "paragraphTwo": "O produto atende quem precisa controlar ciclos de foco, contagens regressivas ou medições de tempo. Preferências, volume e configurações permanecem no navegador, sem depender de conta ou backend."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Produto autoral, da arquitetura à identidade visual.",
+            "description": "Defini os requisitos, redesenhei a aplicação e implementei individualmente os modos de tempo, estados, temas, idiomas e comportamento responsivo.",
+            "items": [
+              {
+                "title": "Arquitetura da refatoração",
+                "description": "Separei responsabilidades que antes estavam concentradas no JavaScript da primeira versão."
+              },
+              {
+                "title": "Lógica dos relógios",
+                "description": "Implementei configuração, contagem, pausas, voltas e feedbacks dos três modos."
+              },
+              {
+                "title": "Sistema visual",
+                "description": "Construí seis temas e coordenei tipografia, cores, Canvas, transições e som."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "O desenvolvimento e o design foram individuais. Alguns assets, sons e uma referência leve para o background vieram de fontes externas."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Uma nova base para separar lógica, estado e apresentação.",
+            "description": "A reconstrução permitiu distribuir responsabilidades entre componentes, stores e recursos específicos da interface.",
+            "items": {
+              "foundation": {
+                "title": "Base da reconstrução",
+                "description": "React substituiu a manipulação manual da primeira versão, TypeScript tornou os estados mais explícitos e o Vite sustentou o novo ambiente de desenvolvimento."
+              },
+              "experience": {
+                "title": "Temas e idiomas",
+                "description": "Tailwind organizou as variações responsivas, Motion conduziu transições entre estados e i18next estruturou português e inglês."
+              },
+              "state": {
+                "title": "Tempo e persistência",
+                "description": "Zustand separou os estados dos relógios, Zod validou configurações e Canvas manteve o background animado fora da árvore de componentes."
+              }
+            }
+          },
+          "product": {
+            "eyebrow": "SOLUÇÃO E EXPERIÊNCIA",
+            "title": "Três ferramentas, uma mesma linguagem de interação.",
+            "description": "Cada modo tem regras próprias, mas compartilha padrões de controle, configuração e feedback para que a troca não pareça uma mudança de produto.",
+            "items": [
+              {
+                "title": "Modos de tempo",
+                "description": "Pomodoro configurável, Timer regressivo e Cronômetro com registro de voltas."
+              },
+              {
+                "title": "Personalização",
+                "description": "Seis temas alteram a interface inteira, e não somente a cor do fundo."
+              },
+              {
+                "title": "Uso recorrente",
+                "description": "Preferências locais, alerta sonoro, dois idiomas e instalação como PWA."
+              }
+            ]
+          },
+          "challenge": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Manter os relógios previsíveis enquanto a interface continuava mudando.",
+            "paragraphOne": "A parte mais difícil foi combinar a lógica dos três modos com pausas, configurações e mudanças de tela sem perder o estado correto. Esse trabalho consolidou meu entendimento de lógica aplicada dentro do modelo de componentes do React.",
+            "paragraphTwo": "Os temas também exigiram muito CSS manual. Hoje eu avaliaria um sistema pronto, como os temas do DaisyUI, antes de manter tantas variações individualmente."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Uma reconstrução que tornou visível minha evolução no frontend.",
+            "paragraphOne": "A aplicação está publicada e é usada por um grupo pequeno. Os retornos recebidos destacaram principalmente o design e a variedade dos temas.",
+            "paragraphTwo": "O aprendizado central foi fazer lógica de tempo coexistir com React, estados compartilhados, persistência e uma interface que muda bastante sem se tornar imprevisível."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "Ferramentas aplicadas diretamente na reconstrução do produto.",
+            "ecosystem": {
+              "title": "CONTEXTO DO PRODUTO",
+              "items": {
+                "localStorage": "Persistência local",
+                "pwa": "PWA",
+                "vercel": "Vercel"
+              },
+              "note": "A aplicação funciona inteiramente no navegador e não possui backend."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Tela do Digital Web Watch no modo Pomodoro com controles de tempo e seletor de temas"
+            },
+            "caption": {
+              "hero": "A tela principal concentra os três modos, o tema ativo e os controles do relógio sem esconder o estado atual."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "previousLabel": "CASE ANTERIOR",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
+      },
+      "task-manager": {
+        "description": "Interface Kanban para gerenciamento de tarefas, integrada a uma arquitetura backend em microsserviços.",
+        "extendedDescription": "O Task Manager é uma aplicação colaborativa de gerenciamento de tarefas. Minha responsabilidade foi o frontend: arquitetura da interface, interações do quadro Kanban, formulários, estados e integração com os serviços desenvolvidos pelo parceiro de backend.",
+        "features": [
+          "Quadro Kanban com criação, edição e movimentação de tarefas.",
+          "Integração do frontend com serviços de autenticação e tarefas.",
+          "Fluxos de acesso, sessão e recuperação de conta.",
+          "Classificação e filtragem de tarefas por prioridade.",
+          "Interface em português e inglês.",
+          "Componentes acessíveis e interações de arrastar e soltar."
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "APLICAÇÃO KANBAN",
+            "description": "Frontend de uma aplicação Kanban com contas, prioridades, filtros e movimentação de tarefas, integrado a serviços desenvolvidos por outro integrante.",
+            "status": "Demonstração publicada e funcional",
+            "accessTitle": "ACESSO AO PROJETO"
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:users-round",
+                "title": "Projeto colaborativo",
+                "description": "Divisão real de responsabilidades entre frontend e backend."
+              },
+              {
+                "icon": "lucide:panels-top-left",
+                "title": "Design e frontend",
+                "description": "Interface, fluxos e identidade visual sob minha responsabilidade."
+              },
+              {
+                "icon": "lucide:plug-zap",
+                "title": "Integração com serviços",
+                "description": "Contas e tarefas conectadas ao backend do projeto."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "ORIGEM E PRODUTO",
+            "title": "Um projeto criado para aproximar o estudo de um fluxo real de desenvolvimento.",
+            "paragraphOne": "A ideia surgiu de uma proposta colaborativa: construir uma aplicação suficientemente completa para exigir divisão de responsabilidades, integração e decisões independentes. Eu ainda estava começando com React e aceitei assumir todo o frontend.",
+            "paragraphTwo": "O produto organiza tarefas pessoais ou de projetos em um quadro Kanban. A jornada inclui conta, sessão, criação e edição de tarefas, prioridades, filtros e movimentação entre etapas."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Da identidade visual à integração do frontend.",
+            "description": "Criei o design, organizei a arquitetura da interface e desenvolvi as telas, formulários, estados e interações do quadro. Os alinhamentos com o backend aconteciam em reuniões breves, enquanto cada parte era implementada separadamente.",
+            "items": [
+              {
+                "title": "Design da aplicação",
+                "description": "Defini a linguagem visual e transformei os fluxos de conta e tarefas em telas responsivas."
+              },
+              {
+                "title": "Quadro Kanban",
+                "description": "Implementei criação, edição, prioridades, filtros e movimentação das tarefas."
+              },
+              {
+                "title": "Integração",
+                "description": "Conectei o frontend aos serviços de conta e tarefas entregues pelo parceiro de backend."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "Minha autoria foi o design e o frontend. Backend, microsserviços, autenticação no servidor, MongoDB e RabbitMQ foram implementados por outro integrante."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Ferramentas escolhidas para sustentar formulários, rotas e interação direta.",
+            "description": "A stack foi organizada ao redor das necessidades reais do produto, sem atribuir ao frontend tecnologias pertencentes ao backend parceiro.",
+            "items": {
+              "foundation": {
+                "title": "Base do frontend",
+                "description": "React estruturou as telas e os estados, TypeScript trouxe contratos para os dados e o Vite sustentou o ambiente de desenvolvimento da aplicação."
+              },
+              "interface": {
+                "title": "Interface e idiomas",
+                "description": "Tailwind apoiou a responsividade, Motion foi aplicado aos feedbacks visuais e i18next organizou a interface em português e inglês."
+              },
+              "flows": {
+                "title": "Rotas e tarefas",
+                "description": "React Router separou os fluxos, React Hook Form e Zod organizaram formulários e validação, e Pragmatic Drag and Drop viabilizou a movimentação no Kanban."
+              }
+            }
+          },
+          "product": {
+            "eyebrow": "SOLUÇÃO E EXPERIÊNCIA",
+            "title": "Um fluxo completo, da conta ao quadro de tarefas.",
+            "description": "A experiência foi construída como uma aplicação conectada, não como um quadro isolado sem persistência ou identidade de usuário.",
+            "items": [
+              {
+                "title": "Conta e sessão",
+                "description": "Cadastro, acesso e recuperação de conta integrados aos serviços do produto."
+              },
+              {
+                "title": "Gestão de tarefas",
+                "description": "Criação, edição, exclusão e movimentação entre colunas do Kanban."
+              },
+              {
+                "title": "Organização visual",
+                "description": "Prioridades, filtros, temas e dois idiomas ajudam a adaptar o quadro ao uso."
+              }
+            ]
+          },
+          "challenge": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Aplicar React pela primeira vez em um produto com muitas regras conectadas.",
+            "paragraphOne": "O maior desafio foi sair de exercícios menores e lidar com formulários, sessão, tarefas, estados e respostas de uma API no mesmo frontend. Isso exigiu separar responsabilidades e entender como mudanças em um fluxo afetavam os demais.",
+            "paragraphTwo": "Escolhi manter o drag and drop mesmo sendo uma interação difícil para meu nível na época. Aprender a biblioteca e integrá-la ao quadro tornou a experiência mais próxima do produto que queríamos construir."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Meu primeiro aprendizado prático de React dentro de um projeto colaborativo.",
+            "paragraphOne": "A demonstração está publicada, funciona de ponta a ponta e foi utilizada por poucas pessoas. O projeto também recebeu retornos positivos de pessoas próximas e no LinkedIn.",
+            "paragraphTwo": "O principal aprendizado foi separar responsabilidades, integrar um frontend a um backend real e trabalhar com outra pessoa sem confundir autoria. Foi também a primeira vez que reuni meus estudos de React em uma aplicação maior."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "Ferramentas aplicadas diretamente por mim no design e desenvolvimento do frontend.",
+            "ecosystem": {
+              "title": "BACKEND DO PRODUTO",
+              "items": {
+                "api": "APIs de conta e tarefas",
+                "nestjs": "NestJS",
+                "mongodb": "MongoDB",
+                "rabbitmq": "RabbitMQ"
+              },
+              "note": "Essas tecnologias contextualizam o produto, mas foram implementadas pelo parceiro de backend."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Tela inicial do Task Manager com identidade visual espacial e acessos para login e cadastro"
+            },
+            "caption": {
+              "hero": "A abertura apresenta a identidade que criei para o produto e conduz aos fluxos de cadastro e acesso."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "previousLabel": "CASE ANTERIOR",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
+      },
+      "calculator": {
+        "description": "Calculadora em JavaScript puro com histórico persistente, tratamento de erros e sete temas visuais.",
+        "extendedDescription": "A Futuristic Calculator é uma aplicação autoral criada para explorar os fundamentos da web sem frameworks. O projeto combina manipulação direta do DOM, cálculos encadeados, persistência local e um sistema visual baseado em propriedades customizadas do CSS.",
+        "features": [
+          "Operações aritméticas encadeadas, exponenciação, raiz e porcentagem.",
+          "Sete temas visuais controlados por propriedades customizadas do CSS.",
+          "Persistência de preferências e histórico no navegador.",
+          "Histórico de cálculos e seletor de temas em painéis independentes.",
+          "Tratamento de entradas inválidas e operações matemáticas impossíveis.",
+          "Ações distintas para limpar tudo, limpar entrada e apagar o último caractere.",
+          "Layout responsivo construído com CSS Grid e Flexbox."
+        ],
+        "case": {
+          "hero": {
+            "eyebrow": "FUNDAMENTOS DA WEB",
+            "description": "Uma calculadora em JavaScript puro com operações encadeadas, histórico persistente, tratamento de erros e sete identidades visuais.",
+            "status": "Publicado e funcionando",
+            "accessTitle": "ACESSO AO PROJETO"
+          },
+          "proof": {
+            "items": [
+              {
+                "icon": "lucide:braces",
+                "title": "Sem framework",
+                "description": "HTML, CSS e JavaScript usados diretamente para exercitar as bases."
+              },
+              {
+                "icon": "lucide:palette",
+                "title": "Sete temas",
+                "description": "A calculadora, as fontes e o cenário mudam em conjunto."
+              },
+              {
+                "icon": "lucide:message-circle-heart",
+                "title": "Retorno no LinkedIn",
+                "description": "Meu projeto com maior resposta na plataforma e origem de novos contatos."
+              }
+            ]
+          },
+          "context": {
+            "eyebrow": "ORIGEM E PRODUTO",
+            "title": "Um projeto escolhido para concentrar o desafio na lógica de JavaScript.",
+            "paragraphOne": "Eu queria praticar muita lógica com pouco HTML e sem depender de um framework. A calculadora permitiu trabalhar operações, entradas sucessivas, erros e histórico dentro de uma interface pequena, mas com vários estados possíveis.",
+            "paragraphTwo": "Embora o objetivo principal fosse o aprendizado, a aplicação também foi publicada para uso real. Ela oferece cálculos básicos e avançados, histórico e personalização visual sem backend."
+          },
+          "contribution": {
+            "eyebrow": "MINHA ATUAÇÃO",
+            "title": "Lógica, interface e temas desenvolvidos individualmente.",
+            "description": "Planejei e implementei sozinho o comportamento da calculadora, a manipulação do DOM, o histórico, a persistência e o sistema visual.",
+            "items": [
+              {
+                "title": "Motor de cálculo",
+                "description": "Implementei operações encadeadas, funções avançadas e regras para entradas sucessivas."
+              },
+              {
+                "title": "Estados e histórico",
+                "description": "Tratei limpeza parcial e total, erros, notação científica e registros persistidos."
+              },
+              {
+                "title": "Identidade visual",
+                "description": "Criei sete temas que modificam fontes, cores, superfícies e a aparência da calculadora."
+              }
+            ],
+            "scopeLabel": "ESCOPO",
+            "boundary": "O projeto foi desenvolvido individualmente. GIFs e outros assets de pixel art usados nos cenários vieram de fontes externas."
+          },
+          "technicalDecisions": {
+            "eyebrow": "DECISÕES TÉCNICAS",
+            "title": "Fundamentos da web usados sem uma camada de abstração.",
+            "description": "Na época eu ainda não conhecia frameworks, então estado, renderização e persistência foram organizados diretamente com recursos do navegador.",
+            "items": {
+              "logic": {
+                "title": "Lógica e estado manual",
+                "description": "JavaScript controla as operações, valida entradas, atualiza o display, monta o histórico e sincroniza preferências com o navegador."
+              },
+              "interface": {
+                "title": "Estrutura e temas",
+                "description": "HTML organiza os controles e painéis, enquanto CSS Variables, Grid e Flexbox sustentam responsividade e sete temas visualmente diferentes."
+              }
+            }
+          },
+          "product": {
+            "eyebrow": "SOLUÇÃO E EXPERIÊNCIA",
+            "title": "Mais estados do que a interface compacta sugere.",
+            "description": "Os controles foram separados para deixar claro quando apagar um caractere, limpar a entrada atual ou reiniciar todo o cálculo.",
+            "items": [
+              {
+                "title": "Operações",
+                "description": "Cálculos encadeados, potência, raiz, porcentagem e inversão de sinal."
+              },
+              {
+                "title": "Histórico e erros",
+                "description": "Registros persistentes e tratamento de entradas inválidas ou operações impossíveis."
+              },
+              {
+                "title": "Personalização",
+                "description": "Sete temas completos e preferência mantida entre visitas pelo LocalStorage."
+              }
+            ]
+          },
+          "challenge": {
+            "eyebrow": "DESAFIO PRINCIPAL",
+            "title": "Fazer cálculos encadeados sem perder o significado de cada entrada.",
+            "paragraphOne": "A parte mais difícil foi controlar o valor atual, a operação pendente e o resultado anterior enquanto a pessoa continuava digitando. Funções como porcentagem, raiz e troca de sinal também precisavam respeitar o estado exibido.",
+            "paragraphTwo": "Construir isso sem framework tornou visíveis as responsabilidades que bibliotecas modernas costumam abstrair: atualizar o DOM, guardar estado, validar sequências e manter a interface sincronizada."
+          },
+          "outcome": {
+            "eyebrow": "RESULTADO E APRENDIZADO",
+            "title": "Um exercício de fundamentos que também gerou reconhecimento público.",
+            "paragraphOne": "O projeto está publicado e teve pouco uso recorrente, mas foi o meu trabalho com maior retorno no LinkedIn. O estilo em pixel art recebeu muitos elogios e a publicação gerou novos contatos.",
+            "paragraphTwo": "O aprendizado mais importante foi organizar lógica de JavaScript, cálculos e estados manualmente. Essa base tornou mais fácil entender depois o que frameworks resolvem e quais responsabilidades continuam pertencendo ao desenvolvedor."
+          },
+          "stack": {
+            "eyebrow": "STACK DO FRONTEND",
+            "title": "Tecnologias que usei",
+            "description": "A base da web aplicada diretamente, sem framework ou gerenciador de estado.",
+            "ecosystem": {
+              "title": "CONTEXTO DO PRODUTO",
+              "items": {
+                "dom": "DOM do navegador",
+                "localStorage": "LocalStorage",
+                "vercel": "Vercel"
+              },
+              "note": "A aplicação é estática, persiste dados no navegador e não possui backend."
+            }
+          },
+          "media": {
+            "alt": {
+              "hero": "Futuristic Calculator no tema de cidade cyberpunk com histórico e seletor de temas"
+            },
+            "caption": {
+              "hero": "O tema altera o cenário, as fontes, as cores e a calculadora, mantendo os controles na mesma estrutura."
+            }
+          },
+          "navigation": {
+            "label": "Navegação entre cases",
+            "previousLabel": "CASE ANTERIOR",
+            "nextLabel": "PRÓXIMO CASE"
+          }
+        }
+      }
+    },
+    "technologies": {
+      "react": "Base da interface em componentes reutilizáveis, facilitando a evolução de telas complexas e a sincronização entre estado e experiência visual.",
+      "nextjs": "Framework React usado para organizar rotas, renderização, metadados e recursos de servidor em uma estrutura preparada para produção.",
+      "typescript": "Adiciona contratos explícitos ao código, antecipa erros durante o desenvolvimento e torna refatorações mais seguras.",
+      "tailwind": "Sistema de classes utilitárias usado para construir interfaces responsivas com consistência visual e pouco CSS isolado.",
+      "zustand": "Gerenciamento de estado global leve, usado quando diferentes partes da aplicação precisam compartilhar dados sem excesso de estrutura.",
+      "motion": "Biblioteca de animação aplicada a transições, feedbacks de interação e movimentos que ajudam a explicar mudanças de estado.",
+      "nestjs": "Framework backend modular em TypeScript presente na arquitetura de serviços do Task Manager.",
+      "mongodb": "Banco de dados orientado a documentos usado pelo backend do Task Manager para armazenar contas e tarefas.",
+      "docker": "Padroniza ambientes e dependências para que a aplicação se comporte de forma consistente entre desenvolvimento e produção.",
+      "rabbitmq": "Mensageria usada no Task Manager para comunicação assíncrona entre serviços independentes.",
+      "zod": "Valida dados de formulários e integrações antes que eles entrem na lógica da aplicação.",
+      "posthog": "Ferramenta de análise de produto usada para acompanhar eventos, entender o comportamento de uso e orientar melhorias com base em dados reais.",
+      "canvas": "API do navegador usada para renderizar animações gráficas de alto desempenho sem criar centenas de elementos no DOM.",
+      "vite": "Ferramenta de desenvolvimento e build utilizada nos projetos React anteriores ao portfólio em Next.js.",
+      "nginx": "Servidor web e proxy reverso usado para entrega de arquivos, compressão e distribuição de tráfego.",
+      "atlassian": "Biblioteca de arrastar e soltar usada para construir a interação do quadro Kanban com bom desempenho.",
+      "reactRouter": "Organiza as rotas e separa fluxos de navegação em aplicações React executadas no navegador.",
+      "reactHookForm": "Gerencia formulários e seus estados com integração a regras de validação.",
+      "i18next": "Infraestrutura de internacionalização usada nos projetos React para organizar traduções e alternância de idioma.",
+      "javascript": "Linguagem principal da web, utilizada para interações, regras de negócio e manipulação do DOM.",
+      "css": "Linguagem responsável pela identidade visual, responsividade e organização dos layouts.",
+      "html": "Estrutura semântica do conteúdo, essencial para acessibilidade, navegação e indexação."
+    }
+  }
+}
