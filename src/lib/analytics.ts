@@ -58,20 +58,15 @@ type PortfolioEvent =
 const analyticsEnabled = Boolean(
   process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN?.trim() && process.env.NEXT_PUBLIC_POSTHOG_HOST?.trim(),
 )
-const analyticsPreferenceKey = 'portfolio_analytics_disabled'
-
-function hasDisabledAnalytics() {
-  return typeof window !== 'undefined' && window.localStorage.getItem(analyticsPreferenceKey) === 'true'
-}
 
 export function capturePortfolioEvent({ name, properties }: PortfolioEvent) {
-  if (!analyticsEnabled || hasDisabledAnalytics()) return
+  if (!analyticsEnabled) return
 
   posthog.capture(name, properties)
 }
 
 export function getPostHogCorrelationHeaders(): Record<string, string> {
-  if (!analyticsEnabled || !posthog.__loaded || hasDisabledAnalytics()) return {}
+  if (!analyticsEnabled || !posthog.__loaded) return {}
 
   const distinctId = posthog.get_distinct_id()
   const sessionId = posthog.get_session_id()
@@ -80,29 +75,4 @@ export function getPostHogCorrelationHeaders(): Record<string, string> {
     ...(distinctId ? { 'X-POSTHOG-DISTINCT-ID': distinctId } : {}),
     ...(sessionId ? { 'X-POSTHOG-SESSION-ID': sessionId } : {}),
   }
-}
-
-export function isAnalyticsEnabled() {
-  return analyticsEnabled && posthog.__loaded && !hasDisabledAnalytics()
-}
-
-export function setAnalyticsEnabled(enabled: boolean) {
-  if (!analyticsEnabled || !posthog.__loaded) return
-
-  if (enabled) {
-    window.localStorage.removeItem(analyticsPreferenceKey)
-    posthog.set_config({
-      autocapture: false,
-      capture_exceptions: true,
-      capture_pageview: 'history_change',
-    })
-    return
-  }
-
-  window.localStorage.setItem(analyticsPreferenceKey, 'true')
-  posthog.set_config({
-    autocapture: false,
-    capture_exceptions: false,
-    capture_pageview: false,
-  })
 }

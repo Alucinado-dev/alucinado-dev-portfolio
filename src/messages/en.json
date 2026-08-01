@@ -40,6 +40,7 @@
       "terminalLog": "Professional presentation in terminal format"
     },
     "header": {
+      "brand": "Alucinado.Dev",
       "systemStatus": "ACTIVE PORTFOLIO",
       "version": "VERSION 2026.07",
       "locale": "LANGUAGE: [{locale}]",
@@ -65,7 +66,7 @@
       "stableSystem": "STABLE_SYSTEM"
     },
     "footer": {
-      "brand": "alucinado.dev",
+      "brand": "Alucinado.Dev",
       "identity": "LUCINO CAMPOS // FRONTEND DEVELOPER",
       "description": "Clear, responsive interfaces built with attention to the product, the code and who will use it.",
       "navigationTitle": "NAVIGATION",
@@ -74,10 +75,7 @@
       "onlineStatus": "ONLINE PORTFOLIO",
       "logoHome": "Return to home page",
       "builtWith": "CREATED WITH NEXT.JS AND TYPESCRIPT",
-      "copyright": "ALUCINADO DEV",
-      "analyticsNotice": "ANONYMOUS, COOKIELESS METRICS",
-      "disableAnalytics": "DISABLE",
-      "enableAnalytics": "ALLOW METRICS"
+      "copyright": "ALUCINADO DEV"
     }
   },
   "pages": {

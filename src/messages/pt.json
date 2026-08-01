@@ -40,6 +40,7 @@
       "terminalLog": "Apresentação profissional em formato de terminal"
     },
     "header": {
+      "brand": "Alucinado.Dev",
       "systemStatus": "PORTFÓLIO ATIVO",
       "version": "VERSÃO 2026.07",
       "locale": "IDIOMA: [{locale}]",
@@ -65,7 +66,7 @@
       "stableSystem": "SISTEMA_ESTÁVEL"
     },
     "footer": {
-      "brand": "alucinado.dev",
+      "brand": "Alucinado.Dev",
       "identity": "LUCINO CAMPOS // DESENVOLVEDOR FRONTEND",
       "description": "Interfaces claras, responsivas e construídas com atenção ao produto, ao código e a quem vai usar.",
       "navigationTitle": "NAVEGAÇÃO",
@@ -74,10 +75,7 @@
       "onlineStatus": "PORTFÓLIO ONLINE",
       "logoHome": "Voltar para a página inicial",
       "builtWith": "CRIADO COM NEXT.JS E TYPESCRIPT",
-      "copyright": "ALUCINADO DEV",
-      "analyticsNotice": "MÉTRICAS ANÔNIMAS, SEM COOKIES",
-      "disableAnalytics": "DESATIVAR",
-      "enableAnalytics": "PERMITIR MÉTRICAS"
+      "copyright": "ALUCINADO DEV"
     }
   },
   "pages": {

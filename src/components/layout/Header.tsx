@@ -8,6 +8,7 @@ import { Icon } from '@iconify/react'
 
 import Container from '@/components/container/Container'
 import { LanguageSwitcher } from '@/components/features/LanguageSwitcher'
+import BrandName from '@/components/ui/BrandName'
 import Logo from '@/components/ui/Logo'
 import { Link, usePathname } from '@/i18n/navigation'
 import { siteNavigation } from '@/lib/data/SiteData'
@@ -58,13 +59,14 @@ export default function Header() {
       </div>
 
       <Container className='flex h-full items-center border-white/10 bg-[#020612] px-0'>
-        <div className='flex h-full shrink-0 items-center border-r border-white/5 px-4 sm:px-6'>
+        <div className='flex h-full shrink-0 items-center border-r border-white/5 px-2 sm:px-4 lg:px-5'>
           <Link
             href={siteNavigation[0].href}
             aria-label={t('logoHome')}
-            className='focus-visible:ring-cyan-bright/60 relative outline-none focus-visible:ring-2'
+            className='focus-visible:ring-cyan-bright/60 relative inline-flex items-center gap-1.5 outline-none focus-visible:ring-2 sm:gap-2.5'
           >
             <Logo />
+            <BrandName>{t('brand')}</BrandName>
           </Link>
         </div>
 
