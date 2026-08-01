@@ -11,7 +11,7 @@ import { AboutReveal } from '@/components/about/AboutReveal'
 import MeshBackground from '@/components/backgrounds/MeshBackground'
 import { Link } from '@/i18n/navigation'
 import { siteLinks } from '@/lib/data/SiteData'
-import { localizedAlternates } from '@/lib/site-url'
+import { getSocialImage, localizedAlternates } from '@/lib/site-url'
 
 type AboutPageProps = {
   params: Promise<{ locale: string }>
@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
     openGraph: {
       title: t('title'),
       description: t('description'),
+      images: [getSocialImage()],
     },
   }
 }

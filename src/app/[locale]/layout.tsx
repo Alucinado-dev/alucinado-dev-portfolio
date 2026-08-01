@@ -17,7 +17,7 @@ import Container from '@/components/container/Container'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 import { AppProviders } from '@/components/providers/AppProviders'
-import { getSiteUrl } from '@/lib/site-url'
+import { getSiteUrl, getSocialImage } from '@/lib/site-url'
 
 import '../../styles/globals.css'
 
@@ -108,28 +108,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: t('title'),
       description: t('description'),
       url: getSiteUrl(),
-      images: [
-        {
-          url: `${getSiteUrl()}/og-image.png`,
-          width: 1200,
-          height: 630,
-          alt: 'alucinado.dev',
-        },
-      ],
+      images: [getSocialImage()],
       countryName: 'BR',
     },
     twitter: {
       card: 'summary_large_image',
       creator: 'Lucino Campos',
       title: t('title'),
-      images: [
-        {
-          url: `${getSiteUrl()}/og-image.png`,
-          width: 1200,
-          height: 630,
-          alt: 'alucinado.dev',
-        },
-      ],
+      images: [getSocialImage()],
       description: t('description'),
     },
   }

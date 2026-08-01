@@ -35,3 +35,12 @@ export function localizedAlternates(locale: string, path = '/') {
     },
   }
 }
+
+export function getSocialImage() {
+  return {
+    url: new URL('/hero.png', getSiteUrl()),
+    width: 1920,
+    height: 1080,
+    alt: 'Alucinado.Dev — portfólio de Lucino Campos',
+  }
+}

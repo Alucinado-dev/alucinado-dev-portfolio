@@ -27,18 +27,18 @@ const timelineItems: TimelineItem[] = [
     hasHighlights: true,
   },
   {
-    key: 'zaffiro',
-    icon: 'lucide:users-round',
-    accent: 'border-l-plasma-purple/75',
-    node: 'border-plasma-purple/50 bg-plasma-purple/10 text-purple-300',
-    hasHighlights: true,
-  },
-  {
     key: 'transition',
     icon: 'lucide:code-2',
     accent: 'border-l-pink-neon/60',
     node: 'border-pink-neon/40 bg-pink-neon/8 text-pink-300',
     hasHighlights: false,
+  },
+  {
+    key: 'zaffiro',
+    icon: 'lucide:users-round',
+    accent: 'border-l-plasma-purple/75',
+    node: 'border-plasma-purple/50 bg-plasma-purple/10 text-purple-300',
+    hasHighlights: true,
   },
   {
     key: 'education',

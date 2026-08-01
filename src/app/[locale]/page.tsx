@@ -8,7 +8,7 @@ import ExperienceSection from '@/components/sections/ExperienceSection'
 import HeroSection from '@/components/sections/HeroSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import StackSection from '@/components/sections/StackSection'
-import { localizedAlternates } from '@/lib/site-url'
+import { getSocialImage, localizedAlternates } from '@/lib/site-url'
 
 type HomePageProps = {
   params: Promise<{ locale: string }>
@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
     openGraph: {
       title: t('title'),
       description: t('description'),
+      images: [getSocialImage()],
     },
   }
 }

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { FlorDoPomarCase } from '@/components/cases/FlorDoPomarCase'
 import { StandardProjectCase } from '@/components/cases/StandardProjectCase'
 import { projects } from '@/lib/data/ProjectData'
-import { localizedAlternates } from '@/lib/site-url'
+import { getSocialImage, localizedAlternates } from '@/lib/site-url'
 
 type ProjectDetailsPageProps = {
   params: Promise<{
@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: ProjectDetailsPageProps): Pro
     openGraph: {
       title: `${project.title} | Lucino Campos`,
       description,
+      images: [getSocialImage()],
     },
   }
 }

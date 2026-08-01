@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
-import { localizedAlternates } from '@/lib/site-url'
+import { getSocialImage, localizedAlternates } from '@/lib/site-url'
 
 type ProjectsLayoutProps = {
   children: React.ReactNode
@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: ProjectsLayoutProps): Promise
     openGraph: {
       title: t('title'),
       description: t('description'),
+      images: [getSocialImage()],
     },
   }
 }
