@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react'
 
 import MeshBackground from '@/components/backgrounds/MeshBackground'
 import Container from '@/components/container/Container'
-import AnalyticsPreference from '@/components/features/AnalyticsPreference'
+import BrandName from '@/components/ui/BrandName'
 import Logo from '@/components/ui/Logo'
 import { Link } from '@/i18n/navigation'
 import { siteExternalLinks, siteLinks, siteNavigation } from '@/lib/data/SiteData'
@@ -55,6 +55,7 @@ export default function Footer() {
             className='focus-visible:ring-cyan-bright/60 inline-flex items-center gap-4 outline-none focus-visible:ring-2'
           >
             <Logo size='footer' />
+            <BrandName size='footer'>{footer('brand')}</BrandName>
           </Link>
           <p className='font-outfit mt-5 max-w-xs text-sm leading-7 font-light text-slate-400'>
             {footer('description')}
@@ -115,7 +116,6 @@ export default function Footer() {
             <span>{currentYear}</span>
             <span className='text-slate-400'>{footer('copyright')}</span>
           </div>
-          <AnalyticsPreference />
           <span>{footer('builtWith')}</span>
         </Container>
       </div>
